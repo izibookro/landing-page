@@ -1,0 +1,58 @@
+---
+import type { ImageMetadata } from 'astro';
+import mockupCenter from '../../assets/mockups/mockup-1.png';
+import mockupLeft from '../../assets/mockups/mockup-2.png';
+import mockupRight from '../../assets/mockups/mockup-3.png';
+import PhoneFrame from '../PhoneFrame.astro';
+
+interface MockupConfig {
+  src: ImageMetadata;
+  alt: string;
+  position: string;
+  size: string;
+}
+
+const mockups: MockupConfig[] = [
+  {
+    src: mockupLeft,
+    alt: 'Izibook schedule view',
+    position: 'z-10 -mr-10 -rotate-[10deg] sm:-mr-14 lg:-mr-20',
+    size: 'w-[160px] sm:w-[190px] lg:w-[220px]',
+  },
+  {
+    src: mockupCenter,
+    alt: 'Izibook dashboard overview',
+    position: 'z-20',
+    size: 'w-[190px] sm:w-[220px] lg:w-[260px]',
+  },
+  {
+    src: mockupRight,
+    alt: 'Izibook booking screen',
+    position: 'z-10 -ml-10 rotate-[10deg] sm:-ml-14 lg:-ml-20',
+    size: 'w-[160px] sm:w-[190px] lg:w-[220px]',
+  },
+];
+---
+
+<div class="relative w-full flex-1 overflow-hidden">
+  <div
+    class="pointer-events-none absolute inset-0 overflow-hidden"
+    aria-hidden="true"
+  >
+    <div class="flex origin-bottom items-end justify-center">
+      {
+        mockups.map((mockup) => (
+          <div class:list={['relative shrink-0', mockup.position]}>
+            <PhoneFrame src={mockup.src} alt={mockup.alt} class={mockup.size} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="from-white-500 via-white-500 absolute inset-x-0 bottom-0 z-30 h-20 bg-linear-to-t to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+  </div>
+</div>

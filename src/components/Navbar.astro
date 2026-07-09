@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import appIcon from '../assets/icon.png';
+
+const navLinks = [
+  { label: 'Functionalitati', href: '#functionalitati' },
+  { label: 'Despre Noi', href: '#despre-noi' },
+  { label: 'Prețuri', href: '#preturi' },
+  { label: 'Contact', href: '#contact' },
+  { label: 'Blog', href: '#blog' },
+] as const;
+---
+
+<header class="fixed inset-x-0 top-0 z-50 px-4 pt-5 sm:px-6">
+  <nav
+    class="border-black-100 bg-white-500 mx-auto flex max-w-5xl items-center justify-between gap-4 rounded-full border px-4 py-2.5 shadow-[0_2px_24px_rgb(37_37_43/0.06)] sm:px-5"
+    aria-label="Main navigation"
+  >
+    <!-- Brand -->
+    <a href="/" class="flex shrink-0 items-center gap-2.5">
+      <Image
+        src={appIcon}
+        alt=""
+        width={36}
+        height={36}
+        class="size-9 shrink-0 rounded-full"
+        loading="eager"
+      />
+      <span class="text-black-500 text-xl font-black tracking-tight"
+        >IziBook</span
+      >
+    </a>
+
+    <!-- Links -->
+    <ul
+      class="text-black-400 hidden items-center gap-7 text-sm font-medium md:flex"
+    >
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="hover:text-black-500 transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Store buttons -->
+    <div class="flex shrink-0 items-center gap-2">
+      <a
+        href="#apple"
+        class="bg-black-50 text-black-500 hover:bg-black-100 flex size-9 items-center justify-center rounded-xl transition-colors duration-200"
+        aria-label="Download on the App Store"
+      >
+        <Icon name="ic:baseline-apple" class="size-6" />
+      </a>
+      <a
+        href="#android"
+        class="bg-black-50 text-black-500 hover:bg-black-100 flex size-9 items-center justify-center rounded-xl transition-colors duration-200"
+        aria-label="Get it on Google Play"
+      >
+        <Icon name="simple-icons:googleplay" class="size-5" />
+      </a>
+      <a
+        href="#web"
+        class="bg-black-50 text-black-500 hover:bg-black-100 flex size-9 items-center justify-center rounded-xl transition-colors duration-200"
+        aria-label="Get it on Google Play"
+      >
+        <Icon name="streamline-plump:web-solid" class="size-5" />
+      </a>
+    </div>
+  </nav>
+</header>
