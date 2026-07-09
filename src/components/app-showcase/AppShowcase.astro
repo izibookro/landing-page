@@ -1,0 +1,462 @@
+---
+import { Icon } from 'astro-icon/components';
+import PhoneFrame from '../PhoneFrame.astro';
+import { appScreens } from '../../data/appScreens';
+
+const initialScreen = appScreens[Math.floor(appScreens.length / 2)]!;
+const initialIndex = Math.floor(appScreens.length / 2);
+
+const downloadLinks = [
+  {
+    label: 'Descarcă iOS',
+    href: '#apple',
+    icon: 'ic:baseline-apple',
+    iconClass: 'size-5',
+    variant: 'primary',
+    ariaLabel: 'Descarcă din App Store',
+  },
+  {
+    label: 'Descarcă Android',
+    href: '#android',
+    icon: 'simple-icons:googleplay',
+    iconClass: 'size-4.5',
+    variant: 'secondary',
+    ariaLabel: 'Descarcă din Google Play',
+  },
+  {
+    label: 'Versiune Web',
+    href: '#web',
+    icon: 'streamline-plump:web-solid',
+    iconClass: 'size-4.5',
+    variant: 'secondary',
+    ariaLabel: 'Deschide versiunea web',
+  },
+] as const;
+---
+
+<section
+  id="aplicatie"
+  class="bg-white-500 relative px-4 sm:px-6"
+  aria-labelledby="app-showcase-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <h2 id="app-showcase-heading" class="app-showcase-heading">
+      Afacerea ta, <br /> devine o placere
+    </h2>
+
+    <div
+      class="app-showcase"
+      data-app-showcase
+      tabindex="0"
+      role="region"
+      aria-roledescription="carusel"
+      aria-label="Previzualizare ecrane aplicatie — trage pentru a naviga"
+    >
+      <div class="app-showcase__stage">
+        <div class="app-showcase__glow" aria-hidden="true"></div>
+
+        <div class="swiper app-showcase__swiper">
+          <div class="swiper-wrapper">
+            {
+              appScreens.map((screen, index) => (
+                <div
+                  class="swiper-slide app-showcase__slide"
+                  data-slide
+                  data-index={index}
+                  data-title={screen.title}
+                  data-description={screen.description}
+                >
+                  <div class="app-showcase__phone">
+                    <PhoneFrame
+                      src={screen.src}
+                      alt={screen.title}
+                      class="app-showcase__image"
+                    />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="app-showcase__caption" data-caption aria-live="polite">
+        <h3 class="app-showcase__caption-title" data-caption-title>
+          {initialScreen.title}
+        </h3>
+        <p class="app-showcase__caption-desc" data-caption-desc>
+          {initialScreen.description}
+        </p>
+      </div>
+
+      <div
+        class="app-showcase__indicators"
+        role="tablist"
+        aria-label="Ecrane aplicatie"
+      >
+        {
+          appScreens.map((screen, index) => (
+            <button
+              type="button"
+              class="app-showcase__indicator"
+              data-indicator
+              data-index={index}
+              role="tab"
+              aria-label={screen.title}
+              aria-selected={index === initialIndex}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="app-showcase-cta" aria-labelledby="app-showcase-cta-heading">
+      <h3 id="app-showcase-cta-heading" class="app-showcase-cta__title">
+        Gestionează-ți afacerea cu ușurință, nu cu stres
+      </h3>
+      <p class="app-showcase-cta__desc">
+        Ține-ți salonul sub control cu un sistem care se adaptează ritmului tău.
+        Date în timp real, notificări automate și asistent AI care te ajută să
+        oferi o experiență memorabilă clienților.
+      </p>
+      <div class="app-showcase-cta__actions">
+        {
+          downloadLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                'app-showcase-cta__btn',
+                link.variant === 'primary' && 'app-showcase-cta__btn--primary',
+                link.variant === 'secondary' &&
+                  'app-showcase-cta__btn--secondary',
+              ]}
+              aria-label={link.ariaLabel}
+            >
+              <Icon name={link.icon} class={link.iconClass} />
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initAppShowcase } from './initAppShowcase';
+
+  document
+    .querySelectorAll<HTMLElement>('[data-app-showcase]')
+    .forEach((root) => {
+      initAppShowcase(root);
+    });
+</script>
+
+<style>
+  .app-showcase-heading {
+    margin-inline: auto;
+    margin-bottom: clamp(2rem, 5vw, 3.25rem);
+    max-width: 16.5em;
+    text-align: center;
+    text-wrap: balance;
+    font-size: clamp(2.125rem, 5.4vw, 4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.038em;
+    background: linear-gradient(
+      168deg,
+      rgb(37 37 43) 0%,
+      rgb(37 37 43) 34%,
+      rgb(62 62 68) 50%,
+      rgb(106 106 114) 66%,
+      rgb(175 175 181) 82%,
+      rgb(230 230 232) 94%,
+      rgb(255 255 255) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  @media (min-width: 640px) {
+    .app-showcase-heading {
+      max-width: 17.5em;
+      margin-bottom: 3.25rem;
+    }
+  }
+
+  .app-showcase {
+    outline: none;
+  }
+
+  .app-showcase__stage {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .app-showcase__glow {
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    z-index: 0;
+    width: min(22rem, 58vw);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle,
+      rgb(249 115 22 / 0.16) 0%,
+      rgb(249 115 22 / 0.06) 42%,
+      transparent 72%
+    );
+    filter: blur(28px);
+    animation: app-showcase-glow 6s ease-in-out infinite;
+  }
+
+  .app-showcase__swiper {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    padding-block: 0.5rem 1.5rem;
+  }
+
+  .app-showcase__swiper :global(.swiper-wrapper),
+  .app-showcase__swiper :global(.swiper-slide) {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  .app-showcase__slide {
+    position: relative;
+    width: clamp(13rem, 38vw, 22rem);
+    opacity: 0.42;
+    transition: opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .app-showcase__slide.swiper-slide-active {
+    opacity: 1;
+  }
+
+  .app-showcase__slide.swiper-slide-visible:not(.swiper-slide-active) {
+    opacity: 0.68;
+  }
+
+  .app-showcase__phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .app-showcase__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 20px 36px rgb(37 37 43 / 0.14));
+    transition: filter 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .app-showcase__slide.swiper-slide-active .app-showcase__image {
+    filter: drop-shadow(0 24px 44px rgb(37 37 43 / 0.16));
+  }
+
+  .app-showcase__caption {
+    text-align: center;
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease;
+  }
+
+  .app-showcase__caption.is-changing {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+
+  .app-showcase__caption-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: rgb(37 37 43);
+  }
+
+  .app-showcase__caption-desc {
+    margin-top: 0.5rem;
+    max-width: 28rem;
+    margin-inline: auto;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: rgb(106 106 114);
+  }
+
+  .app-showcase__indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 1.35rem;
+  }
+
+  .app-showcase__indicator {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: none;
+    border-radius: 9999px;
+    background: rgb(210 210 214);
+    padding: 0;
+    cursor: pointer;
+    transition:
+      width 0.35s cubic-bezier(0.32, 0.72, 0, 1),
+      background-color 0.35s ease;
+  }
+
+  .app-showcase__indicator.is-active {
+    width: 1.75rem;
+    background: rgb(37 37 43);
+  }
+
+  .app-showcase__indicator:focus-visible {
+    outline: 2px solid rgb(249 115 22);
+    outline-offset: 2px;
+  }
+
+  @keyframes app-showcase-glow {
+    0%,
+    100% {
+      opacity: 0.75;
+      transform: translate(-50%, -50%);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-showcase__stage {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .app-showcase__glow {
+      animation: none;
+    }
+
+    .app-showcase__slide,
+    .app-showcase__phone {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none;
+    }
+
+    .app-showcase__caption {
+      transition: none;
+    }
+  }
+
+  .app-showcase-cta {
+    position: relative;
+    margin-top: clamp(3rem, 7vw, 4.5rem);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    margin-inline: auto;
+    max-width: 48rem;
+    padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+    text-align: center;
+  }
+
+  .app-showcase-cta__title {
+    font-size: clamp(1.5rem, 3.8vw, 2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: rgb(37 37 43);
+    text-wrap: balance;
+  }
+
+  .app-showcase-cta__desc {
+    margin-top: 0.875rem;
+    margin-inline: auto;
+    max-width: 38rem;
+    font-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
+    line-height: 1.6;
+    color: rgb(106 106 114);
+    text-wrap: balance;
+  }
+
+  .app-showcase-cta__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .app-showcase-cta__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .app-showcase-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    border-radius: 9999px;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .app-showcase-cta__btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .app-showcase-cta__btn--primary {
+    background: rgb(37 37 43);
+    color: rgb(255 255 255);
+  }
+
+  .app-showcase-cta__btn--primary:hover {
+    background: rgb(32 32 37);
+  }
+
+  .app-showcase-cta__btn--secondary {
+    background: rgb(255 255 255);
+    color: rgb(37 37 43);
+    box-shadow: 0 2px 16px rgb(37 37 43 / 0.08);
+  }
+
+  .app-showcase-cta__btn--secondary:hover {
+    box-shadow: 0 4px 24px rgb(37 37 43 / 0.12);
+  }
+
+  .app-showcase-cta__btn:focus-visible {
+    outline: 2px solid rgb(249 115 22);
+    outline-offset: 2px;
+  }
+</style>

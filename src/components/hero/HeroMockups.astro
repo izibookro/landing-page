@@ -5,9 +5,12 @@ import mockupLeft from '../../assets/mockups/mockup-2.png';
 import mockupRight from '../../assets/mockups/mockup-3.png';
 import PhoneFrame from '../PhoneFrame.astro';
 
+type MockupRole = 'left' | 'center' | 'right';
+
 interface MockupConfig {
   src: ImageMetadata;
   alt: string;
+  role: MockupRole;
   wrapper: string;
 }
 
@@ -15,26 +18,29 @@ const mockups: MockupConfig[] = [
   {
     src: mockupLeft,
     alt: 'Izibook schedule view',
+    role: 'left',
     wrapper:
       'z-10 h-[88%] origin-bottom -mr-14 -rotate-[16deg] sm:-mr-20 sm:-rotate-[20deg] lg:-mr-28 lg:-rotate-[20deg]',
   },
   {
     src: mockupCenter,
     alt: 'Izibook dashboard overview',
-    wrapper: 'z-20 h-full origin-bottom',
+    role: 'center',
+    wrapper: 'z-30 h-full origin-bottom',
   },
   {
     src: mockupRight,
     alt: 'Izibook booking screen',
+    role: 'right',
     wrapper:
       'z-10 h-[88%] origin-bottom -ml-14 rotate-[16deg] sm:-ml-20 sm:rotate-[20deg] lg:-ml-28 lg:rotate-[20deg]',
   },
 ];
 ---
 
-<div class="relative h-full min-h-0 overflow-hidden">
+<div class="relative h-full min-h-0 overflow-visible">
   <div
-    class="flex h-full min-h-0 items-end justify-center overflow-hidden"
+    class="mockup-stage flex h-full min-h-0 items-end justify-center overflow-visible pt-4 sm:pt-5"
     aria-hidden="true"
   >
     {
@@ -42,12 +48,20 @@ const mockups: MockupConfig[] = [
         <div
           class:list={['pointer-events-none relative shrink-0', mockup.wrapper]}
         >
-          <div class="aspect-9/8 h-full overflow-hidden">
-            <PhoneFrame
-              src={mockup.src}
-              alt={mockup.alt}
-              class="h-full w-full object-cover object-top"
-            />
+          <div
+            class:list={[
+              'mockup-motion relative h-full',
+              `mockup-motion--${mockup.role}`,
+              mockup.role === 'center' ? 'z-20' : 'z-10',
+            ]}
+          >
+            <div class="aspect-9/8 h-full overflow-hidden">
+              <PhoneFrame
+                src={mockup.src}
+                alt={mockup.alt}
+                class="h-full w-full object-cover object-top"
+              />
+            </div>
           </div>
         </div>
       ))
@@ -55,8 +69,127 @@ const mockups: MockupConfig[] = [
   </div>
 
   <div
-    class="from-white-500 via-white-500/90 pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t to-transparent"
+    class="from-white-500 via-white-500/90 pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t to-transparent"
     aria-hidden="true"
   >
   </div>
 </div>
+
+<style>
+  .mockup-stage {
+    isolation: isolate;
+  }
+
+  .mockup-motion {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .mockup-motion--left {
+    animation:
+      mockup-enter-left 1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards,
+      mockup-float-left 4.8s ease-in-out 1.35s infinite;
+  }
+
+  .mockup-motion--center {
+    animation:
+      mockup-enter-center 1.05s cubic-bezier(0.34, 1.35, 0.64, 1) 0.32s forwards,
+      mockup-float-center 5.2s ease-in-out 1.6s infinite;
+  }
+
+  .mockup-motion--right {
+    animation:
+      mockup-enter-right 1s cubic-bezier(0.22, 1, 0.36, 1) 0.16s forwards,
+      mockup-float-right 4.6s ease-in-out 1.45s infinite;
+  }
+
+  @keyframes mockup-enter-left {
+    0% {
+      opacity: 0;
+      transform: translate3d(-1.25rem, 3.5rem, 0) scale(0.92);
+    }
+
+    55% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes mockup-enter-right {
+    0% {
+      opacity: 0;
+      transform: translate3d(1.25rem, 3.5rem, 0) scale(0.92);
+    }
+
+    55% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes mockup-enter-center {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 4.5rem, 0) scale(0.88);
+    }
+
+    70% {
+      opacity: 1;
+      transform: translate3d(0, -0.35rem, 0) scale(1.02);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes mockup-float-left {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+      transform: translate3d(0, -0.45rem, 0);
+    }
+  }
+
+  @keyframes mockup-float-center {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate3d(0, -0.65rem, 0) scale(1.008);
+    }
+  }
+
+  @keyframes mockup-float-right {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+      transform: translate3d(0, -0.4rem, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mockup-motion {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

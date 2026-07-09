@@ -18,6 +18,7 @@
     "@tsparticles/plugin-interactivity": "^4.3.1",
     "@tsparticles/preset-meteors": "^4.3.1",
     "astro": "^7.0.7",
+    "swiper": "^14.0.2",
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {

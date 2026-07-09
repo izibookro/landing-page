@@ -1,0 +1,131 @@
+---
+import { Icon } from 'astro-icon/components';
+import { features } from '../../data/features';
+---
+
+<section
+  id="functionalitati"
+  class="bg-white-500 relative px-4 py-14 sm:px-6 sm:py-24"
+  aria-labelledby="features-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <div
+      class="features-marquee group relative overflow-hidden rounded-3xl py-4 sm:py-5"
+      tabindex="0"
+      aria-label="Lista functionalitatilor — derulare automata, opreste la hover"
+    >
+      <div class="features-marquee__track">
+        {
+          features.map((feature) => (
+            <div class="features-marquee__pill">
+              <span class="features-marquee__icon" aria-hidden="true">
+                <Icon name={feature.icon} class="size-4.5" />
+              </span>
+              <span class="text-black-500 text-sm font-semibold whitespace-nowrap sm:text-base">
+                {feature.label}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-label__mark {
+    margin-inline: 0.625rem;
+    font-style: normal;
+    color: rgb(210 210 214);
+  }
+
+  @media (min-width: 640px) {
+    .features-label {
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .features-marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+  }
+
+  .features-marquee__track {
+    display: flex;
+    width: max-content;
+    gap: 0.875rem;
+    padding-inline: 1rem;
+    animation: features-marquee 20s linear infinite;
+    will-change: transform;
+  }
+
+  .features-marquee:hover .features-marquee__track,
+  .features-marquee:focus-within .features-marquee__track {
+    animation-play-state: paused;
+  }
+
+  .features-marquee__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255);
+    padding: 0.625rem 1.25rem;
+    box-shadow: 0 2px 20px rgb(37 37 43 / 0.04);
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .features-marquee__pill:hover {
+    box-shadow: 0 6px 28px rgb(249 115 22 / 0.1);
+    transform: translateY(-1px);
+  }
+
+  .features-marquee__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: rgb(249 115 22);
+  }
+
+  @keyframes features-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .features-marquee__track {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+      justify-content: center;
+      padding-inline: 1.5rem;
+    }
+
+    .features-marquee {
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+</style>

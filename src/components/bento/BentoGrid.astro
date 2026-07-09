@@ -1,0 +1,209 @@
+---
+import { Image } from 'astro:assets';
+import { bentoCards } from '../../data/bentoCards';
+
+const [tallCard, wideCard, ...compactCards] = bentoCards;
+
+const themeBackground: Record<string, string> = {
+  primary:
+    'bg-linear-to-b from-primary-50 from-0% via-primary-200 via-[52%] to-primary-400 to-100%',
+  dark: 'bento-theme-dark',
+  green:
+    'bg-linear-to-br from-primary-950 from-0% via-primary-900 via-[38%] to-primary-800 to-100%',
+  neutral:
+    'bg-linear-to-br from-white-700 from-0% via-black-50 via-[42%] to-black-100 to-100%',
+  warm:
+    'bg-linear-to-b from-white-600 from-0% via-primary-100 via-[46%] to-primary-300 to-100%',
+  sky: 'bg-linear-to-br from-primary-300 from-0% via-primary-500 via-[45%] to-primary-700 to-100%',
+};
+
+const themeTitle: Record<string, string> = {
+  primary: 'text-black-500',
+  dark: 'text-white-500',
+  green: 'text-white-500',
+  neutral: 'text-black-500',
+  warm: 'text-black-500',
+  sky: 'text-white-500',
+};
+
+const themeSubtitle: Record<string, string> = {
+  primary: 'text-black-500/72',
+  dark: 'text-white-500/78',
+  green: 'text-white-500/78',
+  neutral: 'text-black-500/72',
+  warm: 'text-black-500/72',
+  sky: 'text-white-500/78',
+};
+
+const cardBase =
+  'relative flex min-h-72 flex-col overflow-hidden rounded-3xl p-6 sm:min-h-80 sm:p-7';
+
+const copyBase = 'relative z-2 max-w-72';
+const titleBase =
+  'text-[clamp(1.25rem,2.5vw,1.75rem)] font-semibold leading-[1.15] tracking-tight';
+const subtitleBase = 'mt-2.5 text-[0.9375rem] leading-normal';
+
+const compactCopyBase =
+  'relative z-2 max-w-72 md:min-h-32 lg:min-h-[8.5rem]';
+
+const mediaBase =
+  'relative z-1 mt-auto flex min-h-0 flex-1 items-center justify-center pt-4';
+
+const imageBase =
+  'block h-auto w-auto max-w-full object-contain drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)] max-h-56';
+---
+
+<section
+  id="platforma"
+  class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  aria-labelledby="bento-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <div
+      class="mb-8 grid gap-6 sm:mb-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-12"
+    >
+      <h2
+        id="bento-heading"
+        class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+      >
+        Tot ce ai nevoie
+        <span class="bento-heading-fade">ca manager</span>
+      </h2>
+      <p
+        class="text-black-400 max-w-md text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance lg:justify-self-end"
+      >
+        Statistici avansate si rapoarte automate in buzunarul tau. Toata
+        activitatea salonului intr-un singur loc. Siguranta, simplitate si
+        eficienta. Ce iti poti dori mai mult ca manager?
+      </p>
+    </div>
+
+    <div
+      class="grid gap-4 md:grid-cols-2 md:gap-4.5 lg:grid-cols-3 lg:grid-rows-[minmax(18rem,1fr)_minmax(16rem,1fr)] lg:items-stretch lg:gap-5"
+    >
+      {
+        tallCard && (
+          <article
+            class:list={[
+              cardBase,
+              themeBackground[tallCard.theme],
+              'lg:col-start-1 lg:row-span-2 lg:min-h-0 lg:h-full',
+            ]}
+          >
+            <div class={copyBase}>
+              <h3 class:list={[titleBase, themeTitle[tallCard.theme]]}>
+                {tallCard.title}
+              </h3>
+              <p class:list={[subtitleBase, themeSubtitle[tallCard.theme]]}>
+                {tallCard.subtitle}
+              </p>
+            </div>
+            <div class="mt-auto flex min-h-0 w-full min-w-0 flex-1 items-end justify-center">
+              <Image
+                src={tallCard.image}
+                alt={tallCard.title}
+                class="block h-auto max-h-full w-full min-w-0 max-w-full object-contain object-bottom drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+        )
+      }
+
+      {
+        wideCard && (
+          <article
+            class:list={[
+              cardBase,
+              themeBackground[wideCard.theme],
+              'lg:col-span-2 lg:col-start-2 lg:row-start-1 lg:grid lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,240px)_1fr] lg:items-stretch lg:gap-4',
+            ]}
+          >
+            <div class={`${copyBase} max-w-64 lg:max-w-none lg:self-start`}>
+              <h3 class:list={[titleBase, themeTitle[wideCard.theme]]}>
+                {wideCard.title}
+              </h3>
+              <p class:list={[subtitleBase, themeSubtitle[wideCard.theme]]}>
+                {wideCard.subtitle}
+              </p>
+            </div>
+            <div class="relative z-1 flex min-h-0 w-full flex-1 items-center justify-end lg:h-full">
+              <div class="max-h-75 w-fit max-w-full overflow-hidden rounded-3xl drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]">
+                <Image
+                  src={wideCard.image}
+                  alt={wideCard.title}
+                  class="block h-full max-h-75 w-auto max-w-full"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </article>
+        )
+      }
+
+      {
+        compactCards.map((card, index) => (
+          <article
+            class:list={[
+              cardBase,
+              themeBackground[card.theme],
+              index === 0 && 'lg:col-start-2 lg:row-start-2 lg:h-full lg:min-h-0',
+              index === 1 && 'lg:col-start-3 lg:row-start-2 lg:h-full lg:min-h-0',
+            ]}
+          >
+            <div class={compactCopyBase}>
+              <h3 class:list={[titleBase, themeTitle[card.theme]]}>
+                {card.title}
+              </h3>
+              <p class:list={[subtitleBase, themeSubtitle[card.theme]]}>
+                {card.subtitle}
+              </p>
+            </div>
+            <div class={mediaBase}>
+              <Image
+                src={card.image}
+                alt={card.title}
+                class:list={[imageBase, 'max-h-36 rounded-3xl']}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .bento-heading-fade {
+    display: block;
+    background: linear-gradient(
+      168deg,
+      rgb(37 37 43) 0%,
+      rgb(37 37 43 / 0.15) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bento-theme-dark {
+    background:
+      linear-gradient(
+        135deg,
+        rgb(37 37 43) 0%,
+        rgb(27 27 31) 55%,
+        rgb(17 17 20) 100%
+      ),
+      repeating-linear-gradient(
+        -12deg,
+        rgb(255 255 255 / 0.03) 0,
+        rgb(255 255 255 / 0.03) 1px,
+        transparent 1px,
+        transparent 10px
+      );
+  }
+</style>
