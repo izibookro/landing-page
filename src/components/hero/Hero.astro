@@ -1,15 +1,20 @@
 ---
 import { Icon } from 'astro-icon/components';
+import HeroBackground from './HeroBackground.astro';
 import HeroMockups from './HeroMockups.astro';
 ---
 
-<section class="relative grid h-dvh grid-rows-[auto_minmax(0,1fr)] overflow-hidden">
+<section
+  class="relative grid h-dvh grid-rows-[auto_minmax(0,1fr)] overflow-hidden"
+>
+  <HeroBackground />
+
   <div
     class="relative z-10 mx-auto flex max-w-4xl shrink-0 flex-col items-center px-4 pt-20 pb-10 text-center sm:px-6 sm:pt-24 lg:pt-28"
   >
     <!-- Headline -->
     <h1
-      class="text-black-500 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-[3.5rem]"
+      class="text-black-500 max-w-4xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl"
     >
       Revolutionam industria frumusetii prin tehnologie.
     </h1>
@@ -47,7 +52,7 @@ import HeroMockups from './HeroMockups.astro';
     </div>
   </div>
 
-  <div class="relative h-full min-h-0 overflow-hidden">
+  <div class="relative z-10 h-full min-h-0 overflow-hidden">
     <HeroMockups />
   </div>
 </section>

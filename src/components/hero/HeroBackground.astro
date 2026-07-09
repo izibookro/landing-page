@@ -1,0 +1,14 @@
+<div
+  class="pointer-events-none absolute inset-0 overflow-hidden bg-white-500"
+  aria-hidden="true"
+>
+  <div id="hero-particles" class="absolute inset-0 h-full w-full"></div>
+</div>
+
+<script>
+  import { initHeroParticles } from './initHeroParticles';
+
+  initHeroParticles().catch((error: unknown) => {
+    console.error('Failed to initialize hero particles:', error);
+  });
+</script>
