@@ -8,51 +8,55 @@ import PhoneFrame from '../PhoneFrame.astro';
 interface MockupConfig {
   src: ImageMetadata;
   alt: string;
-  position: string;
-  size: string;
+  wrapper: string;
 }
 
 const mockups: MockupConfig[] = [
   {
     src: mockupLeft,
     alt: 'Izibook schedule view',
-    position: 'z-10 -mr-10 -rotate-[10deg] sm:-mr-14 lg:-mr-20',
-    size: 'w-[160px] sm:w-[190px] lg:w-[220px]',
+    wrapper:
+      'z-10 h-[88%] origin-bottom -mr-14 -rotate-[16deg] sm:-mr-20 sm:-rotate-[20deg] lg:-mr-28 lg:-rotate-[20deg]',
   },
   {
     src: mockupCenter,
     alt: 'Izibook dashboard overview',
-    position: 'z-20',
-    size: 'w-[190px] sm:w-[220px] lg:w-[260px]',
+    wrapper: 'z-20 h-full origin-bottom',
   },
   {
     src: mockupRight,
     alt: 'Izibook booking screen',
-    position: 'z-10 -ml-10 rotate-[10deg] sm:-ml-14 lg:-ml-20',
-    size: 'w-[160px] sm:w-[190px] lg:w-[220px]',
+    wrapper:
+      'z-10 h-[88%] origin-bottom -ml-14 rotate-[16deg] sm:-ml-20 sm:rotate-[20deg] lg:-ml-28 lg:rotate-[20deg]',
   },
 ];
 ---
 
-<div class="relative w-full flex-1 overflow-hidden">
+<div class="relative h-full min-h-0 overflow-hidden">
   <div
-    class="pointer-events-none absolute inset-0 overflow-hidden"
+    class="flex h-full min-h-0 items-end justify-center overflow-hidden"
     aria-hidden="true"
   >
-    <div class="flex origin-bottom items-end justify-center">
-      {
-        mockups.map((mockup) => (
-          <div class:list={['relative shrink-0', mockup.position]}>
-            <PhoneFrame src={mockup.src} alt={mockup.alt} class={mockup.size} />
+    {
+      mockups.map((mockup) => (
+        <div
+          class:list={['pointer-events-none relative shrink-0', mockup.wrapper]}
+        >
+          <div class="aspect-[9/8] h-full overflow-hidden">
+            <PhoneFrame
+              src={mockup.src}
+              alt={mockup.alt}
+              class="h-full w-full object-cover object-top"
+            />
           </div>
-        ))
-      }
-    </div>
+        </div>
+      ))
+    }
+  </div>
 
-    <div
-      class="from-white-500 via-white-500 absolute inset-x-0 bottom-0 z-30 h-20 bg-linear-to-t to-transparent"
-      aria-hidden="true"
-    >
-    </div>
+  <div
+    class="from-white-500 via-white-500/90 pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-linear-to-t to-transparent"
+    aria-hidden="true"
+  >
   </div>
 </div>

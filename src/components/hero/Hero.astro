@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import HeroMockups from './HeroMockups.astro';
 ---
 
-<section class="relative flex min-h-screen flex-col overflow-hidden">
+<section class="relative grid h-dvh grid-rows-[auto_minmax(0,1fr)] overflow-hidden">
   <div
     class="relative z-10 mx-auto flex max-w-4xl shrink-0 flex-col items-center px-4 pt-20 pb-10 text-center sm:px-6 sm:pt-24 lg:pt-28"
   >
@@ -47,6 +47,7 @@ import HeroMockups from './HeroMockups.astro';
     </div>
   </div>
 
-  <!-- Phone mockups — clipped to remaining viewport below content -->
-  <HeroMockups />
+  <div class="relative h-full min-h-0 overflow-hidden">
+    <HeroMockups />
+  </div>
 </section>
