@@ -1,14 +1,14 @@
 // @ts-check
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import { defineConfig, fontProviders } from 'astro/config';
-
-import sitemap from '@astrojs/sitemap';
+import Sonda from 'sonda/astro';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://izibook.ro',
-  integrations: [icon(), sitemap()],
+  integrations: [icon(), sitemap(), Sonda()],
   fonts: [
     {
       provider: fontProviders.fontsource(),
@@ -20,6 +20,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      sourcemap: true,
+    },
   },
   server: {
     port: 3000,

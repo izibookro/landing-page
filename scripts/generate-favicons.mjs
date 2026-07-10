@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -6,6 +6,7 @@ import sharp from 'sharp';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 const input = join(root, 'src/assets/icon.png');
+const ogImageInput = join(root, 'src/assets/seo/og-image.png');
 const publicDir = join(root, 'public');
 
 const pngSizes = [
@@ -31,50 +32,8 @@ async function createCircularPng(size, outputPath) {
     .toFile(outputPath);
 }
 
-async function createOgImage(outputPath) {
-  const width = 1200;
-  const height = 630;
-  const iconSize = 220;
-
-  const icon = await sharp(input)
-    .resize(iconSize, iconSize, { fit: 'cover' })
-    .composite([
-      {
-        input: Buffer.from(
-          `<svg width="${iconSize}" height="${iconSize}" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="${iconSize / 2}" cy="${iconSize / 2}" r="${iconSize / 2}" fill="#fff"/>
-          </svg>`,
-        ),
-        blend: 'dest-in',
-      },
-    ])
-    .png()
-    .toBuffer();
-
-  const background = Buffer.from(
-    `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#1f1f23"/>
-          <stop offset="100%" stop-color="#111114"/>
-        </linearGradient>
-      </defs>
-      <rect width="${width}" height="${height}" fill="url(#bg)"/>
-      <text x="50%" y="58%" text-anchor="middle" fill="#fafafa" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">IziBook</text>
-      <text x="50%" y="70%" text-anchor="middle" fill="#a1a1aa" font-family="Arial, Helvetica, sans-serif" font-size="30">Management salon: web si mobil</text>
-    </svg>`,
-  );
-
-  await sharp(background)
-    .composite([
-      {
-        input: icon,
-        top: Math.round((height - iconSize) / 2) - 40,
-        left: Math.round((width - iconSize) / 2),
-      },
-    ])
-    .png()
-    .toFile(outputPath);
+async function copyOgImage(outputPath) {
+  await copyFile(ogImageInput, outputPath);
 }
 
 async function createFaviconSvg(outputPath, pngPath) {
@@ -97,7 +56,7 @@ for (const { size, name } of pngSizes) {
   await createCircularPng(size, join(publicDir, name));
 }
 
-await createOgImage(join(publicDir, 'og-image.png'));
+await copyOgImage(join(publicDir, 'og-image.png'));
 
 const chrome512Path = join(publicDir, 'android-chrome-512x512.png');
 await createFaviconSvg(join(publicDir, 'favicon.svg'), chrome512Path);

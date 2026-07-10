@@ -66,7 +66,9 @@ export function resolveSeo(seo: SiteSeo = {}) {
   const canonicalPath = seo.canonicalPath ?? '/';
   const canonical = new URL(canonicalPath, site.url).href;
   const image = seo.image ?? new URL('/og-image.png', site.url).href;
-  const imageAlt = seo.imageAlt ?? `${site.name} — aplicatie web si mobila pentru saloane`;
+  const imageAlt =
+    seo.imageAlt ??
+    `${site.name} — Revolutionam industria frumusetii prin tehnologie`;
 
   return {
     title,
