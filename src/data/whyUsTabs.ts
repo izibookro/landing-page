@@ -27,7 +27,7 @@ export const whyUsTabs: WhyUsTab[] = [
     id: 'fidelizare',
     label: 'Fidelizare',
     description:
-      'Daca clientii sunt fericitii si afacerea ta prospera. Cu Izibook, totul este rapid, simplu si eficient si pentru clienti. Statistici de fidelizare, notificari si sisteme de retentie pentru cresterea si mentinerea fidelizarii clientilor.',
+      'Daca clientii sunt fericitii si afacerea ta prospera. Cu IziBook, totul este rapid, simplu si eficient si pentru clienti. Statistici de fidelizare, notificari si sisteme de retentie pentru cresterea si mentinerea fidelizarii clientilor.',
     stat: '30%',
     statLabel: 'Cresterea veniturilor din retentie clienti',
     image: whyUsFidelity,
@@ -36,7 +36,7 @@ export const whyUsTabs: WhyUsTab[] = [
     id: 'inovatie',
     label: 'Inovatie',
     description:
-      'Investim constant in tehnologii si practici noi. Analizam mereu moduri noi de a fi mai eficienti si mai productive.',
+      'Investim constant in tehnologii si practici noi. Analizam mereu moduri noi de a fi mai eficienti si mai productivi.',
     stat: '50%',
     statLabel: 'Investitii constante in tehnologii noi',
     image: whyUsInnovation,
@@ -45,7 +45,7 @@ export const whyUsTabs: WhyUsTab[] = [
     id: 'protectia-datelor',
     label: 'Protectia datelor',
     description:
-      'Tu esti in controlul datelor tale! Cu Izibook, ai posibilitatea de ati sterge oricand tot istoricul programarilor, incasarilor, cheltuielilior sau chiar stergerea contului complet.',
+      'Tu esti in controlul datelor tale! Cu IziBook, ai posibilitatea de ati sterge oricand tot istoricul programarilor, incasarilor, cheltuielilior sau chiar stergerea contului complet.',
     stat: '100%',
     statLabel: 'Control total asupra datelor',
     image: whyUsDataProtection,

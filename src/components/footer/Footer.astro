@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import appIcon from '../../assets/icon.png';
+import { site } from '../../data/site';
 import './footer-section.scss';
 
 const whatsappHref =
@@ -10,15 +11,20 @@ const whatsappHref =
 const pageLinks = [
   { label: 'Acasa', href: '/' },
   { label: 'Functionalitati', href: '#manager-needs' },
-  { label: 'Despre Noi', href: '#despre-noi' },
+  { label: 'Despre Noi', href: '#why-us' },
   { label: 'Preturi', href: '#preturi' },
   { label: 'Intrebari frecvente', href: '#faq' },
-  { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Blog', href: '#blog' },
+] as const;
+
+const platformLinks = [
+  { label: 'Descarca iOS', href: site.apps.ios.url },
+  { label: 'Descarca Android', href: site.apps.android.url },
+  { label: 'Platforma Web', href: '#web' },
 ] as const;
 
 const utilityLinks = [
-  { label: 'Descarca aplicatia', href: '#descarca' },
   { label: 'Politica de confidentialitate', href: '#' },
   { label: 'Termeni si conditii', href: '#' },
 ] as const;
@@ -49,12 +55,15 @@ const socialLinks = [
 const footerLinkClass =
   'text-black-400 hover:text-black-500 text-sm font-medium no-underline transition-colors duration-200';
 
+const footerExternalLinkClass =
+  'text-black-400 hover:text-black-500 inline-flex items-center gap-1.5 text-sm font-medium no-underline transition-colors duration-200';
+
 const socialLinkClass =
   'footer-social-link bg-black-50 text-black-400 hover:bg-black-100 hover:text-black-500 flex size-9 items-center justify-center rounded-full transition-[background-color,color,transform] duration-200';
 ---
 
 <footer
-  class="from-white-700 via-black-50 to-black-100 border-black-100 border-t bg-linear-to-br from-0% via-42% to-100% px-4 py-14 sm:px-6 sm:py-20"
+  class="from-white-700 via-black-50 to-black-100 bg-linear-to-br from-0% via-42% to-100% px-4 py-14 sm:px-6 sm:py-20"
   aria-label="Footer"
 >
   <div class="mx-auto max-w-6xl">
@@ -124,6 +133,29 @@ const socialLinkClass =
         <p class="text-black-500 text-sm font-semibold">Utilitare</p>
         <ul class="mt-4 space-y-3">
           {
+            platformLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class={footerExternalLinkClass}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={
+                    link.href.startsWith('http')
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
+                >
+                  {link.label}
+                  <Icon
+                    name="solar:arrow-right-up-linear"
+                    class="size-3.5 shrink-0 opacity-80"
+                    aria-hidden="true"
+                  />
+                </a>
+              </li>
+            ))
+          }
+          {
             utilityLinks.map((link) => (
               <li>
                 <a href={link.href} class={footerLinkClass}>
@@ -141,7 +173,7 @@ const socialLinkClass =
         <p
           class="text-black-500 text-lg font-semibold tracking-tight text-balance"
         >
-          Comunitatea Izibook
+          Comunitatea IziBook
         </p>
         <p class="text-black-400 mt-2 text-sm leading-relaxed text-pretty">
           Alatura-te grupului nostru de WhatsApp pentru noutati, suport si
@@ -151,8 +183,8 @@ const socialLinkClass =
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-black-500 text-white-500 hover:bg-black-600 focus-visible:outline-primary-500 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
-          aria-label="Alatura-te comunitatii Izibook pe WhatsApp"
+          class="footer-whatsapp-btn bg-black-500 text-white-500 hover:bg-black-600 focus-visible:outline-primary-500 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold no-underline transition-[background-color,box-shadow,transform] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
+          aria-label="Alatura-te comunitatii IziBook pe WhatsApp"
         >
           <Icon name="simple-icons:whatsapp" class="size-4" />
           Alatura-te pe WhatsApp
@@ -164,7 +196,7 @@ const socialLinkClass =
       class="border-black-100 mt-12 flex flex-col gap-3 border-t pt-8 sm:mt-14 sm:flex-row sm:items-center sm:justify-between"
     >
       <p class="text-black-400 text-sm">
-        &copy; {new Date().getFullYear()} Izibook. Toate drepturile rezervate.
+        &copy; {new Date().getFullYear()} IziBook. Toate drepturile rezervate.
       </p>
       <a
         href="mailto:contact@izibook.ro"

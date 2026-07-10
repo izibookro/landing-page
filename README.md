@@ -1,1 +1,1 @@
-# Izibook Landing Page
+# IziBook Landing Page

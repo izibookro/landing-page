@@ -7,15 +7,15 @@ export interface FaqItem {
 export const faqItems: FaqItem[] = [
   {
     id: 'ce-este-izibook',
-    question: 'Ce este Izibook?',
+    question: 'Ce este IziBook?',
     answer:
-      'Izibook este platforma completa de management pentru saloane de infrumusetare. Programari, clienti, echipa, incasari si rapoarte — totul intr-un singur loc.',
+      'IziBook este platforma completa de management pentru saloane de infrumusetare. Programari, clienti, echipa, incasari si rapoarte — totul intr-un singur loc.',
   },
   {
     id: 'platforme',
     question: 'Pe ce platforme este disponibila aplicatia?',
     answer:
-      'Izibook este disponibila pe iOS, Android si web pentru manageri. Clientii si stilistii folosesc aplicatiile mobile dedicate.',
+      'IziBook este disponibila pe iOS, Android si web pentru manageri. Clientii si stilistii folosesc aplicatiile mobile dedicate.',
   },
   {
     id: 'fane-ai',
@@ -123,6 +123,6 @@ export const faqItems: FaqItem[] = [
     id: 'contract',
     question: 'Exista contract pe termen lung?',
     answer:
-      'Nu. Abonamentele Izibook sunt lunare, flexibile, fara obligatii pe termen lung sau penalitati ascunse.',
+      'Nu. Abonamentele IziBook sunt lunare, flexibile, fara obligatii pe termen lung sau penalitati ascunse.',
   },
 ];
