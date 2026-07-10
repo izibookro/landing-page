@@ -4,7 +4,7 @@ import managerHomeIncome from '../assets/mockups/manager-home-income.png';
 import managerMemberSchedule from '../assets/mockups/manager-member-schedule.png';
 import mockupManagerReportsSummary from '../assets/mockups/manager-reports-summary.png';
 
-export interface BentoCard {
+export interface ManagerNeedsCard {
   id: string;
   title: string;
   subtitle: string;
@@ -14,7 +14,7 @@ export interface BentoCard {
   theme: 'primary' | 'dark' | 'green' | 'neutral' | 'warm' | 'sky';
 }
 
-export const bentoCards: BentoCard[] = [
+export const managerNeedsCards: ManagerNeedsCard[] = [
   {
     id: 'ai-booking',
     title: 'Programări cu Fane AI',
@@ -22,7 +22,7 @@ export const bentoCards: BentoCard[] = [
       'Clienti mai fericiti, programari mai rapide și mai simple direct in Whatsapp exact cum ar comunica cu un stilist.',
     image: aiWhatsapp,
     layout: 'tall',
-    theme: 'warm',
+    theme: 'neutral',
   },
   {
     id: 'team',
@@ -39,7 +39,7 @@ export const bentoCards: BentoCard[] = [
       'Totul automatizat. Vezi exact toate cheltuielile si veniturile salonului în timp real. Indici de performanta si analize avansate',
     image: mockupManagerReportsSummary,
     layout: 'compact',
-    theme: 'dark',
+    theme: 'neutral',
   },
   {
     id: 'analytics',
@@ -48,6 +48,6 @@ export const bentoCards: BentoCard[] = [
       'Monitorizează performanța echipei și a serviciilor dintr-o singură privire.',
     image: managerHomeIncome,
     layout: 'compact',
-    theme: 'sky',
+    theme: 'neutral',
   },
 ];

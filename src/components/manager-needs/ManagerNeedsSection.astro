@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import { bentoCards } from '../../data/bentoCards';
+import { managerNeedsCards } from '../../data/managerNeedsCards';
 
-const [tallCard, wideCard, ...compactCards] = bentoCards;
+const [tallCard, wideCard, ...compactCards] = managerNeedsCards;
 
 const themeBackground: Record<string, string> = {
   primary:
     'bg-linear-to-b from-primary-50 from-0% via-primary-200 via-[52%] to-primary-400 to-100%',
-  dark: 'bento-theme-dark',
+  dark: 'manager-needs-theme-dark',
   green:
     'bg-linear-to-br from-primary-950 from-0% via-primary-900 via-[38%] to-primary-800 to-100%',
   neutral:
@@ -54,20 +54,20 @@ const imageBase =
 ---
 
 <section
-  id="platforma"
+  id="manager-needs"
   class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
-  aria-labelledby="bento-heading"
+  aria-labelledby="manager-needs-heading"
 >
   <div class="mx-auto max-w-6xl">
     <div
       class="mb-8 grid gap-6 sm:mb-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-12"
     >
       <h2
-        id="bento-heading"
+        id="manager-needs-heading"
         class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
       >
         Tot ce ai nevoie
-        <span class="bento-heading-fade">ca manager</span>
+        <span class="manager-needs-heading-fade">ca manager</span>
       </h2>
       <p
         class="text-black-400 max-w-md text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance lg:justify-self-end"
@@ -79,7 +79,7 @@ const imageBase =
     </div>
 
     <div
-      class="grid gap-4 md:grid-cols-2 md:gap-4.5 lg:grid-cols-3 lg:grid-rows-[minmax(18rem,1fr)_minmax(16rem,1fr)] lg:items-stretch lg:gap-5"
+      class="grid gap-4 md:grid-cols-2 md:gap-4.5 lg:grid-cols-3 lg:grid-rows-[minmax(13rem,0.8fr)_minmax(16rem,1.2fr)] lg:items-stretch lg:gap-5"
     >
       {
         tallCard && (
@@ -129,11 +129,11 @@ const imageBase =
               </p>
             </div>
             <div class="relative z-1 flex min-h-0 w-full flex-1 items-center justify-end lg:h-full">
-              <div class="max-h-75 w-fit max-w-full overflow-hidden rounded-3xl drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]">
+              <div class="max-h-64 w-fit max-w-full overflow-hidden rounded-3xl drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]">
                 <Image
                   src={wideCard.image}
                   alt={wideCard.title}
-                  class="block h-full max-h-75 w-auto max-w-full"
+                  class="block h-full max-h-64 w-auto max-w-full"
                   loading="lazy"
                   decoding="async"
                 />
@@ -178,7 +178,7 @@ const imageBase =
 </section>
 
 <style>
-  .bento-heading-fade {
+  .manager-needs-heading-fade {
     display: block;
     background: linear-gradient(
       168deg,
@@ -190,7 +190,7 @@ const imageBase =
     color: transparent;
   }
 
-  .bento-theme-dark {
+  .manager-needs-theme-dark {
     background:
       linear-gradient(
         135deg,
