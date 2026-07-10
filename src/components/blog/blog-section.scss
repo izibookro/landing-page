@@ -10,6 +10,10 @@
   color: transparent;
 }
 
+.blog-section__view-all-btn:hover {
+  transform: translateY(-1px);
+}
+
 /* Swiper defaults: .swiper-wrapper and .swiper-slide use height: 100%, which
    leaves empty space where the parent panel gradient shows through. */
 [data-blog-swiper] {
