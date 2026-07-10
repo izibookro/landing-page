@@ -44,7 +44,7 @@ export const site = {
   social: {
     whatsapp:
       'https://chat.whatsapp.com/FEx7QoJSEDg4Sje5w6siwH?mode=gi_t',
-    instagram: 'https://www.instagram.com/izibook',
+    instagram: 'https://www.instagram.com/izibook.ro',
     facebook: 'https://www.facebook.com/izibook',
     linkedin: 'https://www.linkedin.com/company/izibook',
     x: 'https://x.com/izibook',

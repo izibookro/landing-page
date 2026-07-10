@@ -9,15 +9,15 @@ const whatsappHref =
 
 const pageLinks = [
   { label: 'Acasa', href: '/' },
-  { label: 'Functionalitati', href: '#functionalitati' },
+  { label: 'Functionalitati', href: '#manager-needs' },
   { label: 'Despre Noi', href: '#despre-noi' },
   { label: 'Preturi', href: '#preturi' },
+  { label: 'Intrebari frecvente', href: '#faq' },
   { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ] as const;
 
 const utilityLinks = [
-  { label: 'Intrebari frecvente', href: '#faq' },
   { label: 'Descarca aplicatia', href: '#descarca' },
   { label: 'Politica de confidentialitate', href: '#' },
   { label: 'Termeni si conditii', href: '#' },
@@ -26,23 +26,23 @@ const utilityLinks = [
 const socialLinks = [
   {
     label: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/izibook.ro',
     icon: 'simple-icons:instagram',
   },
+  // {
+  //   label: 'LinkedIn',
+  //   href: '#',
+  //   icon: 'simple-icons:linkedin',
+  // },
+  // {
+  //   label: 'Facebook',
+  //   href: '#',
+  //   icon: 'simple-icons:facebook',
+  // },
   {
-    label: 'LinkedIn',
+    label: 'TikTok',
     href: '#',
-    icon: 'simple-icons:linkedin',
-  },
-  {
-    label: 'Facebook',
-    href: '#',
-    icon: 'simple-icons:facebook',
-  },
-  {
-    label: 'X',
-    href: '#',
-    icon: 'simple-icons:x',
+    icon: 'simple-icons:tiktok',
   },
 ] as const;
 
@@ -138,7 +138,9 @@ const socialLinkClass =
       <div
         class="footer-community-card rounded-3xl p-6 shadow-[0_12px_40px_rgb(37_37_43/0.06)] sm:col-span-2 sm:p-8 lg:col-span-1"
       >
-        <p class="text-black-500 text-lg font-semibold tracking-tight text-balance">
+        <p
+          class="text-black-500 text-lg font-semibold tracking-tight text-balance"
+        >
           Comunitatea Izibook
         </p>
         <p class="text-black-400 mt-2 text-sm leading-relaxed text-pretty">
@@ -149,7 +151,7 @@ const socialLinkClass =
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-black-500 text-white-500 hover:bg-black-600 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+          class="bg-black-500 text-white-500 hover:bg-black-600 focus-visible:outline-primary-500 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
           aria-label="Alatura-te comunitatii Izibook pe WhatsApp"
         >
           <Icon name="simple-icons:whatsapp" class="size-4" />
