@@ -1,0 +1,35 @@
+.contact-section__heading-fade {
+  display: block;
+  background: linear-gradient(
+    168deg,
+    rgb(37 37 43) 0%,
+    rgb(37 37 43 / 0.15) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-action__icon--phone {
+  background: linear-gradient(
+    180deg,
+    rgb(251 146 60) 0%,
+    rgb(249 115 22) 100%
+  );
+}
+
+.contact-action__icon--whatsapp {
+  background: linear-gradient(
+    180deg,
+    rgb(52 211 153) 0%,
+    rgb(37 211 102) 100%
+  );
+}
+
+.contact-action__icon--email {
+  background: linear-gradient(
+    180deg,
+    rgb(96 165 250) 0%,
+    rgb(59 130 246) 100%
+  );
+}

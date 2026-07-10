@@ -6,10 +6,17 @@ import './plans-section.scss';
 
 <section
   id="preturi"
-  class="plans-section bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  class="plans-section bg-white-500 relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24"
   aria-labelledby="plans-heading"
 >
-  <div class="mx-auto max-w-6xl">
+  <div
+    class="pointer-events-none absolute inset-0 z-1"
+    aria-hidden="true"
+  >
+    <div id="plans-particles" class="absolute inset-0 h-full w-full"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-6xl">
     <div class="mx-auto max-w-3xl text-center">
       <h2
         id="plans-heading"
@@ -101,3 +108,11 @@ import './plans-section.scss';
     </div>
   </div>
 </section>
+
+<script>
+  import { initPlansParticles } from './initPlansParticles';
+
+  initPlansParticles().catch((error: unknown) => {
+    console.error('Failed to initialize plans particles:', error);
+  });
+</script>

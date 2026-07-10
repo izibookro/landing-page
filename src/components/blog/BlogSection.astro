@@ -1,0 +1,142 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { blogPosts } from '../../data/blogPosts';
+import './blog-section.scss';
+
+const navButtonClass =
+  'inline-flex size-11 cursor-pointer items-center justify-center rounded-full transition-[background-color,box-shadow,transform] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 disabled:pointer-events-none disabled:opacity-40';
+---
+
+<section
+  id="blog"
+  class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  aria-labelledby="blog-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <div class="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-12">
+      <div class="text-left">
+        <h2
+          id="blog-heading"
+          class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+        >
+          Fii la curent
+          <span class="blog-section__heading-fade">cu ultimele noutati</span>
+        </h2>
+      </div>
+
+      <p
+        class="text-black-400 max-w-xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance lg:max-w-sm lg:justify-self-end lg:text-right"
+      >
+        Descopera cum ajutam managerii de salon sa isi simplifice activitatea
+        zilnica prin tehnologie, strategii testate si povesti reale din
+        industrie.
+      </p>
+    </div>
+
+    <div class="mt-10 sm:mt-12" data-blog-carousel>
+      <div
+        class="from-white-700 via-black-50 to-black-100 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 shadow-[0_1px_2px_rgb(37_37_43/0.04),0_16px_48px_rgb(37_37_43/0.07)] sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+      >
+        <div class="swiper" data-blog-swiper>
+          <div class="swiper-wrapper">
+            {
+              blogPosts.map((post) => (
+                <div class="swiper-slide px-1 py-1">
+                  <article class="group flex h-full w-full">
+                    <a
+                      href={post.href}
+                      class="flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white p-3 no-underline shadow-[0_1px_2px_rgb(37_37_43/0.04),0_12px_40px_rgb(37_37_43/0.07)] transition-shadow duration-200 hover:shadow-[0_2px_4px_rgb(37_37_43/0.05),0_18px_48px_rgb(37_37_43/0.09)]"
+                    >
+                      <div class="relative overflow-hidden rounded-2xl">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          class="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="blog-card__category absolute bottom-4 left-4 rounded-full px-3 py-1 text-xs font-semibold">
+                          {post.category}
+                        </span>
+                      </div>
+
+                      <h3 class="text-black-500 mt-3 line-clamp-2 min-h-13.5 px-1 text-lg leading-snug font-semibold tracking-tight text-balance sm:text-xl">
+                        {post.title}
+                      </h3>
+
+                      <div class="text-black-400 mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 px-1 pb-1 text-sm">
+                        <span class="inline-flex items-center gap-1.5">
+                          <Icon
+                            name="solar:calendar-minimalistic-linear"
+                            class="size-4"
+                            aria-hidden="true"
+                          />
+                          {post.date}
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                          <Icon
+                            name="solar:clock-circle-linear"
+                            class="size-4"
+                            aria-hidden="true"
+                          />
+                          {post.readTime}
+                        </span>
+                      </div>
+                    </a>
+                  </article>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mt-8 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            class:list={[
+              navButtonClass,
+              'bg-black-50 text-black-500 hover:bg-black-100',
+            ]}
+            data-blog-prev
+            aria-label="Articol anterior"
+          >
+            <Icon name="solar:alt-arrow-left-linear" class="size-5" />
+          </button>
+          <button
+            type="button"
+            class:list={[
+              navButtonClass,
+              'bg-black-500 text-white-500 hover:bg-black-600',
+            ]}
+            data-blog-next
+            aria-label="Articol urmator"
+          >
+            <Icon name="solar:alt-arrow-right-linear" class="size-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initBlogCarousel } from './initBlogCarousel';
+
+  const cleanups: Array<() => void> = [];
+
+  document
+    .querySelectorAll<HTMLElement>('[data-blog-carousel]')
+    .forEach((root) => {
+      cleanups.push(initBlogCarousel(root));
+    });
+
+  document.addEventListener(
+    'astro:before-swap',
+    () => {
+      cleanups.forEach((cleanup) => cleanup());
+      cleanups.length = 0;
+    },
+    { once: true },
+  );
+</script>

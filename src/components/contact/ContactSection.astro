@@ -1,0 +1,151 @@
+---
+import { Icon } from 'astro-icon/components';
+import contactIllustration from '../../assets/illustrations/contact.svg';
+import './contact-section.scss';
+
+const phoneDisplay = '+40 753 497 805';
+const phoneHref = 'tel:+40753497805';
+const email = 'contact@izibook.ro';
+const emailHref = `mailto:${email}`;
+const whatsappHref =
+  'https://chat.whatsapp.com/FEx7QoJSEDg4Sje5w6siwH?mode=gi_t';
+
+const actionLinkClass =
+  'flex w-full items-center gap-3.5 px-4.5 py-4 text-left no-underline transition-colors duration-200 hover:bg-black-50 active:bg-black-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-500';
+
+const actionIconClass =
+  'flex size-11 shrink-0 items-center justify-center rounded-[0.875rem] text-white-500';
+---
+
+<section
+  id="contact"
+  class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  aria-labelledby="contact-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2
+        id="contact-heading"
+        class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+      >
+        Contacteaza-ne
+        <span class="contact-section__heading-fade">oricand</span>
+      </h2>
+      <p
+        class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
+      >
+        Suntem aici pentru tine. Suna-ne, scrie-ne un email sau alatura-te
+        comunitatii Izibook pe WhatsApp pentru noutati, suport si discutii cu
+        alti manageri.
+      </p>
+    </div>
+
+    <div
+      class="from-white-700 via-black-50 to-black-100 mx-auto mt-10 max-w-4xl rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 shadow-[0_1px_2px_rgb(37_37_43/0.04),0_16px_48px_rgb(37_37_43/0.07)] sm:mt-12 sm:p-8 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:rounded-[2.25rem] lg:p-10"
+    >
+      <div class="flex items-center justify-center lg:justify-start">
+        <img
+          src={contactIllustration.src}
+          alt="Ilustratie contact Izibook"
+          class="mx-auto block h-auto w-full max-w-88 drop-shadow-[0_18px_36px_rgb(37_37_43/0.1)]"
+          width="360"
+          height="360"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="mt-8 lg:mt-0">
+        <p
+          class="text-black-500 mb-4 text-center text-sm font-semibold lg:text-left"
+        >
+          Alege cum vrei sa ne contactezi
+        </p>
+
+        <div
+          class="divide-black-100 divide-y overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgb(37_37_43/0.05)]"
+        >
+          <a
+            href={phoneHref}
+            class={actionLinkClass}
+            aria-label={`Sună-ne la ${phoneDisplay}`}
+          >
+            <span
+              class:list={[actionIconClass, 'contact-action__icon--phone']}
+              aria-hidden="true"
+            >
+              <Icon name="solar:phone-calling-linear" class="size-5" />
+            </span>
+            <span class="min-w-0">
+              <span class="text-black-500 block text-[0.9375rem] font-semibold">
+                Suna-ne
+              </span>
+              <span class="text-black-400 mt-0.5 block text-sm">
+                {phoneDisplay}
+              </span>
+            </span>
+            <Icon
+              name="solar:alt-arrow-right-linear"
+              class="text-black-300 ml-auto size-5 shrink-0"
+              aria-hidden="true"
+            />
+          </a>
+
+          <a
+            href={whatsappHref}
+            class={actionLinkClass}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Alătură-te comunității Izibook pe WhatsApp"
+          >
+            <span
+              class:list={[actionIconClass, 'contact-action__icon--whatsapp']}
+              aria-hidden="true"
+            >
+              <Icon name="simple-icons:whatsapp" class="size-5" />
+            </span>
+            <span class="min-w-0">
+              <span class="text-black-500 block text-[0.9375rem] font-semibold">
+                Comunitatea Izibook
+              </span>
+              <span class="text-black-400 mt-0.5 block text-sm">
+                Alatura-te pe WhatsApp
+              </span>
+            </span>
+            <Icon
+              name="solar:alt-arrow-right-linear"
+              class="text-black-300 ml-auto size-5 shrink-0"
+              aria-hidden="true"
+            />
+          </a>
+
+          <a
+            href={emailHref}
+            class={actionLinkClass}
+            aria-label={`Trimite-ne un email la ${email}`}
+          >
+            <span
+              class:list={[actionIconClass, 'contact-action__icon--email']}
+              aria-hidden="true"
+            >
+              <Icon name="solar:letter-linear" class="size-5" />
+            </span>
+            <span class="min-w-0">
+              <span class="text-black-500 block text-[0.9375rem] font-semibold">
+                Email
+              </span>
+              <span class="text-black-400 mt-0.5 block text-sm">
+                {email}
+              </span>
+            </span>
+            <Icon
+              name="solar:alt-arrow-right-linear"
+              class="text-black-300 ml-auto size-5 shrink-0"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

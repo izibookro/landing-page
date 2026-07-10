@@ -1,0 +1,134 @@
+---
+import { site, resolveSeo, type SiteSeo } from '../../data/site';
+
+interface Props extends SiteSeo {}
+
+const seo = resolveSeo(Astro.props);
+const robots = seo.noindex ? 'noindex, nofollow' : 'index, follow';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  legalName: site.legalName,
+  url: site.url,
+  email: site.email,
+  logo: new URL('/android-chrome-512x512.png', site.url).href,
+  sameAs: Object.values(site.social),
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  inLanguage: site.locale,
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+};
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: site.name,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: site.url,
+  description: site.description,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'RON',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+};
+
+const mobileAppsSchema = [site.apps.ios, site.apps.android].map((app) => ({
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: app.name,
+  applicationCategory: app.category,
+  operatingSystem: app.operatingSystem,
+  url: app.url,
+  description: site.description,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'RON',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+  },
+}));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizationSchema,
+    websiteSchema,
+    webAppSchema,
+    ...mobileAppsSchema,
+  ],
+};
+---
+
+<!-- Primary -->
+<title>{seo.title}</title>
+<meta name="description" content={seo.description} />
+<meta name="keywords" content={site.keywords.join(', ')} />
+<meta name="author" content={site.name} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={seo.canonical} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!-- Locale -->
+<meta property="og:locale" content={site.locale} />
+<meta http-equiv="content-language" content={site.lang} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.description} />
+<meta property="og:url" content={seo.canonical} />
+<meta property="og:image" content={seo.image} />
+<meta property="og:image:alt" content={seo.imageAlt} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content={site.twitter.card} />
+<meta name="twitter:site" content={site.twitter.handle} />
+<meta name="twitter:title" content={seo.title} />
+<meta name="twitter:description" content={seo.description} />
+<meta name="twitter:image" content={seo.image} />
+<meta name="twitter:image:alt" content={seo.imageAlt} />
+
+<!-- Mobile / PWA -->
+<meta name="theme-color" content={site.themeColor} />
+<meta name="application-name" content={site.name} />
+<meta name="apple-mobile-web-app-title" content={site.name} />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Structured data -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

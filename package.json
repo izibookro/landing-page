@@ -11,9 +11,12 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "generate:favicons": "node scripts/generate-favicons.mjs",
+    "prebuild": "npm run generate:favicons"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@tsparticles/engine": "^4.3.1",
     "@tsparticles/plugin-interactivity": "^4.3.1",
     "@tsparticles/preset-meteors": "^4.3.1",
@@ -28,6 +31,7 @@
     "@iconify-json/simple-icons": "^1.2.89",
     "@iconify-json/solar": "^1.2.5",
     "@iconify-json/streamline-plump": "^1.2.0",
+    "@iconify-json/uil": "^1.2.3",
     "@tailwindcss/vite": "^4.3.2",
     "@typescript-eslint/parser": "^8.63.0",
     "astro-icon": "^1.1.5",

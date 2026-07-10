@@ -1,0 +1,39 @@
+.download-section__heading-fade {
+  display: block;
+  background: linear-gradient(
+    168deg,
+    rgb(37 37 43) 0%,
+    rgb(37 37 43 / 0.15) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.download-section__store-btn:hover {
+  transform: translateY(-1px);
+}
+
+.download-section__store-btn--primary {
+  background: rgb(37 37 43);
+  color: rgb(255 255 255);
+}
+
+.download-section__store-btn--primary:hover {
+  background: rgb(32 32 37);
+}
+
+.download-section__store-btn--secondary {
+  background: rgb(255 255 255);
+  color: rgb(37 37 43);
+  box-shadow: 0 2px 16px rgb(37 37 43 / 0.08);
+}
+
+.download-section__store-btn--secondary:hover {
+  box-shadow: 0 4px 24px rgb(37 37 43 / 0.12);
+}
+
+.download-section__mockup-image {
+  position: relative;
+  z-index: 1;
+}

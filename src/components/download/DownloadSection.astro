@@ -1,0 +1,91 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import mockup from '../../assets/mockups/mockup-1.png';
+import './download-section.scss';
+
+const downloadLinks = [
+  {
+    label: 'Descarca iOS',
+    href: '#apple',
+    icon: 'ic:baseline-apple',
+    iconClass: 'size-5',
+    variant: 'primary',
+    ariaLabel: 'Descarca din App Store',
+  },
+  {
+    label: 'Descarca Android',
+    href: '#android',
+    icon: 'uil:android',
+    iconClass: 'size-4.5',
+    variant: 'secondary',
+    ariaLabel: 'Descarca din Google Play',
+  },
+] as const;
+
+const storeButtonClass =
+  'download-section__store-btn inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[0.9375rem] font-semibold no-underline transition-[background-color,box-shadow,transform] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500';
+---
+
+<section
+  id="descarca"
+  class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  aria-labelledby="download-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <div
+      class="from-white-700 via-black-50 to-black-100 relative overflow-hidden rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 shadow-[0_1px_2px_rgb(37_37_43/0.04),0_16px_48px_rgb(37_37_43/0.07)] sm:p-8 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-10 lg:rounded-[2.25rem] lg:p-10"
+    >
+      <div class="flex flex-col justify-center py-2 lg:py-4">
+        <h2
+          id="download-heading"
+          class="text-black-500 text-[clamp(1.75rem,4.2vw,2.5rem)] leading-[1.15] font-semibold tracking-[-0.03em] text-balance"
+        >
+          Descarca aplicatia Izibook
+          <span class="download-section__heading-fade">oriunde esti</span>
+        </h2>
+
+        <p
+          class="text-black-400 mt-4 max-w-md text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
+        >
+          Gestioneaza programarile, echipa si incasarile direct de pe telefon.
+          Tot ce ai nevoie pentru salon, disponibil pe iOS si Android.
+        </p>
+
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          {
+            downloadLinks.map((link) => (
+              <a
+                href={link.href}
+                class:list={[
+                  storeButtonClass,
+                  link.variant === 'primary' &&
+                    'download-section__store-btn--primary',
+                  link.variant === 'secondary' &&
+                    'download-section__store-btn--secondary',
+                ]}
+                aria-label={link.ariaLabel}
+              >
+                <Icon name={link.icon} class={link.iconClass} />
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div
+        class="download-section__mockup relative mt-8 flex h-56 items-start justify-center overflow-hidden sm:mt-10 sm:h-64 lg:absolute lg:right-0 lg:bottom-0 lg:mt-0 lg:h-80 lg:w-[46%]"
+        aria-hidden="true"
+      >
+        <Image
+          src={mockup}
+          alt=""
+          class="download-section__mockup-image pointer-events-none w-[min(100%,13.5rem)] max-w-none shrink-0 select-none sm:w-60 lg:w-64"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>

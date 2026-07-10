@@ -1,0 +1,175 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import appIcon from '../../assets/icon.png';
+import './footer-section.scss';
+
+const whatsappHref =
+  'https://chat.whatsapp.com/FEx7QoJSEDg4Sje5w6siwH?mode=gi_t';
+
+const pageLinks = [
+  { label: 'Acasa', href: '/' },
+  { label: 'Functionalitati', href: '#functionalitati' },
+  { label: 'Despre Noi', href: '#despre-noi' },
+  { label: 'Preturi', href: '#preturi' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'Contact', href: '#contact' },
+] as const;
+
+const utilityLinks = [
+  { label: 'Intrebari frecvente', href: '#faq' },
+  { label: 'Descarca aplicatia', href: '#descarca' },
+  { label: 'Politica de confidentialitate', href: '#' },
+  { label: 'Termeni si conditii', href: '#' },
+] as const;
+
+const socialLinks = [
+  {
+    label: 'Instagram',
+    href: '#',
+    icon: 'simple-icons:instagram',
+  },
+  {
+    label: 'LinkedIn',
+    href: '#',
+    icon: 'simple-icons:linkedin',
+  },
+  {
+    label: 'Facebook',
+    href: '#',
+    icon: 'simple-icons:facebook',
+  },
+  {
+    label: 'X',
+    href: '#',
+    icon: 'simple-icons:x',
+  },
+] as const;
+
+const footerLinkClass =
+  'text-black-400 hover:text-black-500 text-sm font-medium no-underline transition-colors duration-200';
+
+const socialLinkClass =
+  'footer-social-link bg-black-50 text-black-400 hover:bg-black-100 hover:text-black-500 flex size-9 items-center justify-center rounded-full transition-[background-color,color,transform] duration-200';
+---
+
+<footer
+  class="from-white-700 via-black-50 to-black-100 border-black-100 border-t bg-linear-to-br from-0% via-42% to-100% px-4 py-14 sm:px-6 sm:py-20"
+  aria-label="Footer"
+>
+  <div class="mx-auto max-w-6xl">
+    <div
+      class="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)_minmax(0,0.75fr)_minmax(0,1.15fr)] lg:gap-12"
+    >
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="/" class="inline-flex items-center gap-2.5 no-underline">
+          <Image
+            src={appIcon}
+            alt=""
+            width={36}
+            height={36}
+            class="size-9 shrink-0 rounded-full"
+            loading="lazy"
+          />
+          <span class="text-black-500 text-xl font-black tracking-tight"
+            >IziBook</span
+          >
+        </a>
+
+        <p
+          class="text-black-400 mt-4 max-w-sm text-sm leading-relaxed text-pretty"
+        >
+          Platforma completa pentru saloane de infrumusetare: programari,
+          echipa, incasari si asistent AI — totul intr-un singur loc, pe mobil
+          si web.
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-2.5">
+          {
+            socialLinks.map((social) => (
+              <a
+                href={social.href}
+                class={socialLinkClass}
+                aria-label={social.label}
+                target={social.href.startsWith('http') ? '_blank' : undefined}
+                rel={
+                  social.href.startsWith('http')
+                    ? 'noopener noreferrer'
+                    : undefined
+                }
+              >
+                <Icon name={social.icon} class="size-4" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <nav aria-label="Pagini">
+        <p class="text-black-500 text-sm font-semibold">Pagini</p>
+        <ul class="mt-4 space-y-3">
+          {
+            pageLinks.map((link) => (
+              <li>
+                <a href={link.href} class={footerLinkClass}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Utilitare">
+        <p class="text-black-500 text-sm font-semibold">Utilitare</p>
+        <ul class="mt-4 space-y-3">
+          {
+            utilityLinks.map((link) => (
+              <li>
+                <a href={link.href} class={footerLinkClass}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div
+        class="footer-community-card rounded-3xl p-6 shadow-[0_12px_40px_rgb(37_37_43/0.06)] sm:col-span-2 sm:p-8 lg:col-span-1"
+      >
+        <p class="text-black-500 text-lg font-semibold tracking-tight text-balance">
+          Comunitatea Izibook
+        </p>
+        <p class="text-black-400 mt-2 text-sm leading-relaxed text-pretty">
+          Alatura-te grupului nostru de WhatsApp pentru noutati, suport si
+          discutii cu alti manageri de salon din Romania.
+        </p>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-black-500 text-white-500 hover:bg-black-600 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+          aria-label="Alatura-te comunitatii Izibook pe WhatsApp"
+        >
+          <Icon name="simple-icons:whatsapp" class="size-4" />
+          Alatura-te pe WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="border-black-100 mt-12 flex flex-col gap-3 border-t pt-8 sm:mt-14 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="text-black-400 text-sm">
+        &copy; {new Date().getFullYear()} Izibook. Toate drepturile rezervate.
+      </p>
+      <a
+        href="mailto:contact@izibook.ro"
+        class="text-black-400 hover:text-black-500 text-sm no-underline transition-colors duration-200"
+      >
+        contact@izibook.ro
+      </a>
+    </div>
+  </div>
+</footer>

@@ -1,5 +1,5 @@
 import { tsParticles } from '@tsparticles/engine';
-import { loadMeteorsPreset } from '@tsparticles/preset-meteors';
+import { ensureTsParticles } from '../../lib/ensureTsParticles';
 import { heroParticlesOptions } from './heroParticlesOptions';
 
 let initialized = false;
@@ -12,7 +12,7 @@ export async function initHeroParticles(): Promise<void> {
   const element = document.getElementById('hero-particles');
   if (!element) return;
 
-  await loadMeteorsPreset(tsParticles);
+  await ensureTsParticles();
 
   await tsParticles.load({
     id: 'hero-particles',

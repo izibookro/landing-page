@@ -1,0 +1,75 @@
+---
+import { Icon } from 'astro-icon/components';
+import { faqItems } from '../../data/faqItems';
+import './faq-section.scss';
+---
+
+<section
+  id="faq"
+  class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  aria-labelledby="faq-heading"
+>
+  <div class="mx-auto max-w-6xl">
+    <div
+      class="grid gap-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:items-start lg:gap-12"
+    >
+      <aside class="lg:sticky lg:top-28">
+        <div class="text-left">
+          <h2
+            id="faq-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Intrebari
+            <span class="faq-section__heading-fade">frecvente</span>
+          </h2>
+          <p
+            class="text-black-400 mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
+          >
+            Raspunsuri rapide la cele mai comune intrebari despre Izibook, pachete
+            si functionalitati.
+          </p>
+        </div>
+
+        <div
+          class="faq-cta-card mt-8 rounded-3xl p-6 shadow-[0_12px_40px_rgb(37_37_43/0.06)] sm:mt-10 sm:p-8"
+        >
+          <p class="text-black-500 text-xl font-semibold tracking-tight">
+            Mai ai intrebari?
+          </p>
+          <p class="text-black-400 mt-2 text-sm leading-relaxed">
+            Contacteaza-ne pentru mai multe informatii sau pentru o demonstratie
+            personalizata.
+          </p>
+          <a
+            href="#contact"
+            class="bg-black-500 text-white-500 hover:bg-black-600 mt-6 inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-colors duration-200"
+          >
+            Contacteaza-ne
+          </a>
+        </div>
+      </aside>
+
+      <div class="divide-black-100 divide-y">
+        {
+          faqItems.map((item, index) => (
+            <details class="faq-item group" open={index === 0}>
+              <summary class="flex cursor-pointer items-start justify-between gap-4 py-5 text-left">
+                <span class="text-black-500 text-base font-semibold sm:text-[1.0625rem]">
+                  {item.question}
+                </span>
+                <Icon
+                  name="solar:alt-arrow-down-linear"
+                  class="text-black-400 mt-0.5 size-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+                  aria-hidden="true"
+                />
+              </summary>
+              <p class="text-black-400 pb-5 text-sm leading-relaxed sm:text-[0.9375rem]">
+                {item.answer}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
