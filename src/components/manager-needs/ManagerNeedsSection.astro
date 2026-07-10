@@ -12,8 +12,7 @@ const themeBackground: Record<string, string> = {
     'bg-linear-to-br from-primary-950 from-0% via-primary-900 via-[38%] to-primary-800 to-100%',
   neutral:
     'bg-linear-to-br from-white-700 from-0% via-black-50 via-[42%] to-black-100 to-100%',
-  warm:
-    'bg-linear-to-b from-white-600 from-0% via-primary-100 via-[46%] to-primary-300 to-100%',
+  warm: 'bg-linear-to-b from-white-600 from-0% via-primary-100 via-[46%] to-primary-300 to-100%',
   sky: 'bg-linear-to-br from-primary-300 from-0% via-primary-500 via-[45%] to-primary-700 to-100%',
 };
 
@@ -43,8 +42,7 @@ const titleBase =
   'text-[clamp(1.25rem,2.5vw,1.75rem)] font-semibold leading-[1.15] tracking-tight';
 const subtitleBase = 'mt-2.5 text-[0.9375rem] leading-normal';
 
-const compactCopyBase =
-  'relative z-2 max-w-72 md:min-h-32 lg:min-h-[8.5rem]';
+const compactCopyBase = 'relative z-2 max-w-72 md:min-h-32 lg:min-h-[8.5rem]';
 
 const mediaBase =
   'relative z-1 mt-auto flex min-h-0 flex-1 items-center justify-center pt-4';
@@ -87,7 +85,7 @@ const imageBase =
             class:list={[
               cardBase,
               themeBackground[tallCard.theme],
-              'lg:col-start-1 lg:row-span-2 lg:min-h-0 lg:h-full',
+              'lg:col-start-1 lg:row-span-2 lg:h-full lg:min-h-0',
             ]}
           >
             <div class={copyBase}>
@@ -102,7 +100,7 @@ const imageBase =
               <Image
                 src={tallCard.image}
                 alt={tallCard.title}
-                class="block h-auto max-h-full w-full min-w-0 max-w-full object-contain object-bottom drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]"
+                class="block h-auto max-h-full w-full max-w-full min-w-0 object-contain object-bottom drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]"
                 loading="lazy"
                 decoding="async"
               />
@@ -117,7 +115,7 @@ const imageBase =
             class:list={[
               cardBase,
               themeBackground[wideCard.theme],
-              'lg:col-span-2 lg:col-start-2 lg:row-start-1 lg:grid lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,240px)_1fr] lg:items-stretch lg:gap-4',
+              'lg:col-span-2 lg:col-start-2 lg:row-start-1 lg:grid lg:h-full lg:min-h-0 lg:grid-cols-[minmax(0,240px)_1fr] lg:items-stretch lg:gap-4 lg:overflow-hidden',
             ]}
           >
             <div class={`${copyBase} max-w-64 lg:max-w-none lg:self-start`}>
@@ -128,16 +126,14 @@ const imageBase =
                 {wideCard.subtitle}
               </p>
             </div>
-            <div class="relative z-1 flex min-h-0 w-full flex-1 items-center justify-end lg:h-full">
-              <div class="max-h-64 w-fit max-w-full overflow-hidden rounded-3xl drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]">
-                <Image
-                  src={wideCard.image}
-                  alt={wideCard.title}
-                  class="block h-full max-h-64 w-auto max-w-full"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+            <div class="relative z-1 flex h-full max-h-75 min-h-0 w-full items-center justify-end overflow-hidden rounded-3xl drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]">
+              <Image
+                src={wideCard.image}
+                alt={wideCard.title}
+                class="block h-full w-auto max-w-full rounded-3xl object-contain object-right"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </article>
         )
@@ -149,8 +145,10 @@ const imageBase =
             class:list={[
               cardBase,
               themeBackground[card.theme],
-              index === 0 && 'lg:col-start-2 lg:row-start-2 lg:h-full lg:min-h-0',
-              index === 1 && 'lg:col-start-3 lg:row-start-2 lg:h-full lg:min-h-0',
+              index === 0 &&
+                'lg:col-start-2 lg:row-start-2 lg:h-full lg:min-h-0',
+              index === 1 &&
+                'lg:col-start-3 lg:row-start-2 lg:h-full lg:min-h-0',
             ]}
           >
             <div class={compactCopyBase}>
