@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/footer/Footer.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import { getPublishedBlogPosts } from '../../lib/blog';
+import '../../components/blog/blog-page.scss';
+
+const posts = await getPublishedBlogPosts();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Articole, ghiduri si noutati pentru managerii de salon care folosesc IziBook."
+  canonicalPath="/blog"
+>
+  <Navbar />
+  <main class="bg-white-500 min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24">
+    <section class="px-4 sm:px-6" aria-labelledby="blog-page-heading">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <h1
+            id="blog-page-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Blog IziBook
+            <span class="blog-page__heading-fade">pentru manageri de salon</span>
+          </h1>
+          <p
+            class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
+          >
+            Strategii, inovatie si povesti reale din industria beauty. Toate
+            articolele, ordonate de la cele mai recente.
+          </p>
+        </div>
+
+        <div
+          class="blog-page__panel from-white-700 via-black-50 to-black-100 mt-10 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:mt-12 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+          data-blog-infinite-scroll
+        >
+          {
+            posts.length > 0 ? (
+              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-7">
+                {posts.map((post) => (
+                  <div data-blog-grid-card>
+                    <BlogCard post={post} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p class="text-black-400 text-center text-base">
+                Nu exista articole publicate momentan.
+              </p>
+            )
+          }
+
+          <div
+            class="blog-page__sentinel"
+            data-blog-scroll-sentinel
+            aria-hidden="true"
+          >
+          </div>
+
+          <p
+            class="blog-page__loader mt-8 hidden text-center text-sm font-medium"
+            data-blog-scroll-loader
+            aria-live="polite"
+          >
+            Se incarca mai multe articole...
+          </p>
+
+          <p
+            class="blog-page__end mt-8 hidden text-center text-sm font-medium"
+            data-blog-scroll-end
+          >
+            Ai ajuns la final. Revino curand pentru articole noi.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { initBlogInfiniteScroll } from '../../components/blog/initBlogInfiniteScroll';
+
+  const cleanups: Array<() => void> = [];
+
+  document
+    .querySelectorAll<HTMLElement>('[data-blog-infinite-scroll]')
+    .forEach((root) => {
+      cleanups.push(initBlogInfiniteScroll(root));
+    });
+
+  document.addEventListener(
+    'astro:before-swap',
+    () => {
+      cleanups.forEach((cleanup) => cleanup());
+      cleanups.length = 0;
+    },
+    { once: true },
+  );
+</script>
