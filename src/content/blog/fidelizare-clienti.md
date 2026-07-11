@@ -1,21 +1,36 @@
 ---
-title: '5 strategii simple de fidelizare pentru clientii tai'
-description: 'Strategii practice pentru a transforma vizitele ocazionale in clienti fideli, folosind datele din IziBook.'
+title: 'Ce inseamna fidelizarea clientilor in saloanele de beauty'
+description: 'Descopera ce inseamna cu adevarat fidelizarea clientilor intr-un salon de beauty si cum transformi vizitele ocazionale in relatii durabile.'
 category: 'Fidelizare'
 pubDate: 2025-05-12
-readTime: '5 min de citit'
 image: ../../assets/why-us/why-us-fidelity.png
 draft: false
 ---
 
-Fidelizarea nu inseamna doar reduceri. Inseamna experiente consistente, comunicare la momentul potrivit si atentie la preferintele fiecarui client.
+Fidelizarea clientilor in saloanele de beauty depaseste cardul de reducere. Este procesul prin care o vizita ocazionala devine o relatie de incredere: clienta se simte **vazuta si memorata** la fiecare programare.
 
-## Strategii care functioneaza
+Loialitatea se castiga prin experiente consistente si comunicare la momentul potrivit — salonul devine **parte din rutina ei**.
 
-1. Reminder-e personalizate inainte de programare
-2. Recomandari de servicii bazate pe istoric
-3. Mesaje de multumire dupa vizita
-4. Oferte pentru revenire in perioade mai libere
-5. Feedback rapid dupa fiecare experienta
+## Ce este fidelizarea clientilor?
 
-Cu datele centralizate in IziBook, fiecare strategie devine mai usor de masurat si optimizat.
+Actiunile prin care salonul construieste relatii durabile: calitate, ambient placut si follow-up dupa vizita.
+
+## De ce conteaza in beauty
+
+- Revine periodic, fara alternative
+- Recomanda salonul prietenelor
+- Accepta servicii noi mai usor
+
+## Strategii simple care functioneaza
+
+1. **Reminder-e personalizate** inainte de programare
+2. **Recomandari** bazate pe istoricul vizitelor
+3. **Mesaje de multumire** dupa experienta
+4. **Oferte de revenire** in perioade libere
+5. **Feedback rapid** dupa vizita
+
+Cu [IziBook](/), fiecare strategie devine mai usor de masurat.
+
+> **Pe scurt:** fidelizarea inseamna relatii autentice, nu discounturi.
+
+Vezi si [cum tehnologia redefineste experienta clientilor](/blog/tehnologie-salon).

@@ -3,7 +3,6 @@ title: 'Cum tehnologia redefineste experienta clientilor in saloane'
 description: 'De la programari online la comunicare automata — cum tehnologia moderna ridica standardele in industria beauty.'
 category: 'Inovatie'
 pubDate: 2025-04-20
-readTime: '5 min de citit'
 image: ../../assets/why-us/why-us-innovation.png
 draft: false
 ---

@@ -40,7 +40,7 @@ export const plans: Plan[] = [
     id: 'medium',
     name: 'Medium',
     description: 'Intre 6-10 angajati.',
-    price: 700,
+    price: 800,
     icon: 'solar:shop-linear',
     popular: true,
     features: [
@@ -55,7 +55,7 @@ export const plans: Plan[] = [
     id: 'enterprise',
     name: 'Enterprise',
     description: 'Peste 10 angajati.',
-    price: 1100,
+    price: 1500,
     icon: 'solar:city-linear',
     features: [
       'Tot din Medium',

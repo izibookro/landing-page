@@ -1,7 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import { formatBlogDate, getBlogPostHref, type BlogEntry } from '../../lib/blog';
+import {
+  formatBlogDate,
+  getBlogPostHref,
+  getBlogReadTime,
+  type BlogEntry,
+} from '../../lib/blog';
 import './blog-card.scss';
 
 interface Props {
@@ -11,6 +16,7 @@ interface Props {
 
 const { post, class: className } = Astro.props;
 const href = getBlogPostHref(post);
+const readTime = getBlogReadTime(post);
 ---
 
 <article class:list={['group flex h-full w-full', className]}>
@@ -56,7 +62,7 @@ const href = getBlogPostHref(post);
           class="size-4"
           aria-hidden="true"
         />
-        {post.data.readTime}
+        {readTime}
       </span>
     </div>
   </a>

@@ -3,7 +3,6 @@ title: 'De ce managerii de top isi centralizeaza datele intr-o singura aplicatie
 description: 'Avantajele unui singur loc pentru programari, echipa, incasari si comunicare in salonul tau.'
 category: 'Control'
 pubDate: 2025-05-05
-readTime: '3 min de citit'
 image: ../../assets/why-us/why-us-control.png
 draft: false
 ---

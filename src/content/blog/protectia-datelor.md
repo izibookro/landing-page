@@ -3,7 +3,6 @@ title: 'Protectia datelor in salon: ce trebuie sa stii ca manager'
 description: 'Ghid practic despre cum sa gestionezi datele clientilor in siguranta, in conformitate cu bunele practici.'
 category: 'Securitate'
 pubDate: 2025-04-28
-readTime: '4 min de citit'
 image: ../../assets/why-us/why-us-data-protection.png
 draft: false
 ---

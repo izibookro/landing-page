@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { formatBlogDate, getBlogPostHref, type BlogEntry } from '../../lib/blog';
+
+interface Props {
+  post: BlogEntry;
+}
+
+const { post } = Astro.props;
+const href = getBlogPostHref(post);
+---
+
+<a
+  href={href}
+  class="blog-related-item group flex gap-3 no-underline transition-opacity duration-200 hover:opacity-80"
+>
+  <div class="relative shrink-0 overflow-hidden rounded-xl">
+    <Image
+      src={post.data.image}
+      alt=""
+      class="size-16 object-cover transition-transform duration-300 group-hover:scale-[1.03] sm:size-[4.5rem]"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="min-w-0 flex-1 pt-0.5">
+    <p
+      class="text-black-500 line-clamp-2 text-sm leading-snug font-semibold tracking-tight"
+    >
+      {post.data.title}
+    </p>
+    <p class="text-black-400 mt-1.5 text-xs">
+      {formatBlogDate(post.data.pubDate)}
+    </p>
+  </div>
+</a>

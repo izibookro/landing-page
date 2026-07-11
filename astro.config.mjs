@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import { defineConfig, fontProviders } from 'astro/config';
+import rehypeSlug from 'rehype-slug';
 import Sonda from 'sonda/astro';
 
 // https://astro.build/config
@@ -26,5 +27,8 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+  },
+  markdown: {
+    rehypePlugins: [rehypeSlug],
   },
 });

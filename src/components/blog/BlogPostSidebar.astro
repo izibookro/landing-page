@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import type { BlogAuthor } from '../../data/blogAuthors';
+import type { BlogEntry } from '../../lib/blog';
+import BlogRelatedItem from './BlogRelatedItem.astro';
+
+interface Props {
+  author: BlogAuthor;
+  relatedPosts: BlogEntry[];
+  shareUrl: string;
+  shareTitle: string;
+}
+
+const { author, relatedPosts, shareUrl, shareTitle } = Astro.props;
+
+const encodedUrl = encodeURIComponent(shareUrl);
+const encodedTitle = encodeURIComponent(shareTitle);
+
+const shareLinks = [
+  {
+    label: 'Distribuie pe Facebook',
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    icon: 'simple-icons:facebook',
+  },
+  {
+    label: 'Distribuie pe X',
+    href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+    icon: 'simple-icons:x',
+  },
+  {
+    label: 'Distribuie pe LinkedIn',
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    icon: 'simple-icons:linkedin',
+  },
+  {
+    label: 'Distribuie pe WhatsApp',
+    href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+    icon: 'simple-icons:whatsapp',
+  },
+];
+---
+
+<aside class="blog-post__sidebar" aria-label="Informatii articol">
+  <div class="blog-post__sidebar-card">
+    <div class="flex flex-col items-center text-center">
+      <div
+        class="blog-post__author-avatar ring-black-100 overflow-hidden rounded-full ring-4"
+      >
+        <Image
+          src={author.avatar}
+          alt={author.name}
+          class="size-24 object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <p class="text-black-500 mt-4 text-lg font-semibold tracking-tight">
+        {author.name}
+      </p>
+      <p class="text-black-400 mt-3 text-sm leading-relaxed">
+        {author.description}
+      </p>
+    </div>
+  </div>
+
+  <div class="blog-post__sidebar-card">
+    <h2 class="text-black-500 text-base font-semibold tracking-tight">
+      Distribuie articolul
+    </h2>
+    <div class="mt-4 flex flex-wrap gap-2.5">
+      {
+        shareLinks.map((link) => (
+          <a
+            href={link.href}
+            class="blog-post__share-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.label}
+          >
+            <Icon name={link.icon} class="size-4.5" aria-hidden="true" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  {
+    relatedPosts.length > 0 && (
+      <div class="blog-post__sidebar-card">
+        <h2 class="text-black-500 text-base font-semibold tracking-tight">
+          Articole similare
+        </h2>
+        <ul class="mt-4 space-y-4">
+          {relatedPosts.map((relatedPost) => (
+            <li>
+              <BlogRelatedItem post={relatedPost} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</aside>
