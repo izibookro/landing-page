@@ -4,8 +4,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/footer/Footer.astro';
 import BlogPostSidebar from '../../components/blog/BlogPostSidebar.astro';
+import BlogPostToc from '../../components/blog/BlogPostToc.astro';
 import {
-  extractHeadings,
+  extractTocEntries,
   formatBlogPostDate,
   getBlogReadTime,
   getRelatedPostsByCategory,
@@ -28,7 +29,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const headings = extractHeadings(post.body ?? '');
+const tocEntries = extractTocEntries(post.body ?? '');
 const readTime = getBlogReadTime(post);
 const relatedPosts = await getRelatedPostsByCategory(post, 3);
 const author = getBlogAuthor();
@@ -43,6 +44,9 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
   canonicalPath={`/blog/${post.id}`}
 >
   <Navbar />
+  <a href="#blog-post-content" class="blog-post__skip-link">
+    Sari la continutul articolului
+  </a>
   <main class="bg-white-500 min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24">
     <article class="px-4 sm:px-6" aria-labelledby="blog-post-title">
       <div class="blog-post__shell mx-auto max-w-[85rem]">
@@ -50,7 +54,7 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
           <aside class="blog-post__toc-col">
             <a
               href="/blog"
-              class="blog-post__back-btn bg-black-500 text-white-500 hover:bg-black-600 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold no-underline transition-[background-color,box-shadow,transform] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+              class="blog-post__back-btn text-black-500 bg-white-500 inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold no-underline shadow-[0_2px_16px_rgb(37_37_43/0.08)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_4px_24px_rgb(37_37_43/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
             >
               <Icon
                 name="solar:arrow-left-linear"
@@ -61,43 +65,8 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
             </a>
 
             {
-              headings.length > 0 && (
-                <nav
-                  class="blog-post__toc"
-                  aria-label="Cuprins articol"
-                  data-blog-toc
-                >
-                  <p class="blog-post__toc-title">
-                    <Icon
-                      name="solar:list-check-linear"
-                      class="size-5.5 shrink-0 text-primary-500"
-                      aria-hidden="true"
-                    />
-                    Cuprins
-                  </p>
-                  <ol class="blog-post__toc-list">
-                    {headings.map((heading, index) => (
-                      <li
-                        class:list={[
-                          'blog-post__toc-item',
-                          heading.depth === 3 &&
-                            'blog-post__toc-item--depth-3',
-                        ]}
-                      >
-                        <a
-                          href={`#${heading.id}`}
-                          class="blog-post__toc-link"
-                          data-toc-link={heading.id}
-                        >
-                          <span class="blog-post__toc-index">
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
-                          {heading.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ol>
-                </nav>
+              tocEntries.length > 0 && (
+                <BlogPostToc entries={tocEntries} variant="desktop" />
               )
             }
           </aside>
@@ -164,7 +133,15 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
               />
             </div>
 
+            {
+              tocEntries.length > 0 && (
+                <BlogPostToc entries={tocEntries} variant="mobile" />
+              )
+            }
+
             <div
+              id="blog-post-content"
+              tabindex="-1"
               class="blog-post__panel from-white-700 via-black-50 to-black-100 blog-post__prose mt-8 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:mt-10 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
             >
               <Content />
@@ -185,35 +162,13 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
 </BaseLayout>
 
 <script>
-  const tocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
-  const headingIds = [...tocLinks].map((link) => link.dataset.tocLink).filter(Boolean);
+  import { initBlogPostPage } from '../../components/blog/initBlogPostPage';
 
-  if (headingIds.length > 0) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+  const cleanup = initBlogPostPage();
 
-          tocLinks.forEach((link) => {
-            link.classList.toggle(
-              'is-active',
-              link.dataset.tocLink === entry.target.id,
-            );
-          });
-        });
-      },
-      { rootMargin: '-20% 0px -70% 0px', threshold: 0 },
-    );
-
-    headingIds.forEach((id) => {
-      const heading = document.getElementById(id!);
-      if (heading) observer.observe(heading);
-    });
-
-    document.addEventListener(
-      'astro:before-swap',
-      () => observer.disconnect(),
-      { once: true },
-    );
-  }
+  document.addEventListener(
+    'astro:before-swap',
+    () => cleanup(),
+    { once: true },
+  );
 </script>

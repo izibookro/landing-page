@@ -1,0 +1,93 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { TocEntry } from '../../lib/blog';
+
+interface Props {
+  entries: TocEntry[];
+  variant: 'desktop' | 'mobile';
+}
+
+const { entries, variant } = Astro.props;
+
+const sectionCount = entries.filter((entry) => entry.depth === 2).length;
+---
+
+{
+  variant === 'desktop' ? (
+    <nav class="blog-post__toc" aria-label="Cuprins articol" data-blog-toc>
+      <p class="blog-post__toc-title">
+        <Icon
+          name="solar:list-check-linear"
+          class="size-5.5 shrink-0 text-primary-500"
+          aria-hidden="true"
+        />
+        Cuprins
+      </p>
+      <ol class="blog-post__toc-list">
+        {entries.map((entry) => (
+          <li
+            class:list={[
+              'blog-post__toc-item',
+              entry.depth === 3 && 'blog-post__toc-item--depth-3',
+            ]}
+          >
+            <a
+              href={`#${entry.id}`}
+              class="blog-post__toc-link"
+              data-toc-link={entry.id}
+            >
+              {entry.label && (
+                <span class="blog-post__toc-index">{entry.label}</span>
+              )}
+              {entry.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  ) : (
+    <details class="blog-post__toc-mobile" data-blog-toc-mobile>
+      <summary class="blog-post__toc-mobile-summary">
+        <span class="blog-post__toc-mobile-summary-inner">
+          <Icon
+            name="solar:list-check-linear"
+            class="size-5 shrink-0 text-primary-500"
+            aria-hidden="true"
+          />
+          <span>Cuprins</span>
+          {sectionCount > 0 && (
+            <span class="blog-post__toc-mobile-count">{sectionCount} sectiuni</span>
+          )}
+        </span>
+        <Icon
+          name="solar:alt-arrow-down-linear"
+          class="blog-post__toc-mobile-chevron size-5 shrink-0"
+          aria-hidden="true"
+        />
+      </summary>
+      <nav class="blog-post__toc-mobile-panel" aria-label="Cuprins articol">
+        <ol class="blog-post__toc-list">
+          {entries.map((entry) => (
+            <li
+              class:list={[
+                'blog-post__toc-item',
+                entry.depth === 3 && 'blog-post__toc-item--depth-3',
+              ]}
+            >
+              <a
+                href={`#${entry.id}`}
+                class="blog-post__toc-link"
+                data-toc-link={entry.id}
+              >
+                {entry.label && (
+                  <span class="blog-post__toc-index">{entry.label}</span>
+                )}
+                {entry.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </details>
+  )
+}

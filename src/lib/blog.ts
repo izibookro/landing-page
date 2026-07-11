@@ -54,6 +54,32 @@ export function extractHeadings(
   return headings;
 }
 
+export interface TocEntry {
+  depth: number;
+  text: string;
+  id: string;
+  label: string | null;
+}
+
+export function extractTocEntries(markdown: string): TocEntry[] {
+  let h2Count = 0;
+
+  return extractHeadings(markdown).map((heading) => {
+    if (heading.depth === 2) {
+      h2Count += 1;
+      return {
+        ...heading,
+        label: String(h2Count).padStart(2, '0'),
+      };
+    }
+
+    return {
+      ...heading,
+      label: null,
+    };
+  });
+}
+
 export function calculateReadTime(markdown: string): string {
   const body = markdown.replace(/^---[\s\S]*?---/, '').trim();
   const wordCount = body.split(/\s+/).filter(Boolean).length;
