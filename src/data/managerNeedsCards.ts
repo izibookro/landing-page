@@ -19,7 +19,7 @@ export const managerNeedsCards: ManagerNeedsCard[] = [
     id: 'ai-booking',
     title: 'Programări cu Fane AI',
     subtitle:
-      'Clienti mai fericiti, programari mai rapide și mai simple direct in Whatsapp exact cum ar comunica cu un stilist.',
+      'Clienti mai fericiti, programari mai rapide și mai simple direct in Whatsapp exact cum ar comunica cu un un angajat.',
     image: aiWhatsapp,
     layout: 'tall',
     theme: 'neutral',
@@ -27,7 +27,8 @@ export const managerNeedsCards: ManagerNeedsCard[] = [
   {
     id: 'team',
     title: 'Gestionare echipă',
-    subtitle: 'Urmărește performanța si activitateaechipei în timp real.',
+    subtitle:
+      'Monitorizeaza performanta si activitatea echipei in timp real. Programari, venituri, pauze, concedii si multe altele.',
     image: managerMemberSchedule,
     layout: 'wide',
     theme: 'neutral',
@@ -36,7 +37,7 @@ export const managerNeedsCards: ManagerNeedsCard[] = [
     id: 'finance',
     title: 'Gestiune financiară',
     subtitle:
-      'Totul automatizat. Vezi exact toate cheltuielile si veniturile salonului în timp real. Indici de performanta si analize avansate',
+      'Totul automatizat. Vezi exact toate cheltuielile si veniturile salonului în timp real. Indici de performanta si analize avansate, fara exceluri, fara calcule manuale.',
     image: mockupManagerReportsSummary,
     layout: 'compact',
     theme: 'neutral',
@@ -45,7 +46,7 @@ export const managerNeedsCards: ManagerNeedsCard[] = [
     id: 'analytics',
     title: 'Statistici live',
     subtitle:
-      'Monitorizează performanța echipei și a serviciilor dintr-o singură privire.',
+      'Monitorizeaza in orice moment progresul afacerii tale in timp real. Venituri, cheltuieli, profit, clienti, programari, angajati, servicii, produse, si multe altele.',
     image: managerHomeIncome,
     layout: 'compact',
     theme: 'neutral',

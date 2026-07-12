@@ -21,10 +21,12 @@ import { whyUsTabs } from '../../data/whyUsTabs';
       <p
         class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
       >
-        IziBook nu este "inca o noua aplicatie". Este sistemul tau complet
-        pentru afacerea ta. Aplicatie mobile (IOS, Android) cu 3 platforme
-        incluse pentru clienti, stilisti si manageri, un singur cont, 3
-        platforme. Acum disponibila pentru manageri si pe web.
+        Stim ca sunt multe optiuni, dar niciuna completa. Fie ofera doar
+        programari prin aplicatie fara statistici si rapoarte, fie ofera doar
+        statistici si rapoarte fara programari, fie sunt disponibilite doar pe
+        web fara aplicatie mobile. IziBook nu este doar "o aplicatie" este
+        sistemul complet pentru afacerea ta. Disponibil pe toate platformele
+        oferind o experienta completa pentru afacerea ta
       </p>
     </div>
 
@@ -38,8 +40,7 @@ import { whyUsTabs } from '../../data/whyUsTabs';
         <span
           class="why-us-tab-indicator"
           data-why-us-indicator
-          aria-hidden="true"
-        ></span>
+          aria-hidden="true"></span>
         {
           whyUsTabs.map((tab, index) => (
             <button
@@ -50,7 +51,7 @@ import { whyUsTabs } from '../../data/whyUsTabs';
               aria-selected={index === 0 ? 'true' : 'false'}
               data-why-us-tab={tab.id}
               class:list={[
-                'why-us-tab relative z-1 shrink-0 cursor-pointer rounded-full px-4 py-2.5 text-sm font-medium text-black-500/72 transition-colors hover:text-black-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 sm:px-5',
+                'why-us-tab text-black-500/72 hover:text-black-500 focus-visible:outline-primary-500 relative z-1 shrink-0 cursor-pointer rounded-full px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 sm:px-5',
                 index === 0 && 'is-active',
               ]}
             >
@@ -84,7 +85,7 @@ import { whyUsTabs } from '../../data/whyUsTabs';
               decoding="async"
             />
             <div
-              class="absolute inset-0 bg-linear-to-t from-black-900/85 via-black-700/35 to-black-500/10"
+              class="from-black-900/85 via-black-700/35 to-black-500/10 absolute inset-0 bg-linear-to-t"
               aria-hidden="true"
             />
             <div class="why-us-panel__content relative flex min-h-112 flex-col justify-end p-6 sm:min-h-144 sm:p-10">

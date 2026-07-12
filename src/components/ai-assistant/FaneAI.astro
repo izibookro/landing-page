@@ -25,10 +25,10 @@ const promptBubbles = [
       <p
         class="text-black-400 sm:text-l mx-auto mt-4 max-w-xl text-base leading-relaxed"
       >
-        Cel mai simplu si rapid mod de a de programa. Discuta pe <strong
+        Cel mai simplu si rapid mod pentru clienti sa se programeze. Discuta pe <strong
           >WhatsApp</strong
         > cu Fane la orice ora. El te programeaza, te tine la curent cu disponibilitatea
-        unui stilist sau pretul unui serviciu.
+        unui angajat sau pretul unui serviciu.
       </p>
     </div>
 
@@ -47,11 +47,7 @@ const promptBubbles = [
       <!-- Left: prompt bubbles + CTA -->
       <div class="fane-ai__left">
         <ul class="fane-ai__bubbles" aria-label="Exemple de întrebări">
-          {
-            promptBubbles.map((text) => (
-              <li class="fane-ai__bubble">{text}</li>
-            ))
-          }
+          {promptBubbles.map((text) => <li class="fane-ai__bubble">{text}</li>)}
         </ul>
 
         <a

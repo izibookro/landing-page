@@ -11,7 +11,12 @@ export const features: Feature[] = [
   { label: 'Calendar inteligent', icon: 'solar:calendar-mark-bold' },
   { label: 'Rapoarte financiare', icon: 'solar:wallet-money-bold' },
   { label: 'Gestiune echipa', icon: 'solar:user-id-bold' },
-  { label: 'Reminder SMS', icon: 'solar:chat-round-dots-bold' },
   { label: 'Servicii personalizate', icon: 'solar:scissors-bold' },
   { label: 'Recenzii si feedback', icon: 'solar:star-bold' },
+  { label: 'Sistem fidelizare clienti', icon: 'solar:medal-ribbons-star-bold' },
+  { label: 'Bot AI pentru programari pe WhatsApp', icon: 'solar:chat-round-dots-bold' },
+  { label: 'Analize performanta', icon: 'solar:graph-new-bold' },
+  { label: 'Toate platformele', icon: 'solar:devices-bold' },
+  { label: 'Integrare site personal', icon: 'solar:globus-bold' },
+  { label: 'Protectia datelor', icon: 'solar:shield-check-bold' },
 ];

@@ -9,91 +9,91 @@ export const faqItems: FaqItem[] = [
     id: 'ce-este-izibook',
     question: 'Ce este IziBook?',
     answer:
-      'IziBook este platforma completa de management pentru saloane de infrumusetare. Programari, clienti, echipa, incasari si rapoarte — totul intr-un singur loc.',
+      'IziBook este sistemul complet de management pentru saloane de infrumusetare. Programari, clienti, echipa, incasari si rapoarte — totul intr-un singur loc. Disponibil pe toate platformele: web, iOS, Android.',
   },
   {
     id: 'platforme',
     question: 'Pe ce platforme este disponibila aplicatia?',
     answer:
-      'IziBook este disponibila pe iOS, Android si web pentru manageri. Clientii si stilistii folosesc aplicatiile mobile dedicate.',
+      'IziBook este disponibila pe iOS, Android si web. La cerere se poate conecta sistemul direct pe site-ul tau personal.',
+  },
+  {
+    id: 'doar-sistemul',
+    question: 'Nu vreau aplicatii, conturi, platforme, doar sistemul',
+    answer:
+      'Suntem foarte flexibili. Putem conecta sistemul direct pe site-ul tau personal. Clientii nu sunt nevoiti sa vada si alte saloane sau angajati, se pot programa fara cont, direct din site-ul tau. Pentru mai multe informatii contactati-ne.',
   },
   {
     id: 'fane-ai',
     question: 'Cum functioneaza asistentul AI Fane?',
     answer:
-      'Fane te ajuta sa gestionezi programarile direct din WhatsApp. Clientii pot solicita servicii, verifica disponibilitatea si confirma programari fara apeluri telefonice.',
+      'Fane AI ofera clientilor exact experienta pe care o aveau inainte de tehnologie. Scrii mesaj pe Whastapp si discuti cu Fane exact ca si cu un angajat. Avantajul este ca Fane este 24/7 online si poate raspunde la orice intrebare. Este conectat sistem si ofera datele actuale ale salonului in timp real precum: disponibilitate, servicii, angajati, preturi si multe altele.',
   },
   {
     id: 'echipa',
     question: 'Pot gestiona mai multi angajati in acelasi cont?',
     answer:
-      'Da. In functie de pachetul ales, poti adauga intre 1 si peste 10 membri ai echipei, fiecare cu program si statistici proprii.',
+      'Da. In functie de pachetul ales, gestionezi toata echipa. Verifici in timp real progralarile, veniturile, cheltuielile, pauzele chiar si concediile angajatilor. Control serviciilor se face din contul tau de manager.',
   },
   {
     id: 'date',
-    question: 'Datele salonului meu sunt in siguranta?',
+    question: 'Ce inseamna control total asupra datelor mele?',
     answer:
-      'Da. Ai control total asupra datelor tale si poti exporta sau sterge informatiile oricand, direct din aplicatie.',
+      'Tu esti in controlul datelor tale! Poti sterge oricand datele contului tau iar ca manager poti sterge chiar si instoricul programarilor, incasarilor, cheltuielilor fara a afecta clientii, serviciile sau angajatii.',
   },
   {
     id: 'abonament',
     question: 'Pot schimba sau anula abonamentul oricand?',
     answer:
-      'Da. Poti upgrada, downgrada sau opri abonamentul oricand, fara contracte pe termen lung.',
+      'Da. Poti upgrada, downgrada sau opri abonamentul oricand in functie de nevoile tale. ',
   },
   {
     id: 'suport',
     question: 'Oferiti suport pentru configurarea initiala?',
     answer:
-      'Da. Echipa noastra te ajuta la setup, import de date si training pentru echipa, in functie de pachetul ales.',
+      'Da. Echipa noastra se ocupa de tot. Planificam o discutie despre serviciile tale, cheltuieli si nevoie tale apoi configuram sistemul pentru tine.',
   },
   {
     id: 'demo',
     question: 'Pot testa aplicatia inainte de a ma abona?',
     answer:
-      'Da. Poti incepe gratuit si explora functionalitatile de baza inainte de a alege un pachet platit.',
+      'Da. Poti incepe gratuit timp de 30 de zile avand access la complet tot sistemul fara a fi nevoie sa platesti nimic.',
   },
   {
     id: 'programari-online',
-    question: 'Clientii pot face programari online?',
+    question: 'Cum se programeaza clientii?',
     answer:
-      'Da. Clientii pot programa servicii 24/7 din aplicatie, fara sa fie nevoie sa sune sau sa trimita mesaje manuale.',
+      'Clientii se pot programa online direct din aplicatie mobile sau web, sau chiar din WhastApp cu Fane AI. Fara a fi nevoie sa sune sau sa trimita mesaje manuale. Daca optezi pentru integrarea sistemului pe site-ul salonului tau, clientii se pot programa direct din site-ul tau fara a fi nevoie sa intre in aplicatie sau sa trimita mesaje.',
   },
   {
     id: 'notificari',
     question: 'Se trimit notificari automate clientilor?',
     answer:
-      'Da. Poti trimite remindere si confirmari automate pentru programari, reducand absenteismul si neprezentarile.',
+      'Da. Clientii primesc notificari automate in aplicatie (remindere, anulare, reprogramare). De asemenea ca angajat sau manager, ai posibilitatea de a trimite notificari personalizate clientilor. Pentru a anuta o reducere, un concediu ce urmeaza sau multe altele. Poti alege exact la ce clienti sa le trimii notificarea.',
   },
   {
     id: 'rapoarte',
     question: 'Pot vedea rapoarte financiare in timp real?',
     answer:
-      'Da. Ai acces la incasari, cheltuieli si indicatori de performanta actualizati constant, direct din panoul de control.',
+      'Da. Ai acces la toata activitatea salonului. Poti verifica rapid situatia zilei curente, programari, clienti, incasari, cheltuieli profituri activitate angajat sau poti verifica pentru o anumita perioadaa de timp, pe tot salonul sau pentru un anumit angajat. De asemenea primesti si indici de performanta comparativ cu perioada precedenta. Exemplu: indici de performanta ai lunii curente comparativ cu luna precedenta.',
   },
   {
     id: 'servicii',
     question: 'Pot configura serviciile si preturile salonului?',
     answer:
-      'Da. Poti adauga, edita si organiza serviciile, duratele, preturile si stilistii asociati pentru fiecare serviciu.',
+      'Da. Totul se poate configura din contul tau de manager. Pretul serviciilor, asiganrea serviciilor la angajati, setarea cheltuielilor cu serviciile, marja de profit per servicii.',
   },
   {
     id: 'calendar',
     question: 'Exista calendar pentru intreaga echipa?',
     answer:
-      'Da. Fiecare stilist are calendar propriu, iar managerul poate vedea disponibilitatea intregii echipe intr-o singura vedere.',
+      'Da. Fiecare angajat Are in profilul sau calendar propriu cu toata activitatea sa. Programari, pauze, concedii.',
   },
   {
     id: 'clienti-istoric',
-    question: 'Pastrez istoricul clientilor si preferintele lor?',
+    question: 'Pastrez istoricul clientilor lor?',
     answer:
-      'Da. Fiecare client are profil cu istoric programari, servicii preferate si notite utile pentru echipa.',
-  },
-  {
-    id: 'plati',
-    question: 'Pot urmari platile si incasarile zilnice?',
-    answer:
-      'Da. Poti inregistra si monitoriza incasarile pe servicii, stilisti si perioade, cu rapoarte clare pentru contabilitate.',
+      'Da. Fiecare client are profil cu istoric programari, servicii si stilist preferat cat si suma incasata si numarul de programari efectuate.',
   },
   {
     id: 'migrare',
@@ -111,18 +111,12 @@ export const faqItems: FaqItem[] = [
     id: 'fidelizare',
     question: 'Exista functionalitati de fidelizare a clientilor?',
     answer:
-      'Da. Poti urmari clientii recurenti, analiza retentia si folosi datele pentru campanii si oferte personalizate.',
+      'Da. Primesti predictii despre fiecare client precum: frecventa de vizita, abatere de la frecventa, recomandare contactare client prin notificare personalizata pentru revenire',
   },
   {
-    id: 'cont-stilist',
-    question: 'Stilistii au conturi separate?',
+    id: 'cont-angajat',
+    question: 'Angajatii au conturi separate?',
     answer:
-      'Da. Fiecare stilist are acces la propriul calendar, programari si statistici, fara a expune datele sensibile ale salonului.',
-  },
-  {
-    id: 'contract',
-    question: 'Exista contract pe termen lung?',
-    answer:
-      'Nu. Abonamentele IziBook sunt lunare, flexibile, fara obligatii pe termen lung sau penalitati ascunse.',
+      'Da. Fiecare angajat are acces doar la propriul calendar, programari si statistici, fara a expune datele sensibile ale salonului. Statisticile sunt calculate in functie de veniturile angajatului, nu de pretul total al serviciilor.',
   },
 ];
