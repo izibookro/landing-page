@@ -1,5 +1,6 @@
 ---
 import { Font } from 'astro:assets';
+import CookieConsent from '../components/cookie-consent/CookieConsent.astro';
 import SeoHead from '../components/seo/SeoHead.astro';
 import type { SiteSeo } from '../data/site';
 import '../styles/global.css';
@@ -19,5 +20,6 @@ interface Props extends SiteSeo {}
 
   <body class="bg-white-500 font-sans text-black-500 antialiased">
     <slot />
+    <CookieConsent />
   </body>
 </html>

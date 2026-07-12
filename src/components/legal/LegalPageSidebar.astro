@@ -1,0 +1,63 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { LegalEntry } from '../../lib/legal';
+import { getLegalPageHref } from '../../lib/legal';
+import { site } from '../../data/site';
+
+interface Props {
+  relatedPages: LegalEntry[];
+  currentPageId: string;
+}
+
+const { relatedPages, currentPageId } = Astro.props;
+---
+
+<aside class="blog-post__sidebar" aria-label="Documente legale">
+  {
+    relatedPages.length > 0 && (
+      <div class="blog-post__sidebar-card">
+        <h2 class="text-black-500 text-base font-semibold tracking-tight">
+          Documente legale
+        </h2>
+        <ul class="mt-4 space-y-3">
+          {relatedPages.map((page) => (
+            <li>
+              <a
+                href={getLegalPageHref(page)}
+                class:list={[
+                  'text-black-400 hover:text-black-500 flex items-start gap-2 text-sm font-medium no-underline transition-colors duration-200',
+                  page.id === currentPageId && 'text-black-500 font-semibold',
+                ]}
+                aria-current={page.id === currentPageId ? 'page' : undefined}
+              >
+                <Icon
+                  name="solar:document-text-linear"
+                  class="text-primary-500 mt-0.5 size-4 shrink-0"
+                  aria-hidden="true"
+                />
+                <span>{page.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  <div class="blog-post__sidebar-card">
+    <h2 class="text-black-500 text-base font-semibold tracking-tight">
+      Ai nevoie de ajutor?
+    </h2>
+    <p class="text-black-400 mt-3 text-sm leading-relaxed">
+      Pentru intrebari legate de utilizarea aplicatiei sau de acest document,
+      ne poti contacta oricand.
+    </p>
+    <a
+      href={`mailto:${site.email}`}
+      class="text-primary-600 hover:text-primary-700 mt-4 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors duration-200"
+    >
+      <Icon name="solar:letter-linear" class="size-4" aria-hidden="true" />
+      {site.email}
+    </a>
+  </div>
+</aside>

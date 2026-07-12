@@ -1,0 +1,229 @@
+---
+import { Icon } from 'astro-icon/components';
+import './cookie-consent.scss';
+---
+
+<div id="cookie-consent-root" class="cookie-consent" data-cookie-root>
+  <section
+    class="cookie-consent__banner"
+    data-cookie-banner
+    hidden
+    aria-labelledby="cookie-consent-title"
+    role="dialog"
+    aria-modal="false"
+  >
+    <div class="cookie-consent__banner-panel cookie-consent__panel">
+      <h2 id="cookie-consent-title" class="cookie-consent__title">
+        Respectam confidentialitatea ta
+      </h2>
+      <p class="cookie-consent__text">
+        Folosim cookie-uri si tehnologii similare pentru functionarea site-ului,
+        pentru a intelege cum este utilizat (Google Analytics, Microsoft Clarity)
+        si, daca le acceptati, pentru masuratori de marketing. Cookie-urile
+        necesare sunt activate automat. Celelalte categorii se activeaza doar cu
+        acordul dumneavoastra.
+      </p>
+      <div class="cookie-consent__links">
+        <a href="/legal/politica-cookie-uri" class="cookie-consent__link">
+          Politica cookie-uri
+        </a>
+        <a
+          href="/legal/politica-de-confidentialitate"
+          class="cookie-consent__link"
+        >
+          Politica de confidentialitate
+        </a>
+      </div>
+      <div class="cookie-consent__actions">
+        <button
+          type="button"
+          class="cookie-consent__btn cookie-consent__btn--ghost"
+          data-cookie-action="reject-all"
+        >
+          Respinge neesentiale
+        </button>
+        <button
+          type="button"
+          class="cookie-consent__btn cookie-consent__btn--secondary"
+          data-cookie-action="open-preferences"
+        >
+          Personalizeaza
+        </button>
+        <button
+          type="button"
+          class="cookie-consent__btn cookie-consent__btn--primary"
+          data-cookie-action="accept-all"
+        >
+          Accepta toate
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <button
+    type="button"
+    class="cookie-consent__fab"
+    data-cookie-action="open-fab"
+    data-cookie-fab
+    hidden
+    aria-label="Deschide preferintele cookie"
+  >
+    <Icon name="solar:settings-linear" class="size-5" aria-hidden="true" />
+  </button>
+
+  <div class="cookie-consent__backdrop" data-cookie-backdrop hidden></div>
+
+  <section
+    class="cookie-consent__modal"
+    data-cookie-modal
+    hidden
+    aria-labelledby="cookie-preferences-title"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="cookie-consent__modal-panel cookie-consent__panel">
+      <div class="cookie-consent__modal-header">
+        <div>
+          <h2 id="cookie-preferences-title" class="cookie-consent__title">
+            Preferinte cookie
+          </h2>
+          <p class="cookie-consent__text">
+            Alegeti ce categorii doriti sa activati. Puteti modifica oricand
+            alegerea din pictograma cookie.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="cookie-consent__close-btn"
+          data-cookie-action="close-preferences"
+          aria-label="Inchide preferintele cookie"
+        >
+          <Icon name="solar:close-circle-linear" class="size-5" aria-hidden="true" />
+        </button>
+      </div>
+
+      <div class="cookie-consent__modal-body">
+        <article class="cookie-consent__category">
+          <div class="cookie-consent__category-head">
+            <div>
+              <h3 class="cookie-consent__category-title">Necesare</h3>
+              <p class="cookie-consent__category-text">
+                Esentiale pentru functionarea site-ului, securitate si memorarea
+                preferintelor de consimtamant. Nu pot fi dezactivate.
+              </p>
+            </div>
+            <label class="cookie-consent__toggle cookie-consent__toggle--locked">
+              <input type="checkbox" checked disabled aria-label="Cookie-uri necesare" />
+              <span class="cookie-consent__toggle-track" aria-hidden="true"></span>
+            </label>
+          </div>
+          <ul class="cookie-consent__category-list">
+            <li>cookie-consent-v2 (localStorage) — preferinte consimtamant</li>
+            <li>Preferinte locale (localStorage / sessionStorage)</li>
+          </ul>
+        </article>
+
+        <article class="cookie-consent__category">
+          <div class="cookie-consent__category-head">
+            <div>
+              <h3 class="cookie-consent__category-title">Statistica si analiza</h3>
+              <p class="cookie-consent__category-text">
+                Ne ajuta sa intelegem cum este utilizat site-ul prin statistici
+                agregate. Include Google Analytics si Microsoft Clarity.
+              </p>
+            </div>
+            <label class="cookie-consent__toggle">
+              <input
+                type="checkbox"
+                data-cookie-toggle="statistics"
+                aria-label="Activeaza cookie-urile de statistica"
+              />
+              <span class="cookie-consent__toggle-track" aria-hidden="true"></span>
+            </label>
+          </div>
+          <ul class="cookie-consent__category-list">
+            <li>_ga, _ga_* — Google Analytics (G-MCLP8NWRP6)</li>
+            <li>_clck, _clsk, CLID, MUID — Microsoft Clarity</li>
+          </ul>
+        </article>
+
+        <article class="cookie-consent__category">
+          <div class="cookie-consent__category-head">
+            <div>
+              <h3 class="cookie-consent__category-title">Marketing</h3>
+              <p class="cookie-consent__category-text">
+                Folosite pentru masuratori de campanii, audiente si
+                personalizare, daca aceste instrumente sunt activate in viitor.
+              </p>
+            </div>
+            <label class="cookie-consent__toggle">
+              <input
+                type="checkbox"
+                data-cookie-toggle="marketing"
+                aria-label="Activeaza cookie-urile de marketing"
+              />
+              <span class="cookie-consent__toggle-track" aria-hidden="true"></span>
+            </label>
+          </div>
+        </article>
+
+        <div class="cookie-consent__status" data-cookie-status hidden>
+          <p class="cookie-consent__status-title">Starea ta actuala</p>
+          <dl class="cookie-consent__status-grid">
+            <div>
+              <dt>Identificator consimtamant</dt>
+              <dd class="cookie-consent__status-id" data-cookie-status-id>—</dd>
+            </div>
+            <div>
+              <dt>Inregistrat la</dt>
+              <dd data-cookie-status-date>—</dd>
+            </div>
+            <div>
+              <dt>Statistica</dt>
+              <dd data-cookie-status-statistics>—</dd>
+            </div>
+            <div>
+              <dt>Marketing</dt>
+              <dd data-cookie-status-marketing>—</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="cookie-consent__modal-footer">
+        <button
+          type="button"
+          class="cookie-consent__btn cookie-consent__btn--ghost"
+          data-cookie-action="reject-all"
+        >
+          Respinge neesentiale
+        </button>
+        <button
+          type="button"
+          class="cookie-consent__btn cookie-consent__btn--secondary"
+          data-cookie-action="save-preferences"
+        >
+          Salveaza preferintele
+        </button>
+        <button
+          type="button"
+          class="cookie-consent__btn cookie-consent__btn--primary"
+          data-cookie-action="accept-all"
+        >
+          Accepta toate
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  import { initCookieConsent } from './initCookieConsent';
+
+  const root = document.getElementById('cookie-consent-root');
+  const cleanup = root ? initCookieConsent(root) : () => {};
+
+  document.addEventListener('astro:before-swap', () => cleanup(), {
+    once: true,
+  });
+</script>

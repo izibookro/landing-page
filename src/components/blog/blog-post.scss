@@ -573,6 +573,42 @@
   h3 + ol {
     margin-top: 0.875rem;
   }
+
+  table {
+    width: 100%;
+    margin: 1.25rem 0 1.75rem;
+    border-collapse: collapse;
+    font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
+    line-height: 1.55;
+  }
+
+  thead th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--prose-heading);
+    background: rgb(37 37 43 / 0.04);
+    border-bottom: 1px solid rgb(37 37 43 / 0.1);
+  }
+
+  tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+    color: var(--prose-body);
+    border-bottom: 1px solid rgb(37 37 43 / 0.06);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  @media (max-width: 639px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

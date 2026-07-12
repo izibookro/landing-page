@@ -1,0 +1,151 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/footer/Footer.astro';
+import BlogPostToc from '../../components/blog/BlogPostToc.astro';
+import LegalPageSidebar from '../../components/legal/LegalPageSidebar.astro';
+import DownloadSection from '../../components/download/DownloadSection.astro';
+import { extractTocEntries } from '../../lib/blog';
+import {
+  formatLegalUpdatedDate,
+  getPublishedLegalPages,
+} from '../../lib/legal';
+import { Icon } from 'astro-icon/components';
+import '../../components/blog/blog-post.scss';
+
+export async function getStaticPaths() {
+  const { getCollection } = await import('astro:content');
+  const pages = await getCollection('legal', ({ data }) => !data.draft);
+
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+
+const tocEntries = extractTocEntries(page.body ?? '');
+const legalPages = await getPublishedLegalPages();
+---
+
+<BaseLayout
+  title={page.data.title}
+  description={page.data.description}
+  canonicalPath={`/legal/${page.id}`}
+>
+  <Navbar />
+  <a href="#legal-page-content" class="blog-post__skip-link">
+    Sari la continutul documentului
+  </a>
+  <main class="bg-white-500 min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24">
+    <article class="px-4 sm:px-6" aria-labelledby="legal-page-title">
+      <div class="blog-post__shell mx-auto max-w-340">
+        <div class="blog-post__grid">
+          <aside class="blog-post__toc-col">
+            <a
+              href="/"
+              class="blog-post__back-btn text-black-500 bg-white-500 focus-visible:outline-primary-500 inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold no-underline shadow-[0_2px_16px_rgb(37_37_43/0.08)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_4px_24px_rgb(37_37_43/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              <Icon
+                name="solar:arrow-left-linear"
+                class="size-4"
+                aria-hidden="true"
+              />
+              Pagina principala
+            </a>
+
+            {
+              tocEntries.length > 0 && (
+                <BlogPostToc entries={tocEntries} variant="desktop" />
+              )
+            }
+          </aside>
+
+          <div class="blog-post__main">
+            <header class="blog-post__intro">
+              {
+                page.data.subtitle && (
+                  <p class="text-primary-600 text-sm font-semibold tracking-wide uppercase">
+                    {page.data.subtitle}
+                  </p>
+                )
+              }
+
+              <h1
+                id="legal-page-title"
+                class="text-black-500 text-[clamp(2rem,4.8vw,3rem)] leading-[1.1] font-semibold tracking-[-0.035em] text-balance"
+              >
+                {page.data.title}
+              </h1>
+
+              <p
+                class="text-black-400 mt-4 max-w-2xl text-[clamp(1rem,2.2vw,1.125rem)] leading-relaxed text-pretty"
+              >
+                {page.data.description}
+              </p>
+
+              <div class="blog-post__byline mt-6">
+                <div
+                  class="blog-post__byline-avatar bg-black-50 text-primary-500 flex size-10 items-center justify-center rounded-full"
+                  aria-hidden="true"
+                >
+                  <Icon name="solar:document-text-linear" class="size-5" />
+                </div>
+                <div class="min-w-0">
+                  <p class="text-black-500 text-sm font-bold">Document legal</p>
+                  <div
+                    class="text-black-400 mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm"
+                  >
+                    <span class="inline-flex items-center gap-1">
+                      <Icon
+                        name="solar:calendar-minimalistic-linear"
+                        class="size-3.5"
+                        aria-hidden="true"
+                      />
+                      Actualizat {formatLegalUpdatedDate(page.data.updatedDate)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            {
+              tocEntries.length > 0 && (
+                <BlogPostToc entries={tocEntries} variant="mobile" />
+              )
+            }
+
+            <div
+              id="legal-page-content"
+              tabindex="-1"
+              class="blog-post__panel from-white-700 via-black-50 to-black-100 blog-post__prose mt-8 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:mt-10 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+            >
+              <Content />
+            </div>
+          </div>
+
+          <LegalPageSidebar
+            relatedPages={legalPages}
+            currentPageId={page.id}
+          />
+        </div>
+      </div>
+    </article>
+
+    <DownloadSection />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { initBlogPostPage } from '../../components/blog/initBlogPostPage';
+
+  const cleanup = initBlogPostPage();
+
+  document.addEventListener('astro:before-swap', () => cleanup(), {
+    once: true,
+  });
+</script>

@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import type { BlogAuthor } from '../../data/blogAuthors';
 import type { BlogEntry } from '../../lib/blog';
 import BlogRelatedItem from './BlogRelatedItem.astro';
@@ -24,6 +24,11 @@ const shareLinks = [
     icon: 'simple-icons:facebook',
   },
   {
+    label: 'Distribuie pe WhatsApp',
+    href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+    icon: 'simple-icons:whatsapp',
+  },
+  {
     label: 'Distribuie pe X',
     href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
     icon: 'simple-icons:x',
@@ -32,11 +37,6 @@ const shareLinks = [
     label: 'Distribuie pe LinkedIn',
     href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
     icon: 'simple-icons:linkedin',
-  },
-  {
-    label: 'Distribuie pe WhatsApp',
-    href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
-    icon: 'simple-icons:whatsapp',
   },
 ];
 ---
