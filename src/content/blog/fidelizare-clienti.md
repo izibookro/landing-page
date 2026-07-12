@@ -2,7 +2,7 @@
 title: 'Ce inseamna fidelizarea clientilor in saloanele de beauty'
 description: 'Descopera ce inseamna cu adevarat fidelizarea clientilor intr-un salon de beauty si cum transformi vizitele ocazionale in relatii durabile.'
 category: 'Fidelizare'
-pubDate: 2025-05-12
+pubDate: 2026-05-12
 image: ../../assets/why-us/why-us-fidelity.png
 draft: false
 ---

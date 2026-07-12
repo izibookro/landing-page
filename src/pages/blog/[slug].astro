@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/footer/Footer.astro';
 import BlogPostSidebar from '../../components/blog/BlogPostSidebar.astro';
 import BlogPostToc from '../../components/blog/BlogPostToc.astro';
+import DownloadSection from '../../components/download/DownloadSection.astro';
 import {
   extractTocEntries,
   formatBlogPostDate,
@@ -49,19 +50,19 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
   </a>
   <main class="bg-white-500 min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24">
     <article class="px-4 sm:px-6" aria-labelledby="blog-post-title">
-      <div class="blog-post__shell mx-auto max-w-[85rem]">
+      <div class="blog-post__shell mx-auto max-w-340">
         <div class="blog-post__grid">
           <aside class="blog-post__toc-col">
             <a
-              href="/blog"
-              class="blog-post__back-btn text-black-500 bg-white-500 inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold no-underline shadow-[0_2px_16px_rgb(37_37_43/0.08)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_4px_24px_rgb(37_37_43/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+              href="/"
+              class="blog-post__back-btn text-black-500 bg-white-500 focus-visible:outline-primary-500 inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold no-underline shadow-[0_2px_16px_rgb(37_37_43/0.08)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_4px_24px_rgb(37_37_43/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <Icon
                 name="solar:arrow-left-linear"
                 class="size-4"
                 aria-hidden="true"
               />
-              Inapoi la blog
+              Pagina principala
             </a>
 
             {
@@ -123,7 +124,9 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
               </div>
             </header>
 
-            <div class="blog-post__hero relative mt-8 overflow-hidden rounded-4xl">
+            <div
+              class="blog-post__hero relative mt-8 overflow-hidden rounded-4xl"
+            >
               <Image
                 src={post.data.image}
                 alt={post.data.title}
@@ -157,6 +160,8 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
         </div>
       </div>
     </article>
+
+    <DownloadSection />
   </main>
   <Footer />
 </BaseLayout>
@@ -166,9 +171,7 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
 
   const cleanup = initBlogPostPage();
 
-  document.addEventListener(
-    'astro:before-swap',
-    () => cleanup(),
-    { once: true },
-  );
+  document.addEventListener('astro:before-swap', () => cleanup(), {
+    once: true,
+  });
 </script>
