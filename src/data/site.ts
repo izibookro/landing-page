@@ -32,13 +32,18 @@ export const site = {
       name: 'IziBook',
       category: 'BusinessApplication',
       operatingSystem: 'iOS',
-      url: 'https://apps.apple.com/app/izibook',
+      url: 'https://apps.apple.com/us/app/izibook/id6754284160',
     },
     android: {
       name: 'IziBook',
       category: 'BusinessApplication',
       operatingSystem: 'Android',
-      url: 'https://play.google.com/store/apps/details?id=ro.izibook.app',
+      url: 'https://play.google.com/store/apps/details?id=ro.izibook.app&pli=1',
+    },
+    web: {
+      name: 'IziBook',
+      url: 'https://app.izibook.ro/',
+      onboarding: 'https://app.izibook.ro/onboarding',
     },
   },
   social: {

@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import PhoneFrame from '../PhoneFrame.astro';
 import { appScreens } from '../../data/appScreens';
+import { site } from '../../data/site';
 
 const initialScreen = appScreens[Math.floor(appScreens.length / 2)]!;
 const initialIndex = Math.floor(appScreens.length / 2);
@@ -9,7 +10,7 @@ const initialIndex = Math.floor(appScreens.length / 2);
 const downloadLinks = [
   {
     label: 'Descarcă iOS',
-    href: '#apple',
+    href: site.apps.ios.url,
     icon: 'ic:baseline-apple',
     iconClass: 'size-5',
     variant: 'primary',
@@ -17,7 +18,7 @@ const downloadLinks = [
   },
   {
     label: 'Descarcă Android',
-    href: '#android',
+    href: site.apps.android.url,
     icon: 'uil:android',
     iconClass: 'size-4.5',
     variant: 'secondary',
@@ -25,7 +26,7 @@ const downloadLinks = [
   },
   {
     label: 'Versiune Web',
-    href: '#web',
+    href: site.apps.web.url,
     icon: 'streamline-plump:web-solid',
     iconClass: 'size-4.5',
     variant: 'secondary',
@@ -127,6 +128,8 @@ const downloadLinks = [
           downloadLinks.map((link) => (
             <a
               href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
               class:list={[
                 'app-showcase-cta__btn',
                 link.variant === 'primary' && 'app-showcase-cta__btn--primary',

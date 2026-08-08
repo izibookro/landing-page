@@ -2,12 +2,13 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import mockup from '../../assets/mockups/mockup-1.png';
+import { site } from '../../data/site';
 import './download-section.scss';
 
 const downloadLinks = [
   {
     label: 'Descarca iOS',
-    href: '#apple',
+    href: site.apps.ios.url,
     icon: 'ic:baseline-apple',
     iconClass: 'size-5',
     variant: 'primary',
@@ -15,7 +16,7 @@ const downloadLinks = [
   },
   {
     label: 'Descarca Android',
-    href: '#android',
+    href: site.apps.android.url,
     icon: 'uil:android',
     iconClass: 'size-4.5',
     variant: 'secondary',
@@ -57,6 +58,8 @@ const storeButtonClass =
             downloadLinks.map((link) => (
               <a
                 href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 class:list={[
                   storeButtonClass,
                   link.variant === 'primary' &&

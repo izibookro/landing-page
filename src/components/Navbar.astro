@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import appIcon from '../assets/icon.png';
+import { site } from '../data/site';
 import {
   getNavbarLinkClasses,
   isNavbarPageActive,
@@ -91,14 +92,18 @@ const navLinks: Array<SectionNavLink | PageNavLink> = [
     <!-- Store buttons -->
     <div class="flex shrink-0 items-center gap-2">
       <a
-        href="/#apple"
+        href={site.apps.ios.url}
+        target="_blank"
+        rel="noopener noreferrer"
         class="bg-black-50 text-black-500 hover:bg-black-100 flex size-9 items-center justify-center rounded-full transition-colors duration-200"
         aria-label="Download on the App Store"
       >
         <Icon name="ic:baseline-apple" class="size-6" />
       </a>
       <a
-        href="/#android"
+        href={site.apps.android.url}
+        target="_blank"
+        rel="noopener noreferrer"
         class="bg-black-50 text-black-500 hover:bg-black-100 flex size-9 items-center justify-center rounded-full transition-colors duration-200"
         aria-label="Get it on Google Play"
       >
@@ -111,7 +116,9 @@ const navLinks: Array<SectionNavLink | PageNavLink> = [
           Nou
         </span>
         <a
-          href="/#web"
+          href={site.apps.web.url}
+          target="_blank"
+          rel="noopener noreferrer"
           class="bg-primary-500 text-white-500 hover:bg-primary-600 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200"
           aria-label="Deschide platforma web IziBook (link extern)"
         >

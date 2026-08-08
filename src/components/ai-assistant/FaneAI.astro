@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import faneIllustration from '../../assets/illustrations/fane.svg';
+import { site } from '../../data/site';
 
 const promptBubbles = [
   'Ce servicii are Iulia?',
@@ -51,7 +52,9 @@ const promptBubbles = [
         </ul>
 
         <a
-          href="#start"
+          href={site.apps.web.onboarding}
+          target="_blank"
+          rel="noopener noreferrer"
           class="bg-primary-500 text-white-500 hover:bg-primary-600 fane-ai__cta inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-colors duration-200"
         >
           Începe gratuit

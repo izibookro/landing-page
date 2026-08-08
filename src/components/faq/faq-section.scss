@@ -18,6 +18,39 @@
   }
 }
 
+.faq-item__chevron {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+
+.faq-item.is-open .faq-item__chevron {
+  transform: rotate(180deg);
+}
+
+.faq-item__panel {
+  overflow: hidden;
+  will-change: height, opacity;
+}
+
+.faq-item:not(.is-open) .faq-item__panel {
+  height: 0;
+  opacity: 0;
+}
+
+.faq-item.is-open .faq-item__panel {
+  height: auto;
+  opacity: 1;
+}
+
+.faq-item__answer {
+  transform: translateY(-0.35rem);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-item.is-open .faq-item__answer {
+  transform: translateY(0);
+}
+
 .faq-cta-card {
   background:
     linear-gradient(
@@ -31,4 +64,12 @@
       rgb(254 215 170 / 0.45) 0%,
       transparent 52%
     );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__chevron,
+  .faq-item__answer,
+  .faq-item__panel {
+    transition: none !important;
+  }
 }
