@@ -1,5 +1,5 @@
-const NAV_LINK_ACTIVE_CLASS = 'text-black-500 font-semibold';
-const NAV_LINK_INACTIVE_CLASS = 'text-black-400 hover:text-black-500';
+const NAV_LINK_BASE_CLASS = 'navbar__link';
+const NAV_LINK_ACTIVE_CLASS = 'is-active';
 
 export const navbarSectionIds = [
   'manager-needs',
@@ -23,10 +23,9 @@ export function isNavbarPageActive(
 }
 
 export function getNavbarLinkClasses(isActive: boolean): string {
-  return [
-    'transition-colors duration-200',
-    isActive ? NAV_LINK_ACTIVE_CLASS : NAV_LINK_INACTIVE_CLASS,
-  ].join(' ');
+  return [NAV_LINK_BASE_CLASS, isActive ? NAV_LINK_ACTIVE_CLASS : '']
+    .filter(Boolean)
+    .join(' ');
 }
 
 export function initNavbarActiveState(root: HTMLElement): () => void {
@@ -47,20 +46,15 @@ export function initNavbarActiveState(root: HTMLElement): () => void {
     return () => {};
   }
 
-  const inactiveClasses = NAV_LINK_INACTIVE_CLASS.split(' ');
-  const activeClasses = NAV_LINK_ACTIVE_CLASS.split(' ');
-
   const setActiveSection = (sectionId: string) => {
     sectionLinks.forEach((link) => {
       const isActive = link.dataset.section === sectionId;
 
-      link.classList.remove(...inactiveClasses, ...activeClasses);
+      link.classList.toggle(NAV_LINK_ACTIVE_CLASS, isActive);
 
       if (isActive) {
-        link.classList.add(...activeClasses);
         link.setAttribute('aria-current', 'true');
       } else {
-        link.classList.add(...inactiveClasses);
         link.removeAttribute('aria-current');
       }
     });
@@ -68,8 +62,7 @@ export function initNavbarActiveState(root: HTMLElement): () => void {
 
   const clearActiveSection = () => {
     sectionLinks.forEach((link) => {
-      link.classList.remove(...activeClasses);
-      link.classList.add(...inactiveClasses);
+      link.classList.remove(NAV_LINK_ACTIVE_CLASS);
       link.removeAttribute('aria-current');
     });
   };
