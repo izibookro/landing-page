@@ -24,7 +24,10 @@ const jsonLd = buildJsonLdGraph({
 <!-- Primary -->
 <title>{seo.title}</title>
 <meta name="description" content={seo.description} />
-<meta name="author" content={site.name} />
+<meta
+  name="author"
+  content={seo.article?.authorName ?? site.name}
+/>
 <meta name="robots" content={robots} />
 <link rel="canonical" href={seo.canonical} />
 <link rel="sitemap" href="/sitemap-index.xml" />

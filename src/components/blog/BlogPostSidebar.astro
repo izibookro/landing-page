@@ -49,7 +49,10 @@ const shareLinks = [
       >
         <Image
           src={author.avatar}
-          alt={author.name}
+          alt={author.avatarAlt}
+          title={author.avatarTitle}
+          widths={[96, 192, 256]}
+          sizes="96px"
           class="size-24 object-cover"
           loading="lazy"
           decoding="async"
@@ -58,6 +61,7 @@ const shareLinks = [
       <p class="text-black-500 mt-4 text-lg font-semibold tracking-tight">
         {author.name}
       </p>
+      <p class="text-black-400 mt-1 text-sm font-medium">{author.jobTitle}</p>
       <p class="text-black-400 mt-3 text-sm leading-relaxed">
         {author.description}
       </p>

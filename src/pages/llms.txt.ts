@@ -15,6 +15,7 @@ IziBook se adreseaza managerilor si angajatilor de saloane (coafor, unghii, beau
 
 - [Acasa](${site.url}): Prezentare produs, functionalitati, Fane AI
 - [Preturi](${site.url}/#preturi): Planuri Single / Small / Medium / Enterprise (100–1500 RON/luna)
+- [Pricing (markdown)](${site.url}/pricing.md): Planuri structurate pentru agenti AI (RON, limite, trial 30 zile)
 - [FAQ](${site.url}/#faq): Intrebari frecvente (si FAQPage schema)
 - [Descarca aplicatia](${site.url}/#descarca): Linkuri iOS si Android
 - [Contact](${site.url}/#contact): Email si canale de suport

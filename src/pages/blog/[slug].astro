@@ -40,6 +40,14 @@ const publishedTime = post.data.pubDate.toISOString();
 
 const shareUrl = new URL(canonicalPath, Astro.site ?? site.url).href;
 
+const authorImage = await getImage({
+  src: author.avatar,
+  width: 256,
+  height: 256,
+  format: 'webp',
+});
+const authorImageUrl = new URL(authorImage.src, Astro.site ?? site.url).href;
+
 const ogImage = await getImage({
   src: post.data.image,
   width: 1200,
@@ -61,6 +69,8 @@ const ogImageUrl = new URL(ogImage.src, Astro.site ?? site.url).href;
     publishedTime,
     modifiedTime: publishedTime,
     authorName: author.name,
+    authorJobTitle: author.jobTitle,
+    authorImage: authorImageUrl,
     section: post.data.category,
   }}
   breadcrumbs={[
@@ -115,7 +125,10 @@ const ogImageUrl = new URL(ogImage.src, Astro.site ?? site.url).href;
               <div class="blog-post__byline mt-6">
                 <Image
                   src={author.avatar}
-                  alt={author.name}
+                  alt={author.avatarAlt}
+                  title={author.avatarTitle}
+                  widths={[80, 160]}
+                  sizes="40px"
                   class="blog-post__byline-avatar size-10 rounded-full object-cover"
                   loading="eager"
                   decoding="async"
@@ -124,6 +137,7 @@ const ogImageUrl = new URL(ogImage.src, Astro.site ?? site.url).href;
                   <p class="text-black-500 text-sm font-bold">
                     {author.name}
                   </p>
+                  <p class="text-black-400 text-sm">{author.jobTitle}</p>
                   <div
                     class="text-black-400 mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm"
                   >

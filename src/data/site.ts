@@ -77,6 +77,9 @@ export type SeoArticle = {
   publishedTime: string;
   modifiedTime?: string;
   authorName: string;
+  authorJobTitle?: string;
+  /** Absolute URL of the author portrait (Person schema image). */
+  authorImage?: string;
   section?: string;
 };
 

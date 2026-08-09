@@ -124,9 +124,22 @@ export function buildArticleSchema(options: {
     datePublished: article.publishedTime,
     dateModified: article.modifiedTime ?? article.publishedTime,
     author: {
-      '@type': 'Organization',
+      '@type': 'Person',
       name: article.authorName,
+      ...(article.authorJobTitle
+        ? { jobTitle: article.authorJobTitle }
+        : {}),
+      ...(article.authorImage
+        ? {
+            image: {
+              '@type': 'ImageObject',
+              url: article.authorImage,
+              caption: article.authorName,
+            },
+          }
+        : {}),
       url: site.url,
+      worksFor: { '@id': `${site.url}/#organization` },
     },
     publisher: { '@id': `${site.url}/#organization` },
     mainEntityOfPage: {

@@ -29,6 +29,8 @@ export default defineConfig({
         image: false,
       },
       filter: (page) => !page.includes('/404'),
+      // Agent-readable files are endpoints, not HTML pages — list them explicitly.
+      customPages: [`${siteUrl}/pricing.md`, `${siteUrl}/llms.txt`],
       serialize(item) {
         // Normalize filesystem-discovered URLs so sitemap matches trailingSlash: 'never'.
         try {

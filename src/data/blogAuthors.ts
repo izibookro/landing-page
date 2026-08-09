@@ -1,25 +1,34 @@
-import authorAvatar from '../assets/icon.png';
+import authorAvatar from '../assets/authors/emilian-oancea.webp';
 
-export type BlogAuthorId = 'izibook';
+export type BlogAuthorId = 'emilian';
 
 export interface BlogAuthor {
   id: BlogAuthorId;
   name: string;
+  jobTitle: string;
   description: string;
   avatar: typeof authorAvatar;
+  /** Accessible + SEO alt text for the author photo. */
+  avatarAlt: string;
+  /** Tooltip / title attribute for the author photo. */
+  avatarTitle: string;
 }
 
 export const blogAuthors: Record<BlogAuthorId, BlogAuthor> = {
-  izibook: {
-    id: 'izibook',
-    name: 'Echipa IziBook',
+  emilian: {
+    id: 'emilian',
+    name: 'Emilian Oancea',
+    jobTitle: 'Co-Founder IziBook',
     description:
-      'Scriem despre strategii, fidelizare si digitalizare pentru saloanele de infrumusetare din Romania.',
+      'Co-Founder IziBook. Scriu despre strategii, fidelizare si digitalizare pentru saloanele de infrumusetare din Romania.',
     avatar: authorAvatar,
+    avatarAlt:
+      'Emilian Oancea, Co-Founder IziBook — portret profesional',
+    avatarTitle: 'Emilian Oancea, Co-Founder IziBook',
   },
 };
 
-export const defaultBlogAuthorId: BlogAuthorId = 'izibook';
+export const defaultBlogAuthorId: BlogAuthorId = 'emilian';
 
 export function getBlogAuthor(id: BlogAuthorId = defaultBlogAuthorId): BlogAuthor {
   return blogAuthors[id];
