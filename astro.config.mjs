@@ -40,7 +40,11 @@ export default defineConfig({
         } catch {
           // Keep original URL if parsing fails.
         }
-        const lastmod = lastmodForSitemapUrl(item.url, siteUrl, contentLastmods);
+        const lastmod = lastmodForSitemapUrl(
+          item.url,
+          siteUrl,
+          contentLastmods,
+        );
         if (lastmod) {
           item.lastmod = lastmod.toISOString();
         }

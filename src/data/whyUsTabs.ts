@@ -11,6 +11,7 @@ export interface WhyUsTab {
   stat: string;
   statLabel: string;
   image: ImageMetadata;
+  imageAlt: string;
 }
 
 export const whyUsTabs: WhyUsTab[] = [
@@ -22,15 +23,19 @@ export const whyUsTabs: WhyUsTab[] = [
     stat: '100%',
     statLabel: 'Control asupra afacerii tale',
     image: whyUsControl,
+    imageAlt:
+      'Manager de salon care urmareste programari, echipa si incasari din aplicatia IziBook',
   },
   {
     id: 'fidelizare',
     label: 'Fidelizare',
     description:
-      'Oferind o experienta memorabila clientilor, ne concetram si pe mentinerea lor. Folosim cele mai noi tehnologii si practici pentru a creste veniturile afacerii tale din fidelizare clienti.',
+      'Oferind o experienta memorabila clientilor, ne concentram si pe mentinerea lor. Folosim cele mai noi tehnologii si practici pentru a creste veniturile afacerii tale din fidelizare clienti.',
     stat: '30%',
     statLabel: 'Cresterea veniturilor din fidelizarea clientilor',
     image: whyUsFidelity,
+    imageAlt:
+      'Client loial al unui salon de infrumusetare, ilustrand fidelizarea cu IziBook',
   },
   {
     id: 'inovatie',
@@ -40,14 +45,18 @@ export const whyUsTabs: WhyUsTab[] = [
     stat: '50%',
     statLabel: 'Investitii constante in practici noi pentru afacerea ta',
     image: whyUsInnovation,
+    imageAlt:
+      'Tehnologie si inovatie pentru saloane — instrumente moderne in IziBook',
   },
   {
     id: 'protectia-datelor',
     label: 'Protectia datelor',
     description:
-      'Tu esti in controlul datelor tale! Poti sterge oricand tot istoricul programarilor, incasarilor, cheltuielilior sau chiar stergerea contului complet.',
+      'Tu esti in controlul datelor tale! Poti sterge oricand tot istoricul programarilor, incasarilor, cheltuielilor sau chiar stergerea contului complet.',
     stat: '100%',
     statLabel: 'Control total asupra datelor',
     image: whyUsDataProtection,
+    imageAlt:
+      'Protectia datelor salonului — control asupra istoricului si stergerii din IziBook',
   },
 ];

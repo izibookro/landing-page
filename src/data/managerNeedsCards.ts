@@ -19,7 +19,7 @@ export const managerNeedsCards: ManagerNeedsCard[] = [
     id: 'ai-booking',
     title: 'Programari cu Fane AI',
     subtitle:
-      'Clienti mai fericiti, programari mai rapide si mai simple direct in Whatsapp exact cum ar comunica cu un un angajat.',
+      'Clienti mai fericiti, programari mai rapide si mai simple direct in WhatsApp exact cum ar comunica cu un angajat.',
     image: aiWhatsapp,
     layout: 'tall',
     theme: 'neutral',
