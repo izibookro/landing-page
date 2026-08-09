@@ -21,17 +21,17 @@
   border-radius: 1.5rem;
   background-color: rgb(255 255 255);
 
-  :global(.swiper-wrapper) {
+  .swiper-wrapper {
     align-items: stretch;
     height: auto !important;
   }
 
-  :global(.swiper-slide) {
+  .swiper-slide {
     display: flex;
     height: auto !important;
   }
 
-  :global(.swiper-slide article) {
+  .swiper-slide article {
     display: flex;
     flex: 1;
     width: 100%;

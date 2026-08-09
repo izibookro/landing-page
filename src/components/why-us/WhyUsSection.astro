@@ -68,7 +68,7 @@ import { whyUsTabs } from '../../data/whyUsTabs';
     >
       {
         whyUsTabs.map((tab, index) => (
-          <article
+          <div
             id={`why-us-panel-${tab.id}`}
             role="tabpanel"
             aria-labelledby={`why-us-tab-${tab.id}`}
@@ -101,7 +101,7 @@ import { whyUsTabs } from '../../data/whyUsTabs';
                 </span>
               </div>
             </div>
-          </article>
+          </div>
         ))
       }
     </div>
