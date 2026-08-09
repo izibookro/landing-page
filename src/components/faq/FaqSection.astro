@@ -55,9 +55,12 @@ import './faq-section.scss';
           faqItems.map((item, index) => (
             <details
               class:list={['faq-item', 'group', index === 0 && 'is-open']}
-              open={index === 0}
+              open
             >
-              <summary class="flex cursor-pointer items-start justify-between gap-4 py-5 text-left">
+              <summary
+                class="flex cursor-pointer items-start justify-between gap-4 py-5 text-left"
+                aria-expanded={index === 0 ? 'true' : 'false'}
+              >
                 <span class="text-black-500 text-base font-semibold sm:text-[1.0625rem]">
                   {item.question}
                 </span>
@@ -67,7 +70,10 @@ import './faq-section.scss';
                   aria-hidden="true"
                 />
               </summary>
-              <div class="faq-item__panel">
+              <div
+                class="faq-item__panel"
+                aria-hidden={index === 0 ? 'false' : 'true'}
+              >
                 <div class="faq-item__panel-inner">
                   <p class="faq-item__answer text-black-400 pb-5 text-sm leading-relaxed sm:text-[0.9375rem]">
                     {item.answer}
