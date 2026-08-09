@@ -1,57 +1,31 @@
-const PANEL_TRANSITION =
-  'height 380ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms ease';
+const PANEL_DURATION_MS = 420;
 
-function setPanelOpen(panel: HTMLElement, animate: boolean) {
-  panel.style.overflow = 'hidden';
-
-  if (!animate) {
-    panel.style.transition = 'none';
-    panel.style.height = 'auto';
-    panel.style.opacity = '1';
-    return;
-  }
-
-  panel.style.transition = PANEL_TRANSITION;
-  panel.style.height = '0px';
-  panel.style.opacity = '0';
-
-  requestAnimationFrame(() => {
-    panel.style.height = `${panel.scrollHeight}px`;
-    panel.style.opacity = '1';
-  });
-}
-
-function setPanelClosed(
+function waitForPanelTransition(
   panel: HTMLElement,
-  animate: boolean,
-  onDone?: () => void,
-) {
-  panel.style.overflow = 'hidden';
+  reduceMotion: boolean,
+): Promise<void> {
+  if (reduceMotion) return Promise.resolve();
 
-  if (!animate) {
-    panel.style.transition = 'none';
-    panel.style.height = '0px';
-    panel.style.opacity = '0';
-    onDone?.();
-    return;
-  }
+  return new Promise((resolve) => {
+    let settled = false;
 
-  panel.style.transition = PANEL_TRANSITION;
-  panel.style.height = `${panel.scrollHeight}px`;
-  panel.style.opacity = '1';
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      panel.removeEventListener('transitionend', onEnd);
+      window.clearTimeout(timeoutId);
+      resolve();
+    };
 
-  requestAnimationFrame(() => {
-    panel.style.height = '0px';
-    panel.style.opacity = '0';
+    const onEnd = (event: TransitionEvent) => {
+      if (event.target !== panel) return;
+      if (event.propertyName !== 'grid-template-rows') return;
+      finish();
+    };
+
+    panel.addEventListener('transitionend', onEnd);
+    const timeoutId = window.setTimeout(finish, PANEL_DURATION_MS + 80);
   });
-
-  const handleEnd = (event: TransitionEvent) => {
-    if (event.propertyName !== 'height') return;
-    panel.removeEventListener('transitionend', handleEnd);
-    onDone?.();
-  };
-
-  panel.addEventListener('transitionend', handleEnd);
 }
 
 export function initFaqAccordion(root: HTMLElement): () => void {
@@ -73,46 +47,32 @@ export function initFaqAccordion(root: HTMLElement): () => void {
     if (details.open || details.classList.contains('is-open')) {
       details.open = true;
       details.classList.add('is-open');
-      setPanelOpen(panel, false);
     } else {
+      details.open = false;
       details.classList.remove('is-open');
-      setPanelClosed(panel, false);
     }
 
-    const onSummaryClick = (event: MouseEvent) => {
+    const onSummaryClick = async (event: MouseEvent) => {
       event.preventDefault();
       if (isAnimating) return;
 
-      const shouldOpen = !details.open;
-      const animate = !reduceMotion;
+      const shouldOpen = !details.classList.contains('is-open');
       isAnimating = true;
 
       if (shouldOpen) {
         details.open = true;
+        // Force layout so the 0fr → 1fr transition always runs.
+        void panel.offsetHeight;
         details.classList.add('is-open');
-        setPanelOpen(panel, animate);
-
-        if (!animate) {
-          isAnimating = false;
-          return;
-        }
-
-        const handleEnd = (transitionEvent: TransitionEvent) => {
-          if (transitionEvent.propertyName !== 'height') return;
-          panel.removeEventListener('transitionend', handleEnd);
-          panel.style.height = 'auto';
-          isAnimating = false;
-        };
-
-        panel.addEventListener('transitionend', handleEnd);
+        await waitForPanelTransition(panel, reduceMotion);
+        isAnimating = false;
         return;
       }
 
       details.classList.remove('is-open');
-      setPanelClosed(panel, animate, () => {
-        details.open = false;
-        isAnimating = false;
-      });
+      await waitForPanelTransition(panel, reduceMotion);
+      details.open = false;
+      isAnimating = false;
     };
 
     summary.addEventListener('click', onSummaryClick);

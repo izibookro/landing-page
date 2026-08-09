@@ -68,9 +68,11 @@ import './faq-section.scss';
                 />
               </summary>
               <div class="faq-item__panel">
-                <p class="faq-item__answer text-black-400 pb-5 text-sm leading-relaxed sm:text-[0.9375rem]">
-                  {item.answer}
-                </p>
+                <div class="faq-item__panel-inner">
+                  <p class="faq-item__answer text-black-400 pb-5 text-sm leading-relaxed sm:text-[0.9375rem]">
+                    {item.answer}
+                  </p>
+                </div>
               </div>
             </details>
           ))
