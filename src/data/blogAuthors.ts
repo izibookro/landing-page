@@ -14,7 +14,7 @@ export interface BlogAuthor {
   avatarTitle: string;
 }
 
-export const blogAuthors: Record<BlogAuthorId, BlogAuthor> = {
+const blogAuthors: Record<BlogAuthorId, BlogAuthor> = {
   emilian: {
     id: 'emilian',
     name: 'Emilian Oancea',
@@ -28,7 +28,7 @@ export const blogAuthors: Record<BlogAuthorId, BlogAuthor> = {
   },
 };
 
-export const defaultBlogAuthorId: BlogAuthorId = 'emilian';
+const defaultBlogAuthorId: BlogAuthorId = 'emilian';
 
 export function getBlogAuthor(id: BlogAuthorId = defaultBlogAuthorId): BlogAuthor {
   return blogAuthors[id];

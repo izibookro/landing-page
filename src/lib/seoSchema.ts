@@ -12,7 +12,7 @@ function absoluteUrl(path: string): string {
   return new URL(normalizeCanonicalPath(path), site.url).href;
 }
 
-export function buildOrganizationSchema() {
+function buildOrganizationSchema() {
   return {
     '@type': 'Organization',
     '@id': `${site.url}/#organization`,
@@ -28,7 +28,7 @@ export function buildOrganizationSchema() {
   };
 }
 
-export function buildWebsiteSchema() {
+function buildWebsiteSchema() {
   return {
     '@type': 'WebSite',
     '@id': `${site.url}/#website`,
@@ -40,7 +40,7 @@ export function buildWebsiteSchema() {
   };
 }
 
-export function buildSoftwareApplicationSchema() {
+function buildSoftwareApplicationSchema() {
   const prices = plans.map((plan) => plan.price);
 
   return {
@@ -61,7 +61,7 @@ export function buildSoftwareApplicationSchema() {
   };
 }
 
-export function buildMobileApplicationSchemas() {
+function buildMobileApplicationSchemas() {
   return [site.apps.ios, site.apps.android].map((app) => ({
     '@type': 'MobileApplication',
     name: app.name,
@@ -78,7 +78,7 @@ export function buildMobileApplicationSchemas() {
   }));
 }
 
-export function buildFaqPageSchema() {
+function buildFaqPageSchema() {
   return {
     '@type': 'FAQPage',
     '@id': `${site.url}/#faq`,
@@ -93,7 +93,7 @@ export function buildFaqPageSchema() {
   };
 }
 
-export function buildBreadcrumbSchema(breadcrumbs: SeoBreadcrumb[]) {
+function buildBreadcrumbSchema(breadcrumbs: SeoBreadcrumb[]) {
   if (breadcrumbs.length === 0) return null;
 
   return {
@@ -107,7 +107,7 @@ export function buildBreadcrumbSchema(breadcrumbs: SeoBreadcrumb[]) {
   };
 }
 
-export function buildArticleSchema(options: {
+function buildArticleSchema(options: {
   title: string;
   description: string;
   canonical: string;

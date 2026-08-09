@@ -1,5 +1,5 @@
-export const COOKIE_CONSENT_STORAGE_KEY = 'cookie-consent-v2';
-export const COOKIE_CONSENT_VERSION = 2;
+const COOKIE_CONSENT_STORAGE_KEY = 'cookie-consent-v2';
+const COOKIE_CONSENT_VERSION = 2;
 
 export type CookieConsentCategories = {
   necessary: true;

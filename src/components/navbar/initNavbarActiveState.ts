@@ -1,7 +1,7 @@
 const NAV_LINK_BASE_CLASS = 'navbar__link';
 const NAV_LINK_ACTIVE_CLASS = 'is-active';
 
-export const navbarSectionIds = [
+const navbarSectionIds = [
   'manager-needs',
   'why-us',
   'preturi',
@@ -9,7 +9,7 @@ export const navbarSectionIds = [
   'contact',
 ] as const;
 
-export type NavbarSectionId = (typeof navbarSectionIds)[number];
+type NavbarSectionId = (typeof navbarSectionIds)[number];
 
 export function isNavbarPageActive(
   pathname: string,

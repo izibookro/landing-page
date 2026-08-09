@@ -35,7 +35,7 @@ export function getBlogPostHref(post: BlogEntry): string {
   return `/blog/${post.id}`;
 }
 
-export function extractHeadings(
+function extractHeadings(
   markdown: string,
 ): Array<{ depth: number; text: string; id: string }> {
   const headings: Array<{ depth: number; text: string; id: string }> = [];
@@ -80,7 +80,7 @@ export function extractTocEntries(markdown: string): TocEntry[] {
   });
 }
 
-export function calculateReadTime(markdown: string): string {
+function calculateReadTime(markdown: string): string {
   const body = markdown.replace(/^---[\s\S]*?---/, '').trim();
   const wordCount = body.split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));

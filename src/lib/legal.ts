@@ -27,10 +27,3 @@ export async function getPublishedLegalPages(): Promise<LegalEntry[]> {
     (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title, 'ro'),
   );
 }
-
-export async function getRelatedLegalPages(
-  page: LegalEntry,
-): Promise<LegalEntry[]> {
-  const pages = await getPublishedLegalPages();
-  return pages.filter((entry) => entry.id !== page.id);
-}

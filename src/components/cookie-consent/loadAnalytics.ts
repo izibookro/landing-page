@@ -22,7 +22,7 @@ function ensureDataLayer(): void {
     };
 }
 
-export function applyConsentMode(record: CookieConsentRecord): void {
+function applyConsentMode(record: CookieConsentRecord): void {
   ensureDataLayer();
 
   window.gtag?.('consent', 'update', {
@@ -49,7 +49,7 @@ export function initDefaultConsentMode(): void {
   });
 }
 
-export function loadGoogleAnalytics(measurementId: string): void {
+function loadGoogleAnalytics(measurementId: string): void {
   if (!measurementId || loadedScripts.ga) return;
 
   const script = document.createElement('script');
@@ -69,7 +69,7 @@ export function loadGoogleAnalytics(measurementId: string): void {
   loadedScripts.ga = true;
 }
 
-export function loadMicrosoftClarity(projectId: string): void {
+function loadMicrosoftClarity(projectId: string): void {
   if (!projectId || loadedScripts.clarity) return;
 
   const inlineScript = document.createElement('script');
