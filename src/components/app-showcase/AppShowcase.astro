@@ -409,16 +409,22 @@ const downloadLinks = [
   .app-showcase-cta__actions {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 0.75rem;
     margin-top: 1.75rem;
+    margin-inline: auto;
+    width: 100%;
+    max-width: 15.5rem;
   }
 
   @media (min-width: 640px) {
     .app-showcase-cta__actions {
       flex-direction: row;
       flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
+      width: auto;
+      max-width: none;
     }
   }
 
@@ -427,6 +433,7 @@ const downloadLinks = [
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
+    width: 100%;
     border-radius: 9999px;
     padding: 0.875rem 1.5rem;
     font-size: 0.9375rem;
@@ -436,6 +443,12 @@ const downloadLinks = [
       background-color 0.2s ease,
       box-shadow 0.2s ease,
       transform 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .app-showcase-cta__btn {
+      width: auto;
+    }
   }
 
   .app-showcase-cta__btn:hover {

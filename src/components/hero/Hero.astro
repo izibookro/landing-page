@@ -1,40 +1,41 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { site } from '../../data/site';
 import HeroBackground from './HeroBackground.astro';
 import HeroMockups from './HeroMockups.astro';
 ---
 
 <section
-  class="relative grid h-dvh grid-rows-[auto_minmax(0,1fr)] overflow-hidden"
+  class="relative flex min-h-dvh flex-col overflow-hidden lg:grid lg:h-dvh lg:grid-rows-[auto_minmax(0,1fr)]"
 >
   <HeroBackground />
 
   <div
-    class="relative z-10 mx-auto flex max-w-4xl shrink-0 flex-col items-center px-4 pt-20 pb-10 text-center sm:px-6 sm:pt-24 lg:pt-28"
+    class="relative z-20 mx-auto flex w-full max-w-4xl shrink-0 flex-col items-center px-4 pt-16 pb-4 text-center sm:px-6 sm:pt-24 sm:pb-8 lg:pt-28 lg:pb-10"
   >
     <!-- Headline -->
     <h1
-      class="text-black-500 max-w-4xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl"
+      class="text-black-500 max-w-4xl text-[clamp(1.65rem,6.8vw,4.5rem)] leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl"
     >
       Revolutionam industria frumusetii prin tehnologie.
     </h1>
 
     <!-- Subheadline -->
     <p
-      class="text-black-400 mt-5 max-w-xl text-base leading-relaxed sm:text-lg"
+      class="text-black-400 mt-2.5 max-w-xl text-sm leading-relaxed sm:mt-5 sm:text-lg"
     >
       Un singur sistem, toate platformele. Totul intr-un singur loc. Accesibil
       de pe orice dispozitiv.
     </p>
 
-    <p class="text-black-400 mt-2 max-w-2xl text-sm leading-relaxed italic">
+    <p
+      class="text-black-400 mt-1 max-w-2xl text-xs leading-relaxed italic sm:mt-2 sm:text-sm"
+    >
       "Un singur sistem sa le conduca pe toate"
     </p>
 
     <!-- CTAs -->
     <div
-      class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
+      class="mt-4 flex flex-col items-center gap-2.5 sm:mt-8 sm:flex-row sm:justify-center sm:gap-3"
     >
       <a
         href={site.apps.web.onboarding}
@@ -45,6 +46,7 @@ import HeroMockups from './HeroMockups.astro';
         Incepe gratuit
       </a>
 
+      <!--
       <a
         href="#demo"
         class="text-black-500 inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 text-[0.9375rem] font-semibold shadow-[0_2px_16px_rgb(37_37_43/0.08)] transition-[box-shadow,transform] duration-200 hover:-translate-y-px hover:shadow-[0_4px_24px_rgb(37_37_43/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
@@ -56,10 +58,13 @@ import HeroMockups from './HeroMockups.astro';
         </span>
         Vezi demo
       </a>
+      -->
     </div>
   </div>
 
-  <div class="relative z-10 h-full min-h-0 overflow-visible">
+  <div
+    class="relative z-10 mt-2 w-full min-h-0 sm:mt-4 lg:mt-0 lg:h-full lg:min-h-0 lg:flex-1"
+  >
     <HeroMockups />
   </div>
 </section>

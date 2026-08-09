@@ -20,64 +20,126 @@ const mockups: MockupConfig[] = [
     alt: 'IziBook schedule view',
     role: 'left',
     wrapper:
-      'z-10 h-[88%] origin-bottom -mr-14 -rotate-[16deg] sm:-mr-20 sm:-rotate-[20deg] lg:-mr-28 lg:-rotate-[20deg]',
+      'mockup-phone mockup-phone--side z-10 origin-bottom -mr-8 -rotate-[12deg] sm:-mr-16 sm:-rotate-[18deg] lg:-mr-28 lg:-rotate-[20deg]',
   },
   {
     src: mockupCenter,
     alt: 'IziBook dashboard overview',
     role: 'center',
-    wrapper: 'z-30 h-full origin-bottom',
+    wrapper: 'mockup-phone mockup-phone--center z-30 origin-bottom',
   },
   {
     src: mockupRight,
     alt: 'IziBook booking screen',
     role: 'right',
     wrapper:
-      'z-10 h-[88%] origin-bottom -ml-14 rotate-[16deg] sm:-ml-20 sm:rotate-[20deg] lg:-ml-28 lg:rotate-[20deg]',
+      'mockup-phone mockup-phone--side z-10 origin-bottom -ml-8 rotate-[12deg] sm:-ml-16 sm:rotate-[18deg] lg:-ml-28 lg:rotate-[20deg]',
   },
 ];
 ---
 
-<div class="relative h-full min-h-0 overflow-visible">
+<div class="relative h-full min-h-0 overflow-hidden">
   <div
-    class="mockup-stage flex h-full min-h-0 items-end justify-center overflow-visible pt-4 sm:pt-5"
+    class="mockup-stage flex h-full min-h-0 items-end justify-center overflow-hidden pt-1 sm:pt-5"
     aria-hidden="true"
   >
-    {
-      mockups.map((mockup) => (
-        <div
-          class:list={['pointer-events-none relative shrink-0', mockup.wrapper]}
-        >
+    <div class="mockup-cluster flex items-end justify-center">
+      {
+        mockups.map((mockup) => (
           <div
-            class:list={[
-              'mockup-motion relative h-full',
-              `mockup-motion--${mockup.role}`,
-              mockup.role === 'center' ? 'z-20' : 'z-10',
-            ]}
+            class:list={['pointer-events-none relative shrink-0', mockup.wrapper]}
           >
-            <div class="aspect-9/8 h-full overflow-hidden">
-              <PhoneFrame
-                src={mockup.src}
-                alt={mockup.alt}
-                class="h-full w-full object-cover object-top"
-              />
+            <div
+              class:list={[
+                'mockup-motion relative h-full w-full',
+                `mockup-motion--${mockup.role}`,
+                mockup.role === 'center' ? 'z-20' : 'z-10',
+              ]}
+            >
+              <div class="mockup-frame aspect-9/8 overflow-hidden">
+                <PhoneFrame
+                  src={mockup.src}
+                  alt={mockup.alt}
+                  class="h-full w-full object-cover object-top"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 
   <div
-    class="from-white-500 via-white-500/90 pointer-events-none absolute inset-x-0 bottom-0 z-20 h-16 bg-linear-to-t to-transparent"
+    class="from-white-500 via-white-500/90 pointer-events-none absolute inset-x-0 bottom-0 z-20 h-10 bg-linear-to-t to-transparent sm:h-16"
     aria-hidden="true"
   >
   </div>
 </div>
 
 <style>
+  /* Mobile / tablet: compact width-driven phones under the copy */
   .mockup-stage {
     isolation: isolate;
+    height: auto;
+    min-height: 13rem;
+  }
+
+  .mockup-cluster {
+    width: min(100%, 26rem);
+    height: auto;
+  }
+
+  .mockup-phone--center {
+    width: 50%;
+  }
+
+  .mockup-phone--side {
+    width: 42%;
+  }
+
+  .mockup-frame {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 640px) {
+    .mockup-stage {
+      min-height: 18rem;
+    }
+
+    .mockup-cluster {
+      width: min(100%, 34rem);
+    }
+  }
+
+  /* Desktop: fill remaining hero row */
+  @media (min-width: 1024px) {
+    .mockup-stage {
+      height: 100%;
+      min-height: 0;
+      container-type: size;
+    }
+
+    .mockup-cluster {
+      width: auto;
+      height: 100%;
+    }
+
+    .mockup-phone--side {
+      width: auto;
+      height: 88%;
+    }
+
+    .mockup-phone--center {
+      width: auto;
+      height: 100%;
+    }
+
+    .mockup-frame {
+      width: auto;
+      height: 100%;
+    }
   }
 
   .mockup-motion {
