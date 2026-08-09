@@ -3,12 +3,13 @@ import { plans } from '../data/plans';
 import {
   organizationSameAs,
   site,
+  normalizeCanonicalPath,
   type SeoArticle,
   type SeoBreadcrumb,
 } from '../data/site';
 
 function absoluteUrl(path: string): string {
-  return new URL(path, site.url).href;
+  return new URL(normalizeCanonicalPath(path), site.url).href;
 }
 
 export function buildOrganizationSchema() {

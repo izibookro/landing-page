@@ -55,7 +55,7 @@ La prima vizita, clienta este in mod evaluativ. Observa curatenia salonului, mod
 
 Iata ce trebuie sa se intample la prima vizita pentru a construi baza fidelizarii:
 
-1. **Consultare reala, nu grăbită** — intreaba despre istoricul parului, produsele folosite acasa, stilul de viata si asteptarile. Arata ca iti pasa de rezultat, nu doar de programare.
+1. **Consultare reala, nu grabita** — intreaba despre istoricul parului, produsele folosite acasa, stilul de viata si asteptarile. Arata ca iti pasa de rezultat, nu doar de programare.
 2. **Comunicare clara** — explica ce vei face, cat dureaza si cat costa. Surprizele la finalul programarii sunt una dintre cele mai frecvente motive de nemultumire.
 3. **Notare in fisa** — chiar de la prima vizita, inregistreaza toate detaliile. Clienta va observa la a doua programare ca o stii deja.
 4. **Programare pentru revenire** — inainte sa plece, propune data urmatoarei vizite. „Pentru intretinerea acestei nuante, te recomand sa revii peste 6 saptamani. Pot sa te programez acum pentru 15 iunie?"
@@ -140,7 +140,7 @@ Ciclul este de 2-3 saptamani. Fidelizarea vine din consistenta designului si con
 
 ## Cum formezi echipa pentru fidelizare
 
-Fidelizarea nu este responsabilitatea doar a managerului sau a recepției. Intreaga echipa trebuie sa inteleaga ca fiecare interactiune conteaza.
+Fidelizarea nu este responsabilitatea doar a managerului sau a receptiei. Intreaga echipa trebuie sa inteleaga ca fiecare interactiune conteaza.
 
 ### Training de baza pentru toti angajatii
 

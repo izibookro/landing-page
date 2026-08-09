@@ -1,0 +1,48 @@
+name: IziBook Landing Page
+run-name: ${{ github.actor }} is performing a IziBook Landing Page Production deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+
+concurrency:
+  group: production-landing
+  cancel-in-progress: true
+
+jobs:
+  deploy-landing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: Production
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        uses: up9cloud/action-rsync@v1.1
+        env:
+          HOST: connect.izibook.ro
+          USER: izibook
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_ARGS: '-q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+          VERBOSE: true
+          ARGS: -azhvP --delete-before
+          SOURCE: ./dist/
+          TARGET: ~/izibook.ro

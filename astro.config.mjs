@@ -28,6 +28,9 @@ const legacyRedirects = {
 // https://astro.build/config
 export default defineConfig({
   site: siteUrl,
+  // Keep sitemap, canonicals, and internal links slash-free (except `/`).
+  // Pair with wrangler assets.html_handling: 'drop-trailing-slash'.
+  trailingSlash: 'never',
   // Prefer apex; set www → apex 301 in Cloudflare Redirect Rules to match canonicals.
   redirects: Object.fromEntries(
     Object.entries(legacyRedirects).map(([from, to]) => [
@@ -50,6 +53,16 @@ export default defineConfig({
       },
       filter: (page) => !page.includes('/404'),
       serialize(item) {
+        // Normalize filesystem-discovered URLs so sitemap matches trailingSlash: 'never'.
+        try {
+          const url = new URL(item.url);
+          if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
+            url.pathname = url.pathname.slice(0, -1);
+            item.url = url.href;
+          }
+        } catch {
+          // Keep original URL if parsing fails.
+        }
         const lastmod = lastmodForSitemapUrl(item.url, siteUrl, contentLastmods);
         if (lastmod) {
           item.lastmod = lastmod.toISOString();

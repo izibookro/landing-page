@@ -17,16 +17,16 @@ export interface ManagerNeedsCard {
 export const managerNeedsCards: ManagerNeedsCard[] = [
   {
     id: 'ai-booking',
-    title: 'Programări cu Fane AI',
+    title: 'Programari cu Fane AI',
     subtitle:
-      'Clienti mai fericiti, programari mai rapide și mai simple direct in Whatsapp exact cum ar comunica cu un un angajat.',
+      'Clienti mai fericiti, programari mai rapide si mai simple direct in Whatsapp exact cum ar comunica cu un un angajat.',
     image: aiWhatsapp,
     layout: 'tall',
     theme: 'neutral',
   },
   {
     id: 'team',
-    title: 'Gestionare echipă',
+    title: 'Gestionare echipa',
     subtitle:
       'Monitorizeaza performanta si activitatea echipei in timp real. Programari, venituri, pauze, concedii si multe altele.',
     image: managerMemberSchedule,
@@ -35,9 +35,9 @@ export const managerNeedsCards: ManagerNeedsCard[] = [
   },
   {
     id: 'finance',
-    title: 'Gestiune financiară',
+    title: 'Gestiune financiara',
     subtitle:
-      'Totul automatizat. Vezi exact toate cheltuielile si veniturile salonului în timp real. Indici de performanta si analize avansate, fara exceluri, fara calcule manuale.',
+      'Totul automatizat. Vezi exact toate cheltuielile si veniturile salonului in timp real. Indici de performanta si analize avansate, fara exceluri, fara calcule manuale.',
     image: mockupManagerReportsSummary,
     layout: 'compact',
     theme: 'neutral',

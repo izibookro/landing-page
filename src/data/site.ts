@@ -10,18 +10,18 @@ export const site = {
   inLanguage: 'ro-RO',
   country: 'RO',
   email: 'contact@izibook.ro',
-  title: 'Software salon: programări, clienți și management | IziBook',
+  title: 'Software salon: programari, clienti si management | IziBook',
   titleTemplate: '%s | IziBook',
   description:
-    'Platformă completă pentru saloane de înfrumusețare: programări, echipă, încasări și asistent AI — totul într-un singur loc, pe web, iOS și Android.',
+    'Platforma completa pentru saloane de infrumusetare: programari, echipa, incasari si asistent AI — totul intr-un singur loc, pe web, iOS si Android.',
   keywords: [
     'software salon',
-    'programări salon',
-    'salon înfrumusețare',
+    'programari salon',
+    'salon infrumusetare',
     'management salon',
-    'aplicație salon',
-    'calendar programări',
-    'gestiune echipă salon',
+    'aplicatie salon',
+    'calendar programari',
+    'gestiune echipa salon',
     'rapoarte salon',
     'asistent AI salon',
     'IziBook',
@@ -96,8 +96,15 @@ export type SiteSeo = {
   includeAppSchemas?: boolean;
 };
 
+/** Normalize path to trailingSlash: 'never' (keep `/` only for the homepage). */
+export function normalizeCanonicalPath(path: string): string {
+  if (!path || path === '/') return '/';
+  const withLeadingSlash = path.startsWith('/') ? path : `/${path}`;
+  return withLeadingSlash.replace(/\/+$/, '') || '/';
+}
+
 export function resolveSeo(seo: SiteSeo = {}) {
-  const canonicalPath = seo.canonicalPath ?? '/';
+  const canonicalPath = normalizeCanonicalPath(seo.canonicalPath ?? '/');
   const isHome = canonicalPath === '/';
   const pageTitle = seo.title ?? site.title;
   const title =
@@ -109,7 +116,7 @@ export function resolveSeo(seo: SiteSeo = {}) {
   const image = seo.image ?? new URL('/og-image.png', site.url).href;
   const imageAlt =
     seo.imageAlt ??
-    `${site.name} — software de programări pentru saloane`;
+    `${site.name} — software de programari pentru saloane`;
   const type = seo.type ?? 'website';
   const includeAppSchemas = seo.includeAppSchemas ?? isHome;
   const includeFaq = seo.includeFaq ?? false;
