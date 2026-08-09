@@ -50,7 +50,7 @@ export const whyUsTabs: WhyUsTab[] = [
   },
   {
     id: 'protectia-datelor',
-    label: 'Protectia datelor',
+    label: 'Siguranta',
     description:
       'Tu esti in controlul datelor tale! Poti sterge oricand tot istoricul programarilor, incasarilor, cheltuielilor sau chiar stergerea contului complet.',
     stat: '100%',
