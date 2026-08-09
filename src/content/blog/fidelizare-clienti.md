@@ -229,5 +229,3 @@ Incepe simplu: noteaza preferintele, comunica personalizat, cere feedback si pro
 Fidelizarea nu se intampla peste noapte. Este rezultatul a mii de mici gesturi consistente, zi de zi, vizita dupa vizita. Dar fiecare clienta care devine fidela este o victorie care merita celebrata — pentru ca in spatele ei stau ani de venituri, recomandari si incredere.
 
 > **Pe scurt:** fidelizarea inseamna ca fiecare clienta sa se simta acasa la tine — vazuta, memorata si respectata la fiecare vizita.
-
-Vezi si [cum tehnologia redefineste experienta clientilor](/blog/tehnologie-salon) in saloanele moderne.
