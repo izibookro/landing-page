@@ -1,0 +1,6 @@
+# Cloudflare Pages / Workers static assets headers.
+# HSTS is also available in Cloudflare SSL/TLS → Edge Certificates; keep both aligned.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

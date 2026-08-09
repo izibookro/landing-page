@@ -13,8 +13,9 @@ import {
   getRelatedPostsByCategory,
 } from '../../lib/blog';
 import { getBlogAuthor } from '../../data/blogAuthors';
-import { Image } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import { site } from '../../data/site';
 import '../../components/blog/blog-post.scss';
 
 export async function getStaticPaths() {
@@ -34,15 +35,39 @@ const tocEntries = extractTocEntries(post.body ?? '');
 const readTime = getBlogReadTime(post);
 const relatedPosts = await getRelatedPostsByCategory(post, 3);
 const author = getBlogAuthor();
+const canonicalPath = `/blog/${post.id}`;
+const publishedTime = post.data.pubDate.toISOString();
 
-const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
-  .href;
+const shareUrl = new URL(canonicalPath, Astro.site ?? site.url).href;
+
+const ogImage = await getImage({
+  src: post.data.image,
+  width: 1200,
+  height: 630,
+  format: 'jpg',
+  fit: 'cover',
+});
+const ogImageUrl = new URL(ogImage.src, Astro.site ?? site.url).href;
 ---
 
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
-  canonicalPath={`/blog/${post.id}`}
+  canonicalPath={canonicalPath}
+  type="article"
+  image={ogImageUrl}
+  imageAlt={post.data.title}
+  article={{
+    publishedTime,
+    modifiedTime: publishedTime,
+    authorName: author.name,
+    section: post.data.category,
+  }}
+  breadcrumbs={[
+    { name: 'Acasă', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post.data.title, path: canonicalPath },
+  ]}
 >
   <Navbar />
   <a href="#blog-post-content" class="blog-post__skip-link">
@@ -90,7 +115,7 @@ const shareUrl = new URL(`/blog/${post.id}`, Astro.site ?? 'https://izibook.ro')
               <div class="blog-post__byline mt-6">
                 <Image
                   src={author.avatar}
-                  alt=""
+                  alt={author.name}
                   class="blog-post__byline-avatar size-10 rounded-full object-cover"
                   loading="eager"
                   decoding="async"

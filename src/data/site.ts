@@ -2,22 +2,26 @@ export const site = {
   name: 'IziBook',
   legalName: 'IziBook',
   url: 'https://izibook.ro',
+  /** Open Graph locale (underscore form required by og:locale). */
   locale: 'ro_RO',
+  /** BCP-47 language tag for HTML lang + schema.org inLanguage. */
   lang: 'ro',
+  /** BCP-47 language-region for schema.org when region matters. */
+  inLanguage: 'ro-RO',
   country: 'RO',
   email: 'contact@izibook.ro',
-  title: 'IziBook — Platforma de management pentru saloane de infrumusetare',
+  title: 'Software salon: programări, clienți și management | IziBook',
   titleTemplate: '%s | IziBook',
   description:
-    'Platforma completa pentru saloane de infrumusetare: programari, echipa, incasari si asistent AI — totul intr-un singur loc, pe web, iOS si Android.',
+    'Platformă completă pentru saloane de înfrumusețare: programări, echipă, încasări și asistent AI — totul într-un singur loc, pe web, iOS și Android.',
   keywords: [
-    'salon infrumusetare',
-    'programari salon',
-    'management salon',
-    'aplicatie salon',
     'software salon',
-    'calendar programari',
-    'gestiune echipa salon',
+    'programări salon',
+    'salon înfrumusețare',
+    'management salon',
+    'aplicație salon',
+    'calendar programări',
+    'gestiune echipă salon',
     'rapoarte salon',
     'asistent AI salon',
     'IziBook',
@@ -56,6 +60,26 @@ export const site = {
   },
 } as const;
 
+/** Public profiles suitable for Organization.sameAs (excludes chat invite links). */
+export const organizationSameAs = [
+  site.social.instagram,
+  site.social.facebook,
+  site.social.linkedin,
+  site.social.x,
+] as const;
+
+export type SeoBreadcrumb = {
+  name: string;
+  path: string;
+};
+
+export type SeoArticle = {
+  publishedTime: string;
+  modifiedTime?: string;
+  authorName: string;
+  section?: string;
+};
+
 export type SiteSeo = {
   title?: string;
   description?: string;
@@ -63,24 +87,47 @@ export type SiteSeo = {
   imageAlt?: string;
   noindex?: boolean;
   canonicalPath?: string;
+  type?: 'website' | 'article';
+  article?: SeoArticle;
+  breadcrumbs?: SeoBreadcrumb[];
+  /** Homepage FAQ rich results. */
+  includeFaq?: boolean;
+  /** Organization + SoftwareApplication + MobileApplication graph. Default: homepage only. */
+  includeAppSchemas?: boolean;
 };
 
 export function resolveSeo(seo: SiteSeo = {}) {
-  const title = seo.title ?? site.title;
-  const description = seo.description ?? site.description;
   const canonicalPath = seo.canonicalPath ?? '/';
+  const isHome = canonicalPath === '/';
+  const pageTitle = seo.title ?? site.title;
+  const title =
+    seo.title && !isHome
+      ? site.titleTemplate.replace('%s', seo.title)
+      : pageTitle;
+  const description = seo.description ?? site.description;
   const canonical = new URL(canonicalPath, site.url).href;
   const image = seo.image ?? new URL('/og-image.png', site.url).href;
   const imageAlt =
     seo.imageAlt ??
-    `${site.name} — Revolutionam industria frumusetii prin tehnologie`;
+    `${site.name} — software de programări pentru saloane`;
+  const type = seo.type ?? 'website';
+  const includeAppSchemas = seo.includeAppSchemas ?? isHome;
+  const includeFaq = seo.includeFaq ?? false;
 
   return {
     title,
+    pageTitle,
     description,
     canonical,
+    canonicalPath,
     image,
     imageAlt,
+    type,
+    article: seo.article,
+    breadcrumbs: seo.breadcrumbs ?? [],
+    includeFaq,
+    includeAppSchemas,
     noindex: seo.noindex ?? false,
+    isHome,
   };
 }

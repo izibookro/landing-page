@@ -1,0 +1,25 @@
+# Legacy SPA paths → Astro routes (HTTP 301).
+# Do NOT add a /* → /index.html 200 SPA fallback — that causes soft 404s.
+
+# Homepage sections (#fragments are stripped by Cloudflare; / is correct for Google)
+/contact                    /                       301
+/contact/                   /                       301
+/despre-noi                 /                       301
+/despre-noi/                /                       301
+
+# Legal pages
+/politica-confidentialitate /legal/politica-de-confidentialitate 301
+/politica-confidentialitate/ /legal/politica-de-confidentialitate 301
+/politica-cookie-uri        /legal/politica-cookie-uri 301
+/politica-cookie-uri/       /legal/politica-cookie-uri 301
+/termeni-conditii           /legal/termeni-si-conditii 301
+/termeni-conditii/          /legal/termeni-si-conditii 301
+/stergere-cont              /legal/stergerea-contului 301
+/stergere-cont/             /legal/stergerea-contului 301
+
+# Broken OG / legacy assets
+/assets/images/defaultOgImage /og-image.png 301
+/assets/images/defaultOgImage/ /og-image.png 301
+
+# Old sitemap URL → Astro sitemap index
+/sitemap.xml                /sitemap-index.xml      301

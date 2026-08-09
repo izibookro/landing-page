@@ -17,7 +17,7 @@ const href = getBlogPostHref(post);
   <div class="relative shrink-0 overflow-hidden rounded-xl">
     <Image
       src={post.data.image}
-      alt=""
+      alt={post.data.title}
       class="size-16 object-cover transition-transform duration-300 group-hover:scale-[1.03] sm:size-[4.5rem]"
       loading="lazy"
       decoding="async"

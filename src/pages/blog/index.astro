@@ -13,6 +13,10 @@ const posts = await getPublishedBlogPosts();
   title="Blog"
   description="Articole, ghiduri si noutati pentru managerii de salon care folosesc IziBook."
   canonicalPath="/blog"
+  breadcrumbs={[
+    { name: 'Acasă', path: '/' },
+    { name: 'Blog', path: '/blog' },
+  ]}
 >
   <Navbar />
   <main class="bg-white-500 min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24">

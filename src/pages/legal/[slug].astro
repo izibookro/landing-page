@@ -29,12 +29,17 @@ const { Content } = await render(page);
 
 const tocEntries = extractTocEntries(page.body ?? '');
 const legalPages = await getPublishedLegalPages();
+const canonicalPath = `/legal/${page.id}`;
 ---
 
 <BaseLayout
   title={page.data.title}
   description={page.data.description}
-  canonicalPath={`/legal/${page.id}`}
+  canonicalPath={canonicalPath}
+  breadcrumbs={[
+    { name: 'Acasă', path: '/' },
+    { name: page.data.title, path: canonicalPath },
+  ]}
 >
   <Navbar />
   <a href="#legal-page-content" class="blog-post__skip-link">

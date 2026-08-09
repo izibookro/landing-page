@@ -5,8 +5,7 @@ import appIcon from '../../assets/icon.png';
 import { site } from '../../data/site';
 import './footer-section.scss';
 
-const whatsappHref =
-  'https://chat.whatsapp.com/FEx7QoJSEDg4Sje5w6siwH?mode=gi_t';
+const whatsappHref = site.social.whatsapp;
 
 const pageLinks = [
   { label: 'Acasa', href: '/' },
@@ -34,23 +33,18 @@ const utilityLinks = [
 const socialLinks = [
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/izibook.ro',
+    href: site.social.instagram,
     icon: 'simple-icons:instagram',
   },
-  // {
-  //   label: 'LinkedIn',
-  //   href: '#',
-  //   icon: 'simple-icons:linkedin',
-  // },
-  // {
-  //   label: 'Facebook',
-  //   href: '#',
-  //   icon: 'simple-icons:facebook',
-  // },
   {
-    label: 'TikTok',
-    href: '#',
-    icon: 'simple-icons:tiktok',
+    label: 'Facebook',
+    href: site.social.facebook,
+    icon: 'simple-icons:facebook',
+  },
+  {
+    label: 'LinkedIn',
+    href: site.social.linkedin,
+    icon: 'simple-icons:linkedin',
   },
 ] as const;
 
@@ -90,8 +84,8 @@ const socialLinkClass =
         <p
           class="text-black-400 mt-4 max-w-sm text-sm leading-relaxed text-pretty"
         >
-          Sistemul de management complet pentru afacerea ta: programari, echipa,
-          incasari si asistent AI — totul intr-un singur loc, pe mobil si web.
+          Sistemul de management complet pentru afacerea ta: programări, echipă,
+          încasări și asistent AI — totul într-un singur loc, pe mobil și web.
         </p>
 
         <div class="mt-6 flex flex-wrap items-center gap-2.5">

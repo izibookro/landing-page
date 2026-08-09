@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "izibook-landing",
+  "compatibility_date": "2026-08-09",
+  "assets": {
+    "directory": "./dist",
+    // Serve dist/404.html with HTTP 404 for unknown routes (no SPA soft-404).
+    "not_found_handling": "404-page"
+  }
+}
