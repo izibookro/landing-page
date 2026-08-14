@@ -18,13 +18,13 @@ const blogAuthors: Record<BlogAuthorId, BlogAuthor> = {
   emilian: {
     id: 'emilian',
     name: 'Emilian Oancea',
-    jobTitle: 'Co-Founder IziBook',
+    jobTitle: 'Founder IziBook',
     description:
-      'Co-Founder IziBook. Scriu despre strategii, fidelizare si digitalizare pentru saloanele de infrumusetare din Romania.',
+      'Founder IziBook. Scriu despre strategii, fidelizare si digitalizare pentru saloanele de infrumusetare din Romania.',
     avatar: authorAvatar,
     avatarAlt:
-      'Emilian Oancea, Co-Founder IziBook — portret profesional',
-    avatarTitle: 'Emilian Oancea, Co-Founder IziBook',
+      'Emilian Oancea, Founder IziBook — portret profesional',
+    avatarTitle: 'Emilian Oancea, Founder IziBook',
   },
 };
 
