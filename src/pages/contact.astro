@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/footer/Footer.astro';
+import ContactSection from '../components/contact/ContactSection.astro';
+import DownloadSection from '../components/download/DownloadSection.astro';
+import { site } from '../data/site';
+import '../components/product/product-page.scss';
+
+const pageTitle = 'Contact IziBook';
+const pageDescription =
+  'Contacteaza IziBook: telefon, email si WhatsApp. IZIBOOK SRL, Cluj-Napoca. Suport pentru saloane, onboarding si intrebari despre programari, preturi si Fane AI.';
+
+const { address } = site;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/contact"
+  includeAppSchemas
+  breadcrumbs={[
+    { name: 'Acasa', path: '/' },
+    { name: 'Contact', path: '/contact' },
+  ]}
+>
+  <Navbar />
+  <main class="bg-white-500 min-h-screen pt-28 sm:pt-32">
+    <section class="mb-10 px-4 sm:mb-12 sm:px-6" aria-labelledby="contact-page-heading">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1
+          id="contact-page-heading"
+          class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+        >
+          Contact
+          <span class="product-page__heading-fade">IziBook</span>
+        </h1>
+        <p
+          class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-pretty"
+        >
+          Scrie-ne sau suna-ne daca vrei o demonstratie, ajutor la configurare
+          sau detalii despre planuri. Echipa IziBook te ajuta sa pui salonul in
+          sistem: servicii, angajati, programari si Fane AI pe WhatsApp. Raspundem
+          in romana, pe telefon, email sau WhatsApp.
+        </p>
+      </div>
+    </section>
+
+    <ContactSection showHeading={false} />
+
+    <section class="px-4 pb-16 sm:px-6 sm:pb-24" aria-labelledby="sediu-heading">
+      <div class="mx-auto max-w-6xl">
+        <div
+          class="product-page__panel from-white-700 via-black-50 to-black-100 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+        >
+          <h2
+            id="sediu-heading"
+            class="text-black-500 text-[clamp(1.5rem,3vw,1.875rem)] leading-tight font-semibold tracking-[-0.03em] text-balance"
+          >
+            Date societate
+          </h2>
+          <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+            <article>
+              <h3 class="text-black-500 text-lg font-semibold tracking-tight">
+                Adresa
+              </h3>
+              <p class="text-black-400 mt-3 text-sm leading-relaxed sm:text-[0.9375rem]">
+                {address.streetAddress}
+                <br />
+                {address.addressLocality}, {address.addressRegion}, Romania
+              </p>
+            </article>
+            <article>
+              <h3 class="text-black-500 text-lg font-semibold tracking-tight">
+                Identificare
+              </h3>
+              <p class="text-black-400 mt-3 text-sm leading-relaxed sm:text-[0.9375rem]">
+                {site.legalName}
+                <br />
+                CUI {site.taxId}
+                <br />
+                Nr. RC {site.tradeRegister}
+              </p>
+            </article>
+            <article>
+              <h3 class="text-black-500 text-lg font-semibold tracking-tight">
+                Suport
+              </h3>
+              <p class="text-black-400 mt-3 text-sm leading-relaxed sm:text-[0.9375rem]">
+                Onboarding-ul e inclus in abonament. Intrebari despre produs:{' '}
+                <a
+                  href="/faq"
+                  title="Intrebari frecvente IziBook"
+                  class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+                >
+                  FAQ
+                </a>
+                . Planuri de la 100 RON pe luna, 10 zile gratuit.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <DownloadSection />
+  </main>
+  <Footer />
+</BaseLayout>

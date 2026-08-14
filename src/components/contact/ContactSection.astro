@@ -2,14 +2,20 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import contactIllustration from '../../assets/illustrations/contact.webp';
+import { site } from '../../data/site';
 import './contact-section.scss';
 
-const phoneDisplay = '+40 753 497 805';
-const phoneHref = 'tel:+40753497805';
-const email = 'contact@izibook.ro';
+interface Props {
+  showHeading?: boolean;
+}
+
+const { showHeading = true } = Astro.props;
+
+const phoneDisplay = site.telephoneDisplay;
+const phoneHref = `tel:${site.telephone}`;
+const email = site.email;
 const emailHref = `mailto:${email}`;
-const whatsappHref =
-  'https://chat.whatsapp.com/FEx7QoJSEDg4Sje5w6siwH?mode=gi_t';
+const whatsappHref = site.social.whatsapp;
 
 const actionLinkClass =
   'flex w-full items-center gap-3.5 px-4.5 py-4 text-left no-underline transition-colors duration-200 hover:bg-black-50 active:bg-black-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-500';
@@ -20,29 +26,50 @@ const actionIconClass =
 
 <section
   id="contact"
-  class="bg-white-500 relative px-4 py-16 sm:px-6 sm:py-24"
+  class:list={[
+    'bg-white-500 relative px-4 sm:px-6',
+    showHeading ? 'py-16 sm:py-24' : 'pb-16 sm:pb-24',
+  ]}
   aria-labelledby="contact-heading"
 >
   <div class="mx-auto max-w-6xl">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2
-        id="contact-heading"
-        class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
-      >
-        Contacteaza-ne
-        <span class="contact-section__heading-fade">oricand</span>
-      </h2>
-      <p
-        class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
-      >
-        Suntem aici pentru tine. Suna-ne, scrie-ne un email sau alatura-te
-        comunitatii IziBook pe WhatsApp pentru noutati, suport si discutii cu
-        alti manageri.
-      </p>
-    </div>
+    {
+      showHeading ? (
+        <div class="mx-auto max-w-3xl text-center">
+          <h2
+            id="contact-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Contacteaza-ne
+            <span class="contact-section__heading-fade">oricand</span>
+          </h2>
+          <p class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance">
+            Suntem aici pentru tine. Suna-ne, scrie-ne un email sau alatura-te
+            comunitatii IziBook pe WhatsApp pentru noutati, suport si discutii
+            cu alti manageri.
+          </p>
+          <p class="mt-4">
+            <a
+              href="/contact"
+              title="Pagina de contact IziBook"
+              class="text-black-500 text-sm font-semibold underline decoration-primary-300 underline-offset-4"
+            >
+              Pagina de contact
+            </a>
+          </p>
+        </div>
+      ) : (
+        <h2 id="contact-heading" class="sr-only">
+          Contacteaza echipa IziBook
+        </h2>
+      )
+    }
 
     <div
-      class="from-white-700 via-black-50 to-black-100 mx-auto mt-10 max-w-4xl rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 shadow-[0_1px_2px_rgb(37_37_43/0.04),0_16px_48px_rgb(37_37_43/0.07)] sm:mt-12 sm:p-8 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:rounded-[2.25rem] lg:p-10"
+      class:list={[
+        'from-white-700 via-black-50 to-black-100 mx-auto max-w-4xl rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 shadow-[0_1px_2px_rgb(37_37_43/0.04),0_16px_48px_rgb(37_37_43/0.07)] sm:p-8 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:rounded-[2.25rem] lg:p-10',
+        showHeading && 'mt-10 sm:mt-12',
+      ]}
     >
       <div class="flex items-center justify-center lg:justify-start">
         <Image

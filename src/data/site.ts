@@ -1,6 +1,6 @@
 export const site = {
   name: 'IziBook',
-  legalName: 'IziBook',
+  legalName: 'IZIBOOK SRL',
   url: 'https://izibook.ro',
   /** Open Graph locale (underscore form required by og:locale). */
   locale: 'ro_RO',
@@ -10,6 +10,20 @@ export const site = {
   inLanguage: 'ro-RO',
   country: 'RO',
   email: 'contact@izibook.ro',
+  /** E.164 for tel: links and Organization.telephone. */
+  telephone: '+40753497805',
+  telephoneDisplay: '+40 753 497 805',
+  /** Romanian CUI (schema.org taxID). */
+  taxId: '52615106',
+  /** Numar de ordine in Registrul Comertului. */
+  tradeRegister: 'J2025074939005',
+  address: {
+    streetAddress:
+      'Str. Borhanciului Nr. 64 Provizoriu, Etaj 4, Apartament 21',
+    addressLocality: 'Cluj-Napoca',
+    addressRegion: 'Cluj',
+    addressCountry: 'RO',
+  },
   title: 'Software salon: programari, clienti si management | IziBook',
   titleTemplate: '%s | IziBook',
   description:
@@ -91,7 +105,7 @@ export type SiteSeo = {
   type?: 'website' | 'article';
   article?: SeoArticle;
   breadcrumbs?: SeoBreadcrumb[];
-  /** Homepage FAQ rich results. */
+  /** FAQPage schema — set on /faq only. */
   includeFaq?: boolean;
   /** Organization + SoftwareApplication + MobileApplication graph. Default: homepage only. */
   includeAppSchemas?: boolean;

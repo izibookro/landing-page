@@ -4,7 +4,7 @@ import { site } from '../data/site';
 
 /**
  * Machine-readable pricing for AI agents (see AI SEO /pricing.md guidance).
- * Keep in sync with src/data/plans.ts and homepage #preturi.
+ * Keep in sync with src/data/plans.ts and /preturi.
  */
 const getPricingMd = () => {
   const planBlocks = plans
@@ -17,6 +17,7 @@ const getPricingMd = () => {
 - Billing period: monthly
 - Currency: RON
 - Audience: ${plan.description}${popular}
+- Employees: ${plan.employees}
 - Limits / included:
 ${features}`;
     })
@@ -28,7 +29,7 @@ ${features}`;
 
 ## Trial
 
-- Duration: 30 days
+- Duration: 10 days
 - Cost: free
 - Access: full system during trial
 - Start: ${site.apps.web.onboarding}
@@ -39,10 +40,10 @@ ${planBlocks}
 
 ## Notes
 
-- Prices shown are monthly (RON / pe luna), matching https://izibook.ro/#preturi
+- Prices shown are monthly (RON / pe luna), matching ${site.url}/preturi
 - All listed plans include unlimited online bookings, WhatsApp bookings with Fane AI, in-app notifications, client/employee management, unlimited services, and financial reporting (within the employee limit of the plan)
 - Contact: ${site.email}
-- Human-readable pricing page: ${site.url}/#preturi
+- Human-readable pricing page: ${site.url}/preturi
 - Product overview for AI agents: ${site.url}/llms.txt
 `;
 };

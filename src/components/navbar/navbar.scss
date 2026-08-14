@@ -242,6 +242,9 @@
 .navbar__mobile[open] .navbar__panel li:nth-child(6) .navbar__panel-link {
   animation-delay: 0.19s;
 }
+.navbar__mobile[open] .navbar__panel li:nth-child(7) .navbar__panel-link {
+  animation-delay: 0.22s;
+}
 
 @keyframes navbar-link-in {
   from {

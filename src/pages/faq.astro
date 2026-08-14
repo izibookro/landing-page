@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/footer/Footer.astro';
+import DownloadSection from '../components/download/DownloadSection.astro';
+import { Icon } from 'astro-icon/components';
+import { faqCategories } from '../data/faqItems';
+import { site } from '../data/site';
+import '../components/product/product-page.scss';
+
+const pageTitle = 'Intrebari frecvente despre IziBook';
+const pageDescription =
+  'Raspunsuri despre IziBook: programari, Fane AI, echipa, clienti, preturi de la 100 RON, proba 10 zile, date si locatii. Software salon pentru manager, specialist si client.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/faq"
+  includeFaq
+  includeAppSchemas
+  breadcrumbs={[
+    { name: 'Acasa', path: '/' },
+    { name: 'FAQ', path: '/faq' },
+  ]}
+>
+  <Navbar />
+  <main class="bg-white-500 min-h-screen pt-28 sm:pt-32">
+    <section class="px-4 sm:px-6" aria-labelledby="faq-page-heading">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1
+          id="faq-page-heading"
+          class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+        >
+          Intrebari
+          <span class="product-page__heading-fade">frecvente</span>
+        </h1>
+        <p
+          class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-pretty"
+        >
+          Raspunsuri despre IziBook pentru manager, specialist si client:
+          programari, Fane AI, echipa, preturi si date. Intrebarile sunt grupate
+          pe teme. Daca nu gasesti ce cauti, scrie-ne — configurarea initiala e
+          inclusa.
+        </p>
+      </div>
+    </section>
+
+    {
+      faqCategories.map((category) => (
+        <section
+          id={category.id}
+          class="product-page__role px-4 py-14 sm:px-6 sm:py-20"
+          aria-labelledby={`${category.id}-heading`}
+        >
+          <div class="mx-auto max-w-3xl">
+            <h2
+              id={`${category.id}-heading`}
+              class="text-black-500 text-[clamp(1.75rem,4vw,2.75rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+            >
+              {category.title}{' '}
+              <span class="product-page__heading-fade">{category.headingFade}</span>
+            </h2>
+
+            <div class="mt-8 space-y-4 sm:mt-10">
+              {category.items.map((item) => (
+                <article
+                  id={item.id}
+                  class="bg-black-50 scroll-mt-28 rounded-3xl p-6 sm:scroll-mt-32 sm:p-7"
+                >
+                  <h3 class="text-black-500 text-lg font-semibold tracking-tight text-balance sm:text-xl">
+                    {item.question}
+                  </h3>
+                  <p class="text-black-400 mt-3 text-sm leading-relaxed text-pretty sm:text-[0.9375rem]">
+                    {item.answer}
+                    {item.link && (
+                      <>
+                        {' '}
+                        <a
+                          href={item.link.href}
+                          title={item.link.title}
+                          class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+                        >
+                          {item.link.label}
+                        </a>
+                        .
+                      </>
+                    )}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="px-4 pb-16 sm:px-6 sm:pb-24">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-black-400 text-sm leading-relaxed text-pretty">
+          Lista de functii pe roluri:{' '}
+          <a
+            href="/functionalitati"
+            title="Functionalitati IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            functionalitati
+          </a>
+          . Planuri de la 100 RON:{' '}
+          <a
+            href="/preturi"
+            title="Preturi IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            preturi
+          </a>
+          . Programari pe WhatsApp:{' '}
+          <a
+            href="/fane-ai"
+            title="Fane AI"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            Fane AI
+          </a>
+          .
+        </p>
+
+        <div class="mt-8 flex justify-center">
+          <a
+            href={site.apps.web.onboarding}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Incepe 10 zile gratuit"
+            class="bg-primary-700 text-white-500 hover:bg-primary-800 inline-flex items-center justify-center gap-1.5 rounded-full px-7 py-3.5 text-sm font-semibold no-underline transition-colors duration-200"
+          >
+            Incepe 10 zile gratuit
+            <Icon
+              name="solar:arrow-right-up-linear"
+              class="size-4 shrink-0 opacity-95"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <DownloadSection />
+  </main>
+  <Footer />
+</BaseLayout>

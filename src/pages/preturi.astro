@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/footer/Footer.astro';
+import PlansSection from '../components/plans/PlansSection.astro';
+import DownloadSection from '../components/download/DownloadSection.astro';
+import { Icon } from 'astro-icon/components';
+import {
+  billingQuestions,
+  planComparisonRows,
+  plans,
+} from '../data/plans';
+import { site } from '../data/site';
+import '../components/product/product-page.scss';
+
+const pageTitle = 'Preturi software salon';
+const pageDescription =
+  'Preturi IziBook pentru saloane din Romania: Single 100 RON, Medium 500 RON, Enterprise 1000 RON pe luna. 10 zile gratuit, fara costuri pe programare.';
+
+function cellText(value: string | boolean): string {
+  if (value === true) return 'Inclus';
+  if (value === false) return '—';
+  return value;
+}
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/preturi"
+  includeAppSchemas
+  breadcrumbs={[
+    { name: 'Acasa', path: '/' },
+    { name: 'Preturi', path: '/preturi' },
+  ]}
+>
+  <Navbar />
+  <main class="bg-white-500 min-h-screen pt-28 sm:pt-32">
+    <section class="px-4 sm:px-6" aria-labelledby="preturi-page-heading">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <h1
+            id="preturi-page-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Preturi IziBook
+            <span class="product-page__heading-fade">pentru saloane</span>
+          </h1>
+          <p
+            class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-pretty"
+          >
+            IziBook costa intre 100 si 1000 RON pe luna, in functie de cati
+            angajati ai in salon. Toate planurile includ programari nelimitate,
+            Fane AI pe WhatsApp, notificari si rapoarte. Poti testa tot sistemul
+            10 zile, gratuit, fara card. Nu platesti per programare sau per
+            client.
+          </p>
+        </div>
+
+        <div
+          class="product-page__panel from-white-700 via-black-50 to-black-100 mt-10 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:mt-12 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+        >
+          <h2
+            class="text-black-500 text-[clamp(1.5rem,3vw,1.875rem)] leading-tight font-semibold tracking-[-0.03em] text-balance"
+          >
+            Ce e diferit intre planuri
+          </h2>
+          <p class="text-black-400 mt-3 max-w-2xl text-sm leading-relaxed sm:text-[0.9375rem]">
+            Functiile de produs sunt aceleasi. Alegi planul dupa numarul de
+            angajati: Single pentru tine, Medium pentru o echipa mica, Enterprise
+            de la cinci specialisti in sus.
+          </p>
+
+          <div class="product-page__table-wrap mt-8">
+            <table class="product-page__table">
+              <caption class="sr-only">
+                Comparatie planuri IziBook Single, Medium si Enterprise
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Functie</th>
+                  {
+                    plans.map((plan) => (
+                      <th scope="col">
+                        {plan.name}
+                        {plan.popular ? ' · Popular' : ''}
+                      </th>
+                    ))
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  planComparisonRows.map((row) => (
+                    <tr>
+                      <th scope="row">{row.label}</th>
+                      <td>{cellText(row.single)}</td>
+                      <td>{cellText(row.medium)}</td>
+                      <td>{cellText(row.enterprise)}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <PlansSection ctaHref={site.apps.web.onboarding} showIntro={false} />
+
+    <section class="px-4 pb-16 sm:px-6 sm:pb-24" aria-labelledby="billing-heading">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2
+            id="billing-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Facturare
+            <span class="product-page__heading-fade">si proba</span>
+          </h2>
+        </div>
+
+        <div class="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-3 lg:gap-10">
+          {
+            billingQuestions.map((item) => (
+              <article>
+                <h3 class="text-black-500 text-lg font-semibold tracking-tight text-balance">
+                  {item.question}
+                </h3>
+                <p class="text-black-400 mt-3 text-sm leading-relaxed sm:text-[0.9375rem] text-pretty">
+                  {item.answer}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+
+        <p
+          class="text-black-400 mt-12 text-center text-sm leading-relaxed text-pretty"
+        >
+          Programari pe WhatsApp cu{' '}
+          <a
+            href="/fane-ai"
+            title="Cum functioneaza Fane AI"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            Fane AI
+          </a>{' '}
+          sunt incluse in fiecare plan. Lista de functii pe roluri:{' '}
+          <a
+            href="/functionalitati"
+            title="Functionalitati IziBook pentru manager, specialist si client"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            functionalitati
+          </a>
+          . Intrebari despre produs:{' '}
+          <a
+            href="/faq"
+            title="Intrebari frecvente IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            FAQ
+          </a>{' '}
+          sau{' '}
+          <a
+            href="/contact"
+            title="Contacteaza echipa IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            contact
+          </a>
+          .
+        </p>
+
+        <div class="mt-8 flex justify-center">
+          <a
+            href={site.apps.web.onboarding}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Incepe 10 zile gratuit"
+            class="bg-primary-700 text-white-500 hover:bg-primary-800 inline-flex items-center justify-center gap-1.5 rounded-full px-7 py-3.5 text-sm font-semibold no-underline transition-colors duration-200"
+          >
+            Incepe 10 zile gratuit
+            <Icon
+              name="solar:arrow-right-up-linear"
+              class="size-4 shrink-0 opacity-95"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <DownloadSection />
+  </main>
+  <Footer />
+</BaseLayout>

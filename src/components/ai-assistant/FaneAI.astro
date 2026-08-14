@@ -4,6 +4,12 @@ import { Image } from 'astro:assets';
 import faneIllustration from '../../assets/illustrations/fane.webp';
 import { site } from '../../data/site';
 
+interface Props {
+  showHeading?: boolean;
+}
+
+const { showHeading = true } = Astro.props;
+
 const promptBubbles = [
   'Ce servicii are Iulia?',
   'Ce locuri libere sunt maine la Marius?',
@@ -17,25 +23,30 @@ const promptBubbles = [
   aria-labelledby="fane-ai-heading"
 >
   <div class="mx-auto max-w-6xl">
-    <!-- Header -->
-    <div class="mx-auto max-w-6xl text-center">
-      <h2 id="fane-ai-heading" class="fane-ai-heading">
-        Fa cunostinta cu <span class="fane-ai-heading__brand">Fane</span>,
-        <br />
-        <span class="fane-ai-heading__fade">Asistentul tau Inteligent</span>
-      </h2>
-      <p
-        class="text-black-400 sm:text-l mx-auto mt-4 max-w-xl text-base leading-relaxed"
-      >
-        Cel mai simplu si rapid mod pentru clienti sa se programeze. Discuta pe <strong
-          >WhatsApp</strong
-        > cu Fane la orice ora. El te programeaza, te tine la curent cu disponibilitatea
-        unui angajat sau pretul unui serviciu.
-      </p>
-    </div>
+    {
+      showHeading ? (
+        <div class="mx-auto max-w-6xl text-center">
+          <h2 id="fane-ai-heading" class="fane-ai-heading">
+            Fa cunostinta cu <span class="fane-ai-heading__brand">Fane</span>,
+            <br />
+            <span class="fane-ai-heading__fade">Asistentul tau Inteligent</span>
+          </h2>
+          <p class="text-black-400 sm:text-l mx-auto mt-4 max-w-xl text-base leading-relaxed">
+            Cel mai simplu si rapid mod pentru clienti sa se programeze. Discuta
+            pe <strong>WhatsApp</strong> cu Fane la orice ora. El te
+            programeaza, te tine la curent cu disponibilitatea unui angajat sau
+            pretul unui serviciu.
+          </p>
+        </div>
+      ) : (
+        <h2 id="fane-ai-heading" class="sr-only">
+          Fane AI, asistentul inteligent IziBook
+        </h2>
+      )
+    }
 
     <!-- Visual area -->
-    <div class="fane-ai__stage mt-12 sm:mt-16">
+    <div class:list={['fane-ai__stage', showHeading ? 'mt-12 sm:mt-16' : '']}>
       <div class="fane-ai__glow" aria-hidden="true">
         <div class="fane-ai__arcs">
           <span class="fane-ai__ring fane-ai__ring--1 bg-primary-500/65"></span>
@@ -61,6 +72,17 @@ const promptBubbles = [
         >
           Incepe gratuit
         </a>
+        {
+          showHeading && (
+            <a
+              href="/fane-ai"
+              title="Cum functioneaza Fane AI"
+              class="text-black-500 self-center text-center text-sm font-semibold underline decoration-primary-300 underline-offset-4"
+            >
+              Cum functioneaza Fane
+            </a>
+          )
+        }
       </div>
 
       <!-- Center: illustration -->

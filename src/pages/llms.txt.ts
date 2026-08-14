@@ -7,18 +7,20 @@ import { site } from '../data/site';
  */
 const getLlmsTxt = () => `# IziBook
 
-> IziBook este software de management pentru saloane de infrumusetare din Romania: programari, clienti, echipa, incasari, rapoarte si asistent AI pe WhatsApp (Fane AI). Disponibil pe web, iOS si Android. Preturi de la 100 RON/luna. Proba gratuita 30 de zile.
+> IziBook este software de management pentru saloane de infrumusetare din Romania: programari, clienti, echipa, incasari, rapoarte si asistent AI pe WhatsApp (Fane AI). Disponibil pe web, iOS si Android. Preturi de la 100 RON/luna. Proba gratuita 10 zile.
 
 IziBook se adreseaza managerilor si angajatilor de saloane (coafor, unghii, beauty). Clientii se programeaza din aplicatie, de pe web sau pe WhatsApp cu Fane AI. Moneda: RON. Limba site: romana. Contact: ${site.email}.
 
 ## Pagini principale
 
 - [Acasa](${site.url}): Prezentare produs, functionalitati, Fane AI
-- [Preturi](${site.url}/#preturi): Planuri Single / Medium / Enterprise (100–1000 RON/luna)
-- [Pricing (markdown)](${site.url}/pricing.md): Planuri structurate pentru agenti AI (RON, limite, trial 30 zile)
-- [FAQ](${site.url}/#faq): Intrebari frecvente (si FAQPage schema)
+- [Functionalitati](${site.url}/functionalitati): Functii pe trei profile — manager, specialist, client
+- [Preturi](${site.url}/preturi): Planuri Single / Medium / Enterprise (100–1000 RON/luna)
+- [Fane AI](${site.url}/fane-ai): Programari salon pe WhatsApp
+- [Pricing (markdown)](${site.url}/pricing.md): Planuri structurate pentru agenti AI (RON, limite, trial 10 zile)
+- [FAQ](${site.url}/faq): Intrebari frecvente (programari, Fane AI, echipa, preturi, date)
 - [Descarca aplicatia](${site.url}/#descarca): Linkuri iOS si Android
-- [Contact](${site.url}/#contact): Email si canale de suport
+- [Contact](${site.url}/contact): Email, telefon si canale de suport
 - [Blog](${site.url}/blog): Ghiduri pentru saloane (programari, fidelizare, management)
 - [Fidelizarea clientilor](${site.url}/blog/fidelizare-clienti): Ghid despre retentie in saloane de beauty
 

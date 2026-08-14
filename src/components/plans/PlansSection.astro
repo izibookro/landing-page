@@ -2,6 +2,14 @@
 import { Icon } from 'astro-icon/components';
 import { plans } from '../../data/plans';
 import './plans-section.scss';
+
+interface Props {
+  ctaHref?: string;
+  showIntro?: boolean;
+}
+
+const { ctaHref = '/contact', showIntro = true } = Astro.props;
+const ctaIsExternal = ctaHref.startsWith('http');
 ---
 
 <section
@@ -14,24 +22,42 @@ import './plans-section.scss';
   </div>
 
   <div class="relative z-10 mx-auto max-w-6xl">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2
-        id="plans-heading"
-        class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
-      >
-        Planuri
-        <span class="plans-section__heading-fade">flexibile</span>
-      </h2>
-      <p
-        class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance"
-      >
-        Alege pachetul potrivit pentru dimensiunea echipei tale. Fara costuri
-        ascunse, fara limite, fara taxe suplimentare.
-      </p>
-    </div>
+    {
+      showIntro ? (
+        <div class="mx-auto max-w-3xl text-center">
+          <h2
+            id="plans-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Planuri
+            <span class="plans-section__heading-fade">flexibile</span>
+          </h2>
+          <p class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-balance">
+            Alege pachetul potrivit pentru dimensiunea echipei tale. Fara
+            costuri ascunse, fara limite, fara taxe suplimentare.
+          </p>
+          <p class="mt-4">
+            <a
+              href="/preturi"
+              title="Compara planurile IziBook"
+              class="text-black-500 text-sm font-semibold underline decoration-primary-300 underline-offset-4"
+            >
+              Compara planurile
+            </a>
+          </p>
+        </div>
+      ) : (
+        <h2 id="plans-heading" class="sr-only">
+          Planuri IziBook
+        </h2>
+      )
+    }
 
     <div
-      class="mt-10 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-3"
+      class:list={[
+        'grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3',
+        showIntro && 'mt-10 sm:mt-12',
+      ]}
     >
       {
         plans.map((plan) => (
@@ -92,8 +118,10 @@ import './plans-section.scss';
 
             <div class="plans-card__footer">
               <a
-                href="#contact"
-                title="Contacteaza-ne pentru a incepe cu IziBook"
+                href={ctaHref}
+                title="Incepe cu IziBook"
+                target={ctaIsExternal ? '_blank' : undefined}
+                rel={ctaIsExternal ? 'noopener noreferrer' : undefined}
                 class:list={[
                   'inline-flex w-full items-center justify-center rounded-full',
                   plan.popular

@@ -11,13 +11,6 @@ import './navbar/navbar.scss';
 
 const { pathname } = Astro.url;
 
-type SectionNavLink = {
-  label: string;
-  href: string;
-  section: string;
-  title: string;
-};
-
 type PageNavLink = {
   label: string;
   href: string;
@@ -25,35 +18,41 @@ type PageNavLink = {
   title: string;
 };
 
-const navLinks: Array<SectionNavLink | PageNavLink> = [
+const navLinks: PageNavLink[] = [
   {
-    label: 'Functionalitati',
-    href: '/#manager-needs',
-    section: 'manager-needs',
-    title: 'Functionalitati IziBook — programari, echipa si rapoarte',
+    label: 'Acasa',
+    href: '/',
+    page: '/',
+    title: 'Pagina principala IziBook',
   },
   {
-    label: 'Despre Noi',
-    href: '/#why-us',
-    section: 'why-us',
-    title: 'De ce IziBook pentru salonul tau',
+    label: 'Functionalitati',
+    href: '/functionalitati',
+    page: '/functionalitati',
+    title: 'Functionalitati IziBook — manager, specialist si client',
   },
   {
     label: 'Preturi',
-    href: '/#preturi',
-    section: 'preturi',
+    href: '/preturi',
+    page: '/preturi',
     title: 'Preturi IziBook — planuri pentru saloane',
   },
   {
     label: 'FAQ',
-    href: '/#faq',
-    section: 'faq',
+    href: '/faq',
+    page: '/faq',
     title: 'Intrebari frecvente despre IziBook',
   },
   {
+    label: 'Fane AI',
+    href: '/fane-ai',
+    page: '/fane-ai',
+    title: 'Fane AI — programari salon pe WhatsApp',
+  },
+  {
     label: 'Contact',
-    href: '/#contact',
-    section: 'contact',
+    href: '/contact',
+    page: '/contact',
     title: 'Contacteaza echipa IziBook',
   },
   {
@@ -107,13 +106,10 @@ const ctaClass =
       >
     </a>
 
-    <ul class="hidden items-center gap-6 text-sm font-medium lg:flex xl:gap-7">
+    <ul class="hidden items-center gap-3.5 text-sm font-medium xl:flex xl:gap-5">
       {
         navLinks.map((link) => {
-          const isActive =
-            'page' in link
-              ? isNavbarPageActive(pathname, link.page)
-              : false;
+          const isActive = isNavbarPageActive(pathname, link.page);
 
           return (
             <li>
@@ -121,10 +117,7 @@ const ctaClass =
                 href={link.href}
                 title={link.title}
                 data-nav-link
-                {...('section' in link
-                  ? { 'data-section': link.section }
-                  : {})}
-                {...('page' in link ? { 'data-page': link.page } : {})}
+                data-page={link.page}
                 class={getNavbarLinkClasses(isActive)}
                 {...(isActive ? { 'aria-current': 'page' } : {})}
               >
@@ -157,31 +150,24 @@ const ctaClass =
       >
         <Icon name="uil:android" class="size-5" />
       </a>
-      <div class="relative shrink-0">
-        <span
-          class="absolute -top-2.5 left-1/2 z-10 -translate-x-1/2 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.625rem] font-bold tracking-wide text-emerald-950 shadow-[0_2px_8px_rgb(16_185_129/0.35)]"
-        >
-          Nou
-        </span>
-        <a
-          href={site.apps.web.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={ctaClass}
-          title="Deschide platforma web IziBook"
-          aria-label="Deschide platforma web IziBook (link extern)"
-        >
-          <span class="sm:hidden">Web</span>
-          <span class="hidden sm:inline">Platforma Web</span>
-          <Icon
-            name="solar:arrow-right-up-linear"
-            class="size-4 shrink-0 opacity-95"
-            aria-hidden="true"
-          />
-        </a>
-      </div>
+      <a
+        href={site.apps.web.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={ctaClass}
+        title="Deschide platforma web IziBook"
+        aria-label="Deschide platforma web IziBook (link extern)"
+      >
+        <span class="sm:hidden">Web</span>
+        <span class="hidden sm:inline">Platforma Web</span>
+        <Icon
+          name="solar:arrow-right-up-linear"
+          class="size-4 shrink-0 opacity-95"
+          aria-hidden="true"
+        />
+      </a>
 
-      <details class="navbar__mobile lg:hidden" data-nav-mobile>
+      <details class="navbar__mobile xl:hidden" data-nav-mobile>
         <summary
           class="navbar__toggle bg-black-50 text-black-500 hover:bg-black-100 flex size-10 list-none items-center justify-center rounded-full"
           aria-label="Deschide meniul"
@@ -200,10 +186,7 @@ const ctaClass =
             <ul class="flex flex-col gap-0.5">
               {
                 navLinks.map((link) => {
-                  const isActive =
-                    'page' in link
-                      ? isNavbarPageActive(pathname, link.page)
-                      : false;
+                  const isActive = isNavbarPageActive(pathname, link.page);
 
                   return (
                     <li>
@@ -211,10 +194,7 @@ const ctaClass =
                         href={link.href}
                         title={link.title}
                         data-nav-link
-                        {...('section' in link
-                          ? { 'data-section': link.section }
-                          : {})}
-                        {...('page' in link ? { 'data-page': link.page } : {})}
+                        data-page={link.page}
                         class:list={[
                           'navbar__panel-link',
                           isActive && 'is-active',

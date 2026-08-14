@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/footer/Footer.astro';
+import DownloadSection from '../components/download/DownloadSection.astro';
+import { Icon } from 'astro-icon/components';
+import {
+  functionalitatiLead,
+  productRoles,
+} from '../data/functionalitati';
+import { site } from '../data/site';
+import '../components/product/product-page.scss';
+
+const pageTitle = 'Functionalitati salon: manager, specialist, client';
+const pageDescription =
+  'Functionalitati IziBook pe trei profile: manager (calendar echipa, rapoarte, clienti), specialist (calendar propriu, venituri) si client (programari din app, site sau WhatsApp).';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/functionalitati"
+  includeAppSchemas
+  breadcrumbs={[
+    { name: 'Acasa', path: '/' },
+    { name: 'Functionalitati', path: '/functionalitati' },
+  ]}
+>
+  <Navbar />
+  <main class="bg-white-500 min-h-screen pt-28 sm:pt-32">
+    <section class="px-4 sm:px-6" aria-labelledby="features-page-heading">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <h1
+            id="features-page-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Functionalitati
+            <span class="product-page__heading-fade">pe trei profile</span>
+          </h1>
+          <p
+            class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-pretty"
+          >
+            {functionalitatiLead}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {
+      productRoles.map((role) => (
+        <section
+          id={role.id}
+          class="product-page__role px-4 py-16 sm:px-6 sm:py-24"
+          aria-labelledby={`${role.id}-heading`}
+        >
+          <div class="mx-auto max-w-6xl">
+            <div class="mx-auto max-w-3xl text-center">
+              <p class="product-page__step-index text-primary-600 text-sm font-semibold tracking-wide">
+                {role.index}
+              </p>
+              <h2
+                id={`${role.id}-heading`}
+                class="text-black-500 mt-2 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+              >
+                {role.title}{' '}
+                <span class="product-page__heading-fade">{role.headingFade}</span>
+              </h2>
+              <p class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-pretty">
+                {role.intro}
+              </p>
+            </div>
+
+            <div class="mt-10 grid gap-4 sm:mt-12 sm:gap-5 lg:grid-cols-2">
+              {role.features.map((feature) => (
+                <article class="bg-black-50 rounded-3xl p-6 sm:p-7">
+                  <div class="flex items-center gap-3.5">
+                    <span
+                      class="bg-white-500 text-primary-500 flex size-11 shrink-0 items-center justify-center rounded-2xl"
+                      aria-hidden="true"
+                    >
+                      <Icon name={feature.icon} class="size-5" />
+                    </span>
+                    <h3 class="text-black-500 text-lg font-semibold tracking-tight text-balance sm:text-xl">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  <p class="text-black-400 mt-3.5 text-sm leading-relaxed text-pretty sm:text-[0.9375rem]">
+                    {feature.body}
+                    {feature.link && (
+                      <>
+                        {' '}
+                        <a
+                          href={feature.link.href}
+                          title={feature.link.title}
+                          class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+                        >
+                          {feature.link.label}
+                        </a>
+                        .
+                      </>
+                    )}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="px-4 pb-16 sm:px-6 sm:pb-24" aria-labelledby="platforms-heading">
+      <div class="mx-auto max-w-6xl">
+        <div
+          class="product-page__panel from-white-700 via-black-50 to-black-100 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+        >
+          <h2
+            id="platforms-heading"
+            class="text-black-500 text-[clamp(1.5rem,3vw,1.875rem)] leading-tight font-semibold tracking-[-0.03em] text-balance"
+          >
+            Pe ce platforme lucreaza fiecare
+          </h2>
+          <div class="mt-8 grid gap-8 lg:grid-cols-3 lg:gap-10">
+            <article>
+              <h3 class="text-black-500 text-lg font-semibold tracking-tight">
+                Manager
+              </h3>
+              <p class="text-black-400 mt-3 text-sm leading-relaxed text-pretty sm:text-[0.9375rem]">
+                Dashboard, calendar echipa, servicii, clienti, rapoarte si setari
+                salon pe{' '}
+                <a
+                  href={site.apps.web.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Platforma web IziBook"
+                  class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+                >
+                  web
+                </a>{' '}
+                si in aplicatia iOS / Android. Invitatii si abonamentul se
+                gestioneaza din contul de manager.
+              </p>
+            </article>
+            <article>
+              <h3 class="text-black-500 text-lg font-semibold tracking-tight">
+                Specialist
+              </h3>
+              <p class="text-black-400 mt-3 text-sm leading-relaxed text-pretty sm:text-[0.9375rem]">
+                Calendar, programari, concedii, clienti, rapoarte personale si
+                notificari in aplicatia mobila. Nu are acces la datele financiare
+                ale salonului. Statisticile sunt pe venitul lui, nu pe pretul de
+                lista.
+              </p>
+            </article>
+            <article>
+              <h3 class="text-black-500 text-lg font-semibold tracking-tight">
+                Client
+              </h3>
+              <p class="text-black-400 mt-3 text-sm leading-relaxed text-pretty sm:text-[0.9375rem]">
+                Cautare si programare in aplicatie, rezervare pe site-ul salonului
+                fara cont, sau WhatsApp cu{' '}
+                <a
+                  href="/fane-ai"
+                  title="Cum functioneaza Fane AI"
+                  class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+                >
+                  Fane AI
+                </a>
+                . Istoric, recenzii si reminder in acelasi loc.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <p
+          class="text-black-400 mt-12 text-center text-sm leading-relaxed text-pretty"
+        >
+          Planurile se diferentiaza dupa numarul de angajati, nu dupa functii.{' '}
+          <a
+            href="/preturi"
+            title="Preturi IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            Preturi
+          </a>{' '}
+          de la 100 RON pe luna, 10 zile gratuit. Intrebari:{' '}
+          <a
+            href="/faq"
+            title="Intrebari frecvente IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            FAQ
+          </a>{' '}
+          sau{' '}
+          <a
+            href="/contact"
+            title="Contacteaza echipa IziBook"
+            class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+          >
+            contact
+          </a>
+          .
+        </p>
+
+        <div class="mt-8 flex justify-center">
+          <a
+            href={site.apps.web.onboarding}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Incepe 10 zile gratuit"
+            class="bg-primary-700 text-white-500 hover:bg-primary-800 inline-flex items-center justify-center gap-1.5 rounded-full px-7 py-3.5 text-sm font-semibold no-underline transition-colors duration-200"
+          >
+            Incepe 10 zile gratuit
+            <Icon
+              name="solar:arrow-right-up-linear"
+              class="size-4 shrink-0 opacity-95"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <DownloadSection />
+  </main>
+  <Footer />
+</BaseLayout>

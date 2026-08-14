@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/footer/Footer.astro';
+import FaneAI from '../components/ai-assistant/FaneAI.astro';
+import DownloadSection from '../components/download/DownloadSection.astro';
+import { site } from '../data/site';
+import '../components/product/product-page.scss';
+
+const pageTitle = 'Fane AI — programari salon pe WhatsApp';
+const pageDescription =
+  'Fane AI este asistentul IziBook pe WhatsApp: clientii intreaba de locuri libere, preturi si servicii, iar Fane programeaza 24/7, conectat la calendarul salonului.';
+
+const steps = [
+  {
+    index: '01',
+    title: 'Clientul scrie pe WhatsApp',
+    body: 'Trimite un mesaj ca la un angajat: vrea o tunsoare, intreaba de pret sau de locuri libere. Nu descarca o aplicatie si nu isi face cont. Fane raspunde in conversatie, in romana, la orice ora.',
+  },
+  {
+    index: '02',
+    title: 'Fane citeste calendarul salonului',
+    body: 'Este conectat la IziBook. Vede angajatii, serviciile, preturile si intervalele libere in timp real. Nu inventeaza locuri. Daca Marius e ocupat, propune alt interval sau alt specialist, dupa regulile tale.',
+  },
+  {
+    index: '03',
+    title: 'Programarea intra in sistem',
+    body: 'Cand clientul confirma, programarea apare in calendarul specialistului. Primeste reminder in aplicatie. Tu vezi aceeasi rezervare ca pe o programare facuta de la recepție sau din app.',
+  },
+];
+
+const examples = [
+  {
+    client: 'Vreau sa ma tund la Marius maine dupa-amiaza.',
+    fane: 'Marius are loc la 14:30 si 16:00 pentru Tuns barbati, 130 RON, 30 de minute. Care ti se potriveste?',
+  },
+  {
+    client: 'Cat costa un balayage la Ioana?',
+    fane: 'Balayage la Ioana este 450 RON si dureaza 150 de minute. Vrei sa vedem primul loc liber saptamana aceasta?',
+  },
+  {
+    client: 'Ce servicii are Iulia?',
+    fane: 'Iulia ofera manichiura clasica, semipermanenta si nail art. Spune-mi serviciul si o data, ca sa iti arat intervalele libere.',
+  },
+];
+
+const limits = [
+  'Fane programeaza doar pe baza datelor din IziBook: servicii, preturi, angajati si disponibilitate actualizate de tine.',
+  'Nu inlocuieste un stilist. Nu da sfaturi medicale si nu negociaza preturi in afara listelor din sistem.',
+  'Este inclus in toate planurile. Clientul vorbeste pe WhatsApp; salonul gestioneaza totul din IziBook.',
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/fane-ai"
+  includeAppSchemas
+  breadcrumbs={[
+    { name: 'Acasa', path: '/' },
+    { name: 'Fane AI', path: '/fane-ai' },
+  ]}
+>
+  <Navbar />
+  <main class="bg-white-500 min-h-screen pt-28 sm:pt-32">
+    <section class="px-4 sm:px-6" aria-labelledby="fane-page-heading">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1
+          id="fane-page-heading"
+          class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+        >
+          Fane AI
+          <span class="product-page__heading-fade">pe WhatsApp</span>
+        </h1>
+        <p
+          class="text-black-400 mx-auto mt-4 max-w-2xl text-[clamp(0.9375rem,2.2vw,1.0625rem)] leading-relaxed text-pretty"
+        >
+          Fane AI este asistentul IziBook pentru programari la salon, pe
+          WhatsApp. Clientul scrie un mesaj, iar Fane raspunde cu locuri libere,
+          servicii si preturi din sistemul tau, 24 de ore din 24. Confirma
+          rezervarea in calendar, fara telefon la receptie si fara aplicatie de
+          instalat de catre client.
+        </p>
+      </div>
+    </section>
+
+    <FaneAI showHeading={false} />
+
+    <section
+      class="px-4 pb-16 sm:px-6 sm:pb-24"
+      aria-labelledby="fane-how-heading"
+    >
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2
+            id="fane-how-heading"
+            class="text-black-500 text-[clamp(2.125rem,5.4vw,4rem)] leading-[1.1] font-semibold tracking-[-0.038em] text-balance"
+          >
+            Cum se
+            <span class="product-page__heading-fade">programeaza</span>
+          </h2>
+        </div>
+
+        <ol class="mt-10 grid list-none gap-10 sm:mt-12 lg:grid-cols-3 lg:gap-12">
+          {
+            steps.map((step) => (
+              <li>
+                <p class="product-page__step-index text-primary-600 text-sm font-semibold">
+                  {step.index}
+                </p>
+                <h3 class="text-black-500 mt-3 text-lg font-semibold tracking-tight text-balance">
+                  {step.title}
+                </h3>
+                <p class="text-black-400 mt-3 text-sm leading-relaxed sm:text-[0.9375rem] text-pretty">
+                  {step.body}
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div
+          class="product-page__panel from-white-700 via-black-50 to-black-100 mt-16 rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 sm:mt-20 sm:p-8 lg:rounded-[2.25rem] lg:p-10"
+        >
+          <h2
+            class="text-black-500 text-[clamp(1.5rem,3vw,1.875rem)] leading-tight font-semibold tracking-[-0.03em] text-balance"
+          >
+            Exemple de mesaje
+          </h2>
+          <p class="text-black-400 mt-3 max-w-2xl text-sm leading-relaxed sm:text-[0.9375rem]">
+            Fane vorbeste ca un angajat, nu ca un meniu. Mesajele de mai jos sunt
+            exemple; preturile si serviciile vin din contul salonului tau.
+          </p>
+
+          <div class="mt-8 space-y-8">
+            {
+              examples.map((example) => (
+                <figure class="border-black-100 border-t pt-8 first:border-t-0 first:pt-0">
+                  <blockquote>
+                    <p class="text-black-500 text-sm leading-relaxed sm:text-[0.9375rem]">
+                      <span class="text-black-400 font-medium">Client: </span>
+                      {example.client}
+                    </p>
+                    <p class="text-black-500 mt-3 text-sm leading-relaxed sm:text-[0.9375rem]">
+                      <span class="text-primary-600 font-medium">Fane: </span>
+                      {example.fane}
+                    </p>
+                  </blockquote>
+                </figure>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mx-auto mt-16 max-w-3xl sm:mt-20">
+          <h2
+            class="text-black-500 text-[clamp(1.5rem,3vw,1.875rem)] leading-tight font-semibold tracking-[-0.03em] text-balance"
+          >
+            Limitari
+          </h2>
+          <ul class="text-black-400 mt-5 space-y-4 text-sm leading-relaxed sm:text-[0.9375rem]">
+            {limits.map((item) => (
+              <li class="text-pretty">{item}</li>
+            ))}
+          </ul>
+          <p class="text-black-400 mt-8 text-sm leading-relaxed text-pretty">
+            Fane AI este inclus in{' '}
+            <a
+              href="/preturi"
+              title="Preturi IziBook"
+              class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+            >
+              toate planurile
+            </a>
+            , de la 100 RON pe luna. Proba dura 10 zile. Celelalte functii ale
+            salonului, pe roluri:{' '}
+            <a
+              href="/functionalitati"
+              title="Functionalitati IziBook pentru manager, specialist si client"
+              class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+            >
+              functionalitati
+            </a>
+            . Alte intrebari:{' '}
+            <a
+              href="/faq"
+              title="Intrebari frecvente IziBook"
+              class="text-black-500 font-semibold underline decoration-primary-300 underline-offset-4"
+            >
+              FAQ
+            </a>
+            .
+          </p>
+          <a
+            href={site.apps.web.onboarding}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Incepe gratuit cu IziBook"
+            class="bg-primary-700 text-white-500 hover:bg-primary-800 mt-6 inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold no-underline transition-colors duration-200"
+          >
+            Incepe gratuit
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <DownloadSection />
+  </main>
+  <Footer />
+</BaseLayout>

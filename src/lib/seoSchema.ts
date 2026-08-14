@@ -20,6 +20,32 @@ function buildOrganizationSchema() {
     legalName: site.legalName,
     url: site.url,
     email: site.email,
+    telephone: site.telephone,
+    taxID: site.taxId,
+    identifier: [
+      {
+        '@type': 'PropertyValue',
+        name: 'CUI',
+        value: site.taxId,
+      },
+      {
+        '@type': 'PropertyValue',
+        name: 'Nr. Registrul Comertului',
+        value: site.tradeRegister,
+      },
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.address.streetAddress,
+      addressLocality: site.address.addressLocality,
+      addressRegion: site.address.addressRegion,
+      addressCountry: site.address.addressCountry,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Romania',
+      alternateName: site.country,
+    },
     logo: {
       '@type': 'ImageObject',
       url: absoluteUrl('/android-chrome-512x512.png'),
@@ -48,7 +74,8 @@ function buildSoftwareApplicationSchema() {
     name: site.name,
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
-    url: site.apps.web.url,
+    url: site.url,
+    sameAs: [site.apps.web.url, site.apps.ios.url, site.apps.android.url],
     description: site.description,
     offers: {
       '@type': 'AggregateOffer',
@@ -81,7 +108,7 @@ function buildMobileApplicationSchemas() {
 function buildFaqPageSchema() {
   return {
     '@type': 'FAQPage',
-    '@id': `${site.url}/#faq`,
+    '@id': `${site.url}/faq`,
     mainEntity: faqItems.map((item) => ({
       '@type': 'Question',
       name: item.question,
