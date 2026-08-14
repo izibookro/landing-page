@@ -2,7 +2,12 @@
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
-import { defineConfig, fontProviders } from 'astro/config';
+import {
+  defineConfig,
+  fontProviders,
+  sharpImageService,
+  svgoOptimizer,
+} from 'astro/config';
 import rehypeSlug from 'rehype-slug';
 import Sonda from 'sonda/astro';
 import {
@@ -55,6 +60,20 @@ export default defineConfig({
     }),
     Sonda(),
   ],
+  image: {
+    responsiveStyles: true,
+    service: sharpImageService({
+      jpeg: { quality: 82, mozjpeg: true },
+      webp: { quality: 80, effort: 6 },
+      avif: { quality: 65, effort: 4 },
+      png: { compressionLevel: 9, effort: 8 },
+    }),
+  },
+  experimental: {
+    svgOptimizer: svgoOptimizer({
+      multipass: true,
+    }),
+  },
   fonts: [
     {
       provider: fontProviders.fontsource(),
@@ -64,6 +83,9 @@ export default defineConfig({
       weights: [400, 700, 900],
     },
   ],
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     plugins: [tailwindcss()],
     build: {

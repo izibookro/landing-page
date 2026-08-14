@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
-import contactIllustration from '../../assets/illustrations/contact.svg';
+import { Image } from 'astro:assets';
+import contactIllustration from '../../assets/illustrations/contact.webp';
 import './contact-section.scss';
 
 const phoneDisplay = '+40 753 497 805';
@@ -44,12 +45,14 @@ const actionIconClass =
       class="from-white-700 via-black-50 to-black-100 mx-auto mt-10 max-w-4xl rounded-4xl bg-linear-to-br from-0% via-42% to-100% p-6 shadow-[0_1px_2px_rgb(37_37_43/0.04),0_16px_48px_rgb(37_37_43/0.07)] sm:mt-12 sm:p-8 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:rounded-[2.25rem] lg:p-10"
     >
       <div class="flex items-center justify-center lg:justify-start">
-        <img
-          src={contactIllustration.src}
+        <Image
+          src={contactIllustration}
           alt="Ilustratie contact IziBook"
+          title="Contacteaza echipa IziBook"
+          format="webp"
+          widths={[280, 360, 704]}
+          sizes="(min-width: 1024px) 22rem, min(100vw - 3rem, 22rem)"
           class="mx-auto block h-auto w-full max-w-88 drop-shadow-[0_18px_36px_rgb(37_37_43/0.1)]"
-          width="360"
-          height="360"
           loading="lazy"
           decoding="async"
         />
@@ -68,6 +71,7 @@ const actionIconClass =
           <a
             href={phoneHref}
             class={actionLinkClass}
+            title={`Suna-ne la ${phoneDisplay}`}
             aria-label={`Suna-ne la ${phoneDisplay}`}
           >
             <span
@@ -96,6 +100,7 @@ const actionIconClass =
             class={actionLinkClass}
             target="_blank"
             rel="noopener noreferrer"
+            title="Alatura-te comunitatii IziBook pe WhatsApp"
             aria-label="Alatura-te comunitatii IziBook pe WhatsApp"
           >
             <span
@@ -122,6 +127,7 @@ const actionIconClass =
           <a
             href={emailHref}
             class={actionLinkClass}
+            title={`Trimite-ne un email la ${email}`}
             aria-label={`Trimite-ne un email la ${email}`}
           >
             <span

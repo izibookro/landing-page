@@ -51,6 +51,7 @@ const shareLinks = [
           src={author.avatar}
           alt={author.avatarAlt}
           title={author.avatarTitle}
+          format="webp"
           widths={[96, 192, 256]}
           sizes="96px"
           class="size-24 object-cover"
@@ -78,6 +79,7 @@ const shareLinks = [
           <a
             href={link.href}
             class="blog-post__share-btn"
+            title={link.label}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={link.label}

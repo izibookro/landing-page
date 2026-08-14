@@ -21,6 +21,7 @@
     "@tsparticles/plugin-interactivity": "^4.3.1",
     "@tsparticles/preset-meteors": "^4.3.1",
     "astro": "^7.2.0",
+    "sharp": "^0.35.3",
     "swiper": "^14.0.2",
     "tailwindcss": "^4.3.2"
   },

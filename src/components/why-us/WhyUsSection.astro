@@ -80,9 +80,15 @@ import { whyUsTabs } from '../../data/whyUsTabs';
             <Image
               src={tab.image}
               alt={tab.imageAlt}
+              title={tab.imageAlt}
+              format="webp"
+              quality={75}
+              widths={[400, 640, 800, 1024, 1280]}
+              sizes="(max-width: 1024px) calc(100vw - 2rem), 72rem"
               class="why-us-panel__image absolute inset-0 h-full w-full object-cover object-center"
-              loading={index === 0 ? 'eager' : 'lazy'}
+              loading="lazy"
               decoding="async"
+              fetchpriority="low"
             />
             <div
               class="from-black-900/85 via-black-700/35 to-black-500/10 absolute inset-0 bg-linear-to-t"

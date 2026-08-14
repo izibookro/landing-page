@@ -24,6 +24,7 @@ const { relatedPages, currentPageId } = Astro.props;
             <li>
               <a
                 href={getLegalPageHref(page)}
+                title={page.data.title}
                 class:list={[
                   'text-black-400 hover:text-black-500 flex items-start gap-2 text-sm font-medium no-underline transition-colors duration-200',
                   page.id === currentPageId && 'text-black-500 font-semibold',
@@ -54,6 +55,7 @@ const { relatedPages, currentPageId } = Astro.props;
     </p>
     <a
       href={`mailto:${site.email}`}
+      title={`Trimite email la ${site.email}`}
       class="text-primary-600 hover:text-primary-700 mt-4 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors duration-200"
     >
       <Icon name="solar:letter-linear" class="size-4" aria-hidden="true" />

@@ -33,6 +33,7 @@ const sectionCount = entries.filter((entry) => entry.depth === 2).length;
           >
             <a
               href={`#${entry.id}`}
+              title={entry.text}
               class="blog-post__toc-link"
               data-toc-link={entry.id}
             >
@@ -76,6 +77,7 @@ const sectionCount = entries.filter((entry) => entry.depth === 2).length;
             >
               <a
                 href={`#${entry.id}`}
+                title={entry.text}
                 class="blog-post__toc-link"
                 data-toc-link={entry.id}
               >

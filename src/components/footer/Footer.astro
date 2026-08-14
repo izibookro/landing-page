@@ -8,26 +8,78 @@ import './footer-section.scss';
 const whatsappHref = site.social.whatsapp;
 
 const pageLinks = [
-  { label: 'Acasa', href: '/' },
-  { label: 'Functionalitati', href: '/#manager-needs' },
-  { label: 'Despre Noi', href: '/#why-us' },
-  { label: 'Preturi', href: '/#preturi' },
-  { label: 'Intrebari frecvente', href: '/#faq' },
-  { label: 'Contact', href: '/#contact' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Acasa', href: '/', title: 'Pagina principala IziBook' },
+  {
+    label: 'Functionalitati',
+    href: '/#manager-needs',
+    title: 'Functionalitati IziBook — programari, echipa si rapoarte',
+  },
+  {
+    label: 'Despre Noi',
+    href: '/#why-us',
+    title: 'De ce IziBook pentru salonul tau',
+  },
+  {
+    label: 'Preturi',
+    href: '/#preturi',
+    title: 'Preturi IziBook — planuri pentru saloane',
+  },
+  {
+    label: 'Intrebari frecvente',
+    href: '/#faq',
+    title: 'Intrebari frecvente despre IziBook',
+  },
+  {
+    label: 'Contact',
+    href: '/#contact',
+    title: 'Contacteaza echipa IziBook',
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    title: 'Blog IziBook — sfaturi pentru saloane',
+  },
 ] as const;
 
 const platformLinks = [
-  { label: 'Descarca iOS', href: site.apps.ios.url },
-  { label: 'Descarca Android', href: site.apps.android.url },
-  { label: 'Platforma Web', href: site.apps.web.url },
+  {
+    label: 'Descarca iOS',
+    href: site.apps.ios.url,
+    title: 'Descarca IziBook din App Store',
+  },
+  {
+    label: 'Descarca Android',
+    href: site.apps.android.url,
+    title: 'Descarca IziBook din Google Play',
+  },
+  {
+    label: 'Platforma Web',
+    href: site.apps.web.url,
+    title: 'Deschide platforma web IziBook',
+  },
 ] as const;
 
 const utilityLinks = [
-  { label: 'Politica de confidentialitate', href: '/legal/politica-de-confidentialitate' },
-  { label: 'Politica cookie-uri', href: '/legal/politica-cookie-uri' },
-  { label: 'Termeni si conditii', href: '/legal/termeni-si-conditii' },
-  { label: 'Stergerea contului', href: '/legal/stergerea-contului' },
+  {
+    label: 'Politica de confidentialitate',
+    href: '/legal/politica-de-confidentialitate',
+    title: 'Politica de confidentialitate IziBook',
+  },
+  {
+    label: 'Politica cookie-uri',
+    href: '/legal/politica-cookie-uri',
+    title: 'Politica de cookie-uri IziBook',
+  },
+  {
+    label: 'Termeni si conditii',
+    href: '/legal/termeni-si-conditii',
+    title: 'Termeni si conditii IziBook',
+  },
+  {
+    label: 'Stergerea contului',
+    href: '/legal/stergerea-contului',
+    title: 'Stergerea contului IziBook',
+  },
 ] as const;
 
 const socialLinks = [
@@ -35,11 +87,13 @@ const socialLinks = [
     label: 'Instagram',
     href: site.social.instagram,
     icon: 'simple-icons:instagram',
+    title: 'IziBook pe Instagram',
   },
   {
     label: 'TikTok',
     href: site.social.tiktok,
     icon: 'simple-icons:tiktok',
+    title: 'IziBook pe TikTok',
   },
 ] as const;
 
@@ -62,13 +116,19 @@ const socialLinkClass =
       class="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)_minmax(0,0.75fr)_minmax(0,1.15fr)] lg:gap-12"
     >
       <div class="sm:col-span-2 lg:col-span-1">
-        <a href="/" class="inline-flex items-center gap-2.5 no-underline">
+        <a
+          href="/"
+          title="Pagina principala IziBook"
+          class="inline-flex items-center gap-2.5 no-underline"
+        >
           <Image
             src={appIcon}
-            alt=""
+            alt="Logo IziBook"
+            title="Logo IziBook"
             width={36}
             height={36}
             densities={[1.5, 2]}
+            format="webp"
             class="size-9 shrink-0 rounded-full"
             loading="lazy"
           />
@@ -90,6 +150,7 @@ const socialLinkClass =
               <a
                 href={social.href}
                 class={socialLinkClass}
+                title={social.title}
                 aria-label={social.label}
                 target={social.href.startsWith('http') ? '_blank' : undefined}
                 rel={
@@ -111,7 +172,7 @@ const socialLinkClass =
           {
             pageLinks.map((link) => (
               <li>
-                <a href={link.href} class={footerLinkClass}>
+                <a href={link.href} title={link.title} class={footerLinkClass}>
                   {link.label}
                 </a>
               </li>
@@ -128,6 +189,7 @@ const socialLinkClass =
               <li>
                 <a
                   href={link.href}
+                  title={link.title}
                   class={footerExternalLinkClass}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={
@@ -149,7 +211,7 @@ const socialLinkClass =
           {
             utilityLinks.map((link) => (
               <li>
-                <a href={link.href} class={footerLinkClass}>
+                <a href={link.href} title={link.title} class={footerLinkClass}>
                   {link.label}
                 </a>
               </li>
@@ -175,6 +237,7 @@ const socialLinkClass =
           target="_blank"
           rel="noopener noreferrer"
           class="footer-whatsapp-btn bg-black-500 text-white-500 hover:bg-black-600 focus-visible:outline-primary-500 mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold no-underline transition-[background-color,box-shadow,transform] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2"
+          title="Alatura-te comunitatii IziBook pe WhatsApp"
           aria-label="Alatura-te comunitatii IziBook pe WhatsApp"
         >
           <Icon name="simple-icons:whatsapp" class="size-4" />
@@ -191,6 +254,7 @@ const socialLinkClass =
       </p>
       <a
         href="mailto:contact@izibook.ro"
+        title="Trimite email la contact@izibook.ro"
         class="text-black-400 hover:text-black-500 text-sm no-underline transition-colors duration-200"
       >
         contact@izibook.ro

@@ -60,6 +60,7 @@ const storeButtonClass =
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                title={link.ariaLabel}
                 class:list={[
                   storeButtonClass,
                   link.variant === 'primary' &&
@@ -83,7 +84,12 @@ const storeButtonClass =
       >
         <Image
           src={mockup}
-          alt=""
+          alt="Telefon cu aplicatia IziBook — dashboard manager cu incasari si programari"
+          title="Aplicatia mobila IziBook pentru iOS si Android"
+          format="webp"
+          quality={75}
+          widths={[216, 256, 432, 512]}
+          sizes="(max-width: 639px) 13.5rem, 16rem"
           class="download-section__mockup-image pointer-events-none w-[min(100%,13.5rem)] max-w-none shrink-0 select-none sm:w-60 lg:w-64"
           loading="lazy"
           decoding="async"

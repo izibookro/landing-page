@@ -17,20 +17,20 @@ interface MockupConfig {
 const mockups: MockupConfig[] = [
   {
     src: mockupLeft,
-    alt: 'IziBook schedule view',
+    alt: 'Ecran IziBook specialist — programari, clienti, castiguri si ore de lucru',
     role: 'left',
     wrapper:
       'mockup-phone mockup-phone--side z-10 origin-bottom -mr-8 -rotate-[12deg] sm:-mr-16 sm:-rotate-[18deg] lg:-mr-28 lg:-rotate-[20deg]',
   },
   {
     src: mockupCenter,
-    alt: 'IziBook dashboard overview',
+    alt: 'Ecran IziBook manager — incasari de astazi si statistici in timp real',
     role: 'center',
     wrapper: 'mockup-phone mockup-phone--center z-30 origin-bottom',
   },
   {
     src: mockupRight,
-    alt: 'IziBook booking screen',
+    alt: 'Ecran IziBook client — cautare specialist, serviciu si salon',
     role: 'right',
     wrapper:
       'mockup-phone mockup-phone--side z-10 origin-bottom -ml-8 rotate-[12deg] sm:-ml-16 sm:rotate-[18deg] lg:-ml-28 lg:rotate-[20deg]',
@@ -60,6 +60,10 @@ const mockups: MockupConfig[] = [
                 <PhoneFrame
                   src={mockup.src}
                   alt={mockup.alt}
+                  title={mockup.alt}
+                  loading={mockup.role === 'center' ? 'eager' : 'lazy'}
+                  fetchpriority={mockup.role === 'center' ? 'high' : 'low'}
+                  sizes="(max-width: 639px) 50vw, (max-width: 1023px) 14rem, 20rem"
                   class="h-full w-full object-cover object-top"
                 />
               </div>

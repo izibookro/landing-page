@@ -15,12 +15,14 @@ type SectionNavLink = {
   label: string;
   href: string;
   section: string;
+  title: string;
 };
 
 type PageNavLink = {
   label: string;
   href: string;
   page: string;
+  title: string;
 };
 
 const navLinks: Array<SectionNavLink | PageNavLink> = [
@@ -28,18 +30,44 @@ const navLinks: Array<SectionNavLink | PageNavLink> = [
     label: 'Functionalitati',
     href: '/#manager-needs',
     section: 'manager-needs',
+    title: 'Functionalitati IziBook — programari, echipa si rapoarte',
   },
-  { label: 'Despre Noi', href: '/#why-us', section: 'why-us' },
-  { label: 'Preturi', href: '/#preturi', section: 'preturi' },
-  { label: 'FAQ', href: '/#faq', section: 'faq' },
-  { label: 'Contact', href: '/#contact', section: 'contact' },
-  { label: 'Blog', href: '/blog', page: '/blog' },
+  {
+    label: 'Despre Noi',
+    href: '/#why-us',
+    section: 'why-us',
+    title: 'De ce IziBook pentru salonul tau',
+  },
+  {
+    label: 'Preturi',
+    href: '/#preturi',
+    section: 'preturi',
+    title: 'Preturi IziBook — planuri pentru saloane',
+  },
+  {
+    label: 'FAQ',
+    href: '/#faq',
+    section: 'faq',
+    title: 'Intrebari frecvente despre IziBook',
+  },
+  {
+    label: 'Contact',
+    href: '/#contact',
+    section: 'contact',
+    title: 'Contacteaza echipa IziBook',
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    page: '/blog',
+    title: 'Blog IziBook — sfaturi pentru saloane',
+  },
 ];
 
 const iconBtnClass =
   'navbar__icon-btn bg-black-50 text-black-500 hover:bg-black-100 flex size-9 items-center justify-center rounded-full';
 const ctaClass =
-  'navbar__cta bg-primary-500 text-white-500 hover:bg-primary-600 inline-flex items-center justify-center gap-1.5 rounded-full px-3.5 py-2.5 text-sm font-semibold whitespace-nowrap sm:px-5';
+  'navbar__cta bg-primary-700 text-white-500 hover:bg-primary-800 inline-flex items-center justify-center gap-1.5 rounded-full px-3.5 py-2.5 text-sm font-semibold whitespace-nowrap sm:px-5';
 ---
 
 <header
@@ -60,16 +88,17 @@ const ctaClass =
   >
     <a
       href="/"
+      title="Pagina principala IziBook"
       class="relative z-10 flex shrink-0 items-center gap-2.5 transition-opacity duration-200 hover:opacity-80"
     >
       <Image
         src={appIcon}
-        alt="IziBook logo"
-        aria-label="IziBook logo"
-        title="IziBook logo"
+        alt="Logo IziBook"
+        title="Logo IziBook"
         width={36}
         height={36}
         densities={[1.5, 2]}
+        format="webp"
         class="size-9 shrink-0 rounded-full"
         loading="eager"
       />
@@ -90,6 +119,7 @@ const ctaClass =
             <li>
               <a
                 href={link.href}
+                title={link.title}
                 data-nav-link
                 {...('section' in link
                   ? { 'data-section': link.section }
@@ -112,7 +142,8 @@ const ctaClass =
         target="_blank"
         rel="noopener noreferrer"
         class={iconBtnClass}
-        aria-label="Download on the App Store"
+        title="Descarca IziBook din App Store"
+        aria-label="Descarca IziBook din App Store"
       >
         <Icon name="ic:baseline-apple" class="size-6" />
       </a>
@@ -121,13 +152,14 @@ const ctaClass =
         target="_blank"
         rel="noopener noreferrer"
         class={iconBtnClass}
-        aria-label="Get it on Google Play"
+        title="Descarca IziBook din Google Play"
+        aria-label="Descarca IziBook din Google Play"
       >
         <Icon name="uil:android" class="size-5" />
       </a>
       <div class="relative shrink-0">
         <span
-          class="absolute -top-2.5 left-1/2 z-10 -translate-x-1/2 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.625rem] font-bold tracking-wide text-white shadow-[0_2px_8px_rgb(16_185_129/0.35)]"
+          class="absolute -top-2.5 left-1/2 z-10 -translate-x-1/2 rounded-full bg-emerald-500 px-2 py-0.5 text-[0.625rem] font-bold tracking-wide text-emerald-950 shadow-[0_2px_8px_rgb(16_185_129/0.35)]"
         >
           Nou
         </span>
@@ -136,6 +168,7 @@ const ctaClass =
           target="_blank"
           rel="noopener noreferrer"
           class={ctaClass}
+          title="Deschide platforma web IziBook"
           aria-label="Deschide platforma web IziBook (link extern)"
         >
           <span class="sm:hidden">Web</span>
@@ -176,6 +209,7 @@ const ctaClass =
                     <li>
                       <a
                         href={link.href}
+                        title={link.title}
                         data-nav-link
                         {...('section' in link
                           ? { 'data-section': link.section }

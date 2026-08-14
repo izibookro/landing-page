@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
-import faneIllustration from '../../assets/illustrations/fane.svg';
+import { Image } from 'astro:assets';
+import faneIllustration from '../../assets/illustrations/fane.webp';
 import { site } from '../../data/site';
 
 const promptBubbles = [
@@ -55,7 +56,8 @@ const promptBubbles = [
           href={site.apps.web.onboarding}
           target="_blank"
           rel="noopener noreferrer"
-          class="bg-primary-500 text-white-500 hover:bg-primary-600 fane-ai__cta inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-colors duration-200"
+          title="Incepe gratuit cu IziBook"
+          class="bg-primary-700 text-white-500 hover:bg-primary-800 fane-ai__cta inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-colors duration-200"
         >
           Incepe gratuit
         </a>
@@ -63,12 +65,14 @@ const promptBubbles = [
 
       <!-- Center: illustration -->
       <div class="fane-ai__center">
-        <img
-          src={faneIllustration.src}
+        <Image
+          src={faneIllustration}
           alt="Fane AI — asistent inteligent pentru salon"
+          title="Fane AI — asistent inteligent IziBook pentru programari pe WhatsApp"
+          format="webp"
+          widths={[272, 352, 416, 832]}
+          sizes="(min-width: 1024px) 26rem, (min-width: 640px) 22rem, 17rem"
           class="fane-ai__illustration"
-          width="320"
-          height="320"
           loading="lazy"
           decoding="async"
         />
@@ -131,14 +135,14 @@ Cand doresti sa te programezi?`
   }
 
   .fane-ai-heading__brand {
-    color: rgb(249 115 22);
+    color: rgb(234 88 12);
   }
 
   .fane-ai-heading__fade {
     background: linear-gradient(
       168deg,
       rgb(37 37 43) 0%,
-      rgb(37 37 43 / 0.15) 100%
+      rgb(106 106 114) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;

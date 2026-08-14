@@ -1,4 +1,4 @@
-import { copyFile, mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -8,6 +8,9 @@ const root = join(__dirname, '..');
 const input = join(root, 'src/assets/icon.png');
 const ogImageInput = join(root, 'src/assets/seo/og-image.png');
 const publicDir = join(root, 'public');
+
+const OG_WIDTH = 1200;
+const OG_HEIGHT = 630;
 
 const pngSizes = [
   { size: 16, name: 'favicon-16x16.png' },
@@ -28,12 +31,19 @@ async function createCircularPng(size, outputPath) {
   await sharp(input)
     .resize(size, size, { fit: 'cover' })
     .composite([{ input: mask, blend: 'dest-in' }])
-    .png()
+    .png({ compressionLevel: 9, effort: 10 })
     .toFile(outputPath);
 }
 
-async function copyOgImage(outputPath) {
-  await copyFile(ogImageInput, outputPath);
+async function writeOgImage(outputPath) {
+  await sharp(ogImageInput)
+    .resize(OG_WIDTH, OG_HEIGHT, {
+      fit: 'contain',
+      background: { r: 255, g: 255, b: 255, alpha: 1 },
+      kernel: 'lanczos3',
+    })
+    .png({ compressionLevel: 9, effort: 10 })
+    .toFile(outputPath);
 }
 
 async function createFaviconSvg(outputPath, pngPath) {
@@ -56,9 +66,11 @@ for (const { size, name } of pngSizes) {
   await createCircularPng(size, join(publicDir, name));
 }
 
-await copyOgImage(join(publicDir, 'og-image.png'));
+await writeOgImage(join(publicDir, 'og-image.png'));
 
 const chrome512Path = join(publicDir, 'android-chrome-512x512.png');
 await createFaviconSvg(join(publicDir, 'favicon.svg'), chrome512Path);
 
-console.log('Generated rounded favicons and og-image.png in public/');
+console.log(
+  `Generated rounded favicons and ${OG_WIDTH}x${OG_HEIGHT} og-image.png in public/`,
+);

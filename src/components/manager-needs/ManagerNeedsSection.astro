@@ -99,7 +99,12 @@ const imageBase =
             <div class="mt-auto flex min-h-0 w-full min-w-0 flex-1 items-end justify-center pt-4">
               <Image
                 src={tallCard.image}
-                alt={tallCard.title}
+                alt={tallCard.imageAlt}
+                title={tallCard.imageTitle}
+                format="webp"
+                quality={75}
+                widths={[280, 360, 480, 720]}
+                sizes="(max-width: 1023px) min(100vw - 3rem, 24rem), 22rem"
                 class="block h-auto max-h-full w-full max-w-full min-w-0 object-contain object-bottom drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]"
                 loading="lazy"
                 decoding="async"
@@ -129,7 +134,10 @@ const imageBase =
             <div class="relative z-1 mt-4 flex h-full max-h-75 min-h-0 w-full items-center justify-end overflow-hidden rounded-3xl drop-shadow-[0_18px_36px_rgb(37_37_43/0.18)]">
               <Image
                 src={wideCard.image}
-                alt={wideCard.title}
+                alt={wideCard.imageAlt}
+                title={wideCard.imageTitle}
+                format="webp"
+                quality={80}
                 class="block h-full w-auto max-w-full rounded-3xl object-contain object-right"
                 loading="lazy"
                 decoding="async"
@@ -162,7 +170,10 @@ const imageBase =
             <div class={mediaBase}>
               <Image
                 src={card.image}
-                alt={card.title}
+                alt={card.imageAlt}
+                title={card.imageTitle}
+                format="webp"
+                quality={80}
                 class:list={[imageBase, 'max-h-36 rounded-3xl']}
                 loading="lazy"
                 decoding="async"

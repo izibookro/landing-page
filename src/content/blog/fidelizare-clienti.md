@@ -4,6 +4,8 @@ description: 'Descopera ce inseamna cu adevarat fidelizarea clientilor intr-un s
 category: 'Fidelizare'
 pubDate: 2026-05-12
 image: ../../assets/why-us/why-us-fidelity.png
+imageAlt: 'Clienta loiala a unui salon de beauty, ilustrand fidelizarea clientilor cu IziBook'
+imageTitle: 'Fidelizarea clientilor in saloanele de beauty'
 draft: false
 ---
 

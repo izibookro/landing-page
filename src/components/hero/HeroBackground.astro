@@ -6,9 +6,13 @@
 </div>
 
 <script>
-  import { initHeroParticles } from './initHeroParticles';
+  import { whenIdle } from '../../lib/deferWork';
 
-  initHeroParticles().catch((error: unknown) => {
-    console.error('Failed to initialize hero particles:', error);
+  whenIdle(() => {
+    void import('./initHeroParticles').then(({ initHeroParticles }) =>
+      initHeroParticles().catch((error: unknown) => {
+        console.error('Failed to initialize hero particles:', error);
+      }),
+    );
   });
 </script>

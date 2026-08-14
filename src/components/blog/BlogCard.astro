@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import {
   formatBlogDate,
@@ -17,17 +17,25 @@ interface Props {
 const { post, class: className } = Astro.props;
 const href = getBlogPostHref(post);
 const readTime = getBlogReadTime(post);
+const imageAlt = post.data.imageAlt ?? post.data.title;
+const imageTitle = post.data.imageTitle ?? post.data.title;
 ---
 
 <article class:list={['group flex h-full w-full', className]}>
   <a
     href={href}
+    title={post.data.title}
     class="blog-card__link flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white p-3 no-underline transition-shadow duration-200"
   >
     <div class="relative overflow-hidden rounded-2xl">
-      <Image
+      <Picture
         src={post.data.image}
-        alt={post.data.title}
+        alt={imageAlt}
+        title={imageTitle}
+        formats={['avif', 'webp']}
+        widths={[400, 640, 800, 1200]}
+        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 44vw, 380px"
+        layout="constrained"
         class="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
         loading="lazy"
         decoding="async"

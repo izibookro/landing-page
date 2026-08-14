@@ -117,7 +117,13 @@ export function resolveSeo(seo: SiteSeo = {}) {
   const image = seo.image ?? new URL('/og-image.png', site.url).href;
   const imageAlt =
     seo.imageAlt ??
-    `${site.name} — software de programari pentru saloane`;
+    `${site.name} — software de programari pentru saloane pe web, iOS si Android`;
+  const imageType =
+    image.endsWith('.jpg') || image.endsWith('.jpeg')
+      ? 'image/jpeg'
+      : image.endsWith('.webp')
+        ? 'image/webp'
+        : 'image/png';
   const type = seo.type ?? 'website';
   const includeAppSchemas = seo.includeAppSchemas ?? isHome;
   const includeFaq = seo.includeFaq ?? false;
@@ -130,6 +136,7 @@ export function resolveSeo(seo: SiteSeo = {}) {
     canonicalPath,
     image,
     imageAlt,
+    imageType,
     type,
     article: seo.article,
     breadcrumbs: seo.breadcrumbs ?? [],
