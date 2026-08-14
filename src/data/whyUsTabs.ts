@@ -31,8 +31,8 @@ export const whyUsTabs: WhyUsTab[] = [
     label: 'Fidelizare',
     description:
       'Oferind o experienta memorabila clientilor, ne concentram si pe mentinerea lor. Folosim cele mai noi tehnologii si practici pentru a creste veniturile afacerii tale din fidelizare clienti.',
-    stat: '30%',
-    statLabel: 'Cresterea veniturilor din fidelizarea clientilor',
+    stat: '100%',
+    statLabel: 'Focus pe fidelizare si retentie',
     image: whyUsFidelity,
     imageAlt:
       'Client loial al unui salon de infrumusetare, ilustrand fidelizarea cu IziBook',
@@ -41,9 +41,9 @@ export const whyUsTabs: WhyUsTab[] = [
     id: 'inovatie',
     label: 'Inovatie',
     description:
-      'Investim constant in tehnologii si practici noi. Analizam mereu moduri noi de a fi mai eficienti si mai productivi in afacerea ta.',
-    stat: '50%',
-    statLabel: 'Investitii constante in practici noi pentru afacerea ta',
+      'Adaugam constant instrumente noi pentru salonul tau — de la programari pe WhatsApp cu Fane AI, la functionalitati care iti simplifica munca de zi cu zi.',
+    stat: 'AI',
+    statLabel: 'Fane AI pe WhatsApp si actualizari continue ale platformei',
     image: whyUsInnovation,
     imageAlt:
       'Tehnologie si inovatie pentru saloane — instrumente moderne in IziBook',

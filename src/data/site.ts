@@ -54,8 +54,7 @@ export const site = {
     whatsapp:
       'https://chat.whatsapp.com/FEx7QoJSEDg4Sje5w6siwH?mode=gi_t',
     instagram: 'https://www.instagram.com/izibook.ro',
-    facebook: 'https://www.facebook.com/izibook',
-    linkedin: 'https://www.linkedin.com/company/izibook',
+    tiktok: 'https://www.tiktok.com/@izibook.ro',
     x: 'https://x.com/izibook',
   },
 } as const;
@@ -63,8 +62,7 @@ export const site = {
 /** Public profiles suitable for Organization.sameAs (excludes chat invite links). */
 export const organizationSameAs = [
   site.social.instagram,
-  site.social.facebook,
-  site.social.linkedin,
+  site.social.tiktok,
   site.social.x,
 ] as const;
 

@@ -14,7 +14,7 @@ IziBook se adreseaza managerilor si angajatilor de saloane (coafor, unghii, beau
 ## Pagini principale
 
 - [Acasa](${site.url}): Prezentare produs, functionalitati, Fane AI
-- [Preturi](${site.url}/#preturi): Planuri Single / Small / Medium / Enterprise (100–1500 RON/luna)
+- [Preturi](${site.url}/#preturi): Planuri Single / Medium / Enterprise (100–1000 RON/luna)
 - [Pricing (markdown)](${site.url}/pricing.md): Planuri structurate pentru agenti AI (RON, limite, trial 30 zile)
 - [FAQ](${site.url}/#faq): Intrebari frecvente (si FAQPage schema)
 - [Descarca aplicatia](${site.url}/#descarca): Linkuri iOS si Android
@@ -35,8 +35,7 @@ IziBook se adreseaza managerilor si angajatilor de saloane (coafor, unghii, beau
 - [Termeni si conditii](${site.url}/legal/termeni-si-conditii)
 - [Politica cookie-uri](${site.url}/legal/politica-cookie-uri)
 - [Instagram](${site.social.instagram})
-- [Facebook](${site.social.facebook})
-- [LinkedIn](${site.social.linkedin})
+- [TikTok](${site.social.tiktok})
 `;
 
 export const GET: APIRoute = () => {
