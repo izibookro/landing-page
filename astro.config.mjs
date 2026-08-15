@@ -35,7 +35,16 @@ export default defineConfig({
       },
       filter: (page) => !page.includes('/404'),
       // Agent-readable files are endpoints, not HTML pages — list them explicitly.
-      customPages: [`${siteUrl}/pricing.md`, `${siteUrl}/llms.txt`],
+      customPages: [
+        `${siteUrl}/pricing.md`,
+        `${siteUrl}/llms.txt`,
+        `${siteUrl}/okf/index.md`,
+        `${siteUrl}/okf/izibook.md`,
+        `${siteUrl}/okf/pricing.md`,
+        `${siteUrl}/okf/fane-ai.md`,
+        `${siteUrl}/okf/features.md`,
+        `${siteUrl}/okf/faq.md`,
+      ],
       serialize(item) {
         // Normalize filesystem-discovered URLs so sitemap matches trailingSlash: 'never'.
         try {

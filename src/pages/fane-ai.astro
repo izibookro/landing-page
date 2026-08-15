@@ -4,30 +4,15 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/footer/Footer.astro';
 import FaneAI from '../components/ai-assistant/FaneAI.astro';
 import DownloadSection from '../components/download/DownloadSection.astro';
+import LastUpdated from '../components/seo/LastUpdated.astro';
+import { faneHowToSteps } from '../data/faneAi';
+import { productPagesUpdatedAtIso } from '../data/productPages';
 import { site } from '../data/site';
 import '../components/product/product-page.scss';
 
 const pageTitle = 'Fane AI — programari salon pe WhatsApp';
 const pageDescription =
   'Fane AI este asistentul IziBook pe WhatsApp: clientii intreaba de locuri libere, preturi si servicii, iar Fane programeaza 24/7, conectat la calendarul salonului.';
-
-const steps = [
-  {
-    index: '01',
-    title: 'Clientul scrie pe WhatsApp',
-    body: 'Trimite un mesaj ca la un angajat: vrea o tunsoare, intreaba de pret sau de locuri libere. Nu descarca o aplicatie si nu isi face cont. Fane raspunde in conversatie, in romana, la orice ora.',
-  },
-  {
-    index: '02',
-    title: 'Fane citeste calendarul salonului',
-    body: 'Este conectat la IziBook. Vede angajatii, serviciile, preturile si intervalele libere in timp real. Nu inventeaza locuri. Daca Marius e ocupat, propune alt interval sau alt specialist, dupa regulile tale.',
-  },
-  {
-    index: '03',
-    title: 'Programarea intra in sistem',
-    body: 'Cand clientul confirma, programarea apare in calendarul specialistului. Primeste reminder in aplicatie. Tu vezi aceeasi rezervare ca pe o programare facuta de la recepție sau din app.',
-  },
-];
 
 const examples = [
   {
@@ -56,6 +41,8 @@ const limits = [
   description={pageDescription}
   canonicalPath="/fane-ai"
   includeAppSchemas
+  includeHowTo
+  dateModified={productPagesUpdatedAtIso()}
   breadcrumbs={[
     { name: 'Acasa', path: '/' },
     { name: 'Fane AI', path: '/fane-ai' },
@@ -81,6 +68,7 @@ const limits = [
           rezervarea in calendar, fara telefon la receptie si fara aplicatie de
           instalat de catre client.
         </p>
+        <LastUpdated class="mt-4" />
       </div>
     </section>
 
@@ -103,8 +91,8 @@ const limits = [
 
         <ol class="mt-10 grid list-none gap-10 sm:mt-12 lg:grid-cols-3 lg:gap-12">
           {
-            steps.map((step) => (
-              <li>
+            faneHowToSteps.map((step) => (
+              <li id={`step-${step.index}`}>
                 <p class="product-page__step-index text-primary-600 text-sm font-semibold">
                   {step.index}
                 </p>

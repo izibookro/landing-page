@@ -95,6 +95,8 @@ export type SeoArticle = {
   section?: string;
 };
 
+export type FaqSchemaScope = 'all' | 'home';
+
 export type SiteSeo = {
   title?: string;
   description?: string;
@@ -105,8 +107,16 @@ export type SiteSeo = {
   type?: 'website' | 'article';
   article?: SeoArticle;
   breadcrumbs?: SeoBreadcrumb[];
-  /** FAQPage schema — set on /faq only. */
+  /** FAQPage schema — visible Q&A on the page (full /faq or homepage teaser). */
   includeFaq?: boolean;
+  /** Which FAQ set to encode. Default: all on /faq, home teasers when isHome. */
+  faqScope?: FaqSchemaScope;
+  /** HowTo schema for Fane AI step-by-step content. */
+  includeHowTo?: boolean;
+  /** ItemList of Offer schemas for pricing plans on /preturi. */
+  includePlanOffers?: boolean;
+  /** ISO dateModified for WebPage schema (freshness for AI crawlers). */
+  dateModified?: string;
   /** Organization + SoftwareApplication + MobileApplication graph. Default: homepage only. */
   includeAppSchemas?: boolean;
 };
@@ -141,6 +151,10 @@ export function resolveSeo(seo: SiteSeo = {}) {
   const type = seo.type ?? 'website';
   const includeAppSchemas = seo.includeAppSchemas ?? isHome;
   const includeFaq = seo.includeFaq ?? false;
+  const faqScope: FaqSchemaScope =
+    seo.faqScope ?? (isHome ? 'home' : 'all');
+  const includeHowTo = seo.includeHowTo ?? false;
+  const includePlanOffers = seo.includePlanOffers ?? false;
 
   return {
     title,
@@ -155,6 +169,10 @@ export function resolveSeo(seo: SiteSeo = {}) {
     article: seo.article,
     breadcrumbs: seo.breadcrumbs ?? [],
     includeFaq,
+    faqScope,
+    includeHowTo,
+    includePlanOffers,
+    dateModified: seo.dateModified,
     includeAppSchemas,
     noindex: seo.noindex ?? false,
     isHome,

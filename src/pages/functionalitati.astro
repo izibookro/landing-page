@@ -3,11 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/footer/Footer.astro';
 import DownloadSection from '../components/download/DownloadSection.astro';
+import LastUpdated from '../components/seo/LastUpdated.astro';
 import { Icon } from 'astro-icon/components';
 import {
   functionalitatiLead,
   productRoles,
 } from '../data/functionalitati';
+import { productPagesUpdatedAtIso } from '../data/productPages';
 import { site } from '../data/site';
 import '../components/product/product-page.scss';
 
@@ -21,6 +23,7 @@ const pageDescription =
   description={pageDescription}
   canonicalPath="/functionalitati"
   includeAppSchemas
+  dateModified={productPagesUpdatedAtIso()}
   breadcrumbs={[
     { name: 'Acasa', path: '/' },
     { name: 'Functionalitati', path: '/functionalitati' },
@@ -43,6 +46,7 @@ const pageDescription =
           >
             {functionalitatiLead}
           </p>
+          <LastUpdated class="mt-4" />
         </div>
       </div>
     </section>

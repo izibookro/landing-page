@@ -1,5 +1,9 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import {
+  productPagePaths,
+  productPagesUpdatedAt,
+} from '../data/productPages';
 
 /**
  * Reads lastmod dates from content markdown frontmatter for sitemap serialize.
@@ -54,17 +58,14 @@ export function loadContentLastmods(rootDir = process.cwd()): Map<string, Date> 
     }
   }
 
-  const productPagesDate = new Date('2026-08-14T00:00:00.000Z');
-  lastmods.set('/preturi', productPagesDate);
-  lastmods.set('/fane-ai', productPagesDate);
-  lastmods.set('/functionalitati', productPagesDate);
-  lastmods.set('/faq', productPagesDate);
-  lastmods.set('/contact', productPagesDate);
+  for (const path of productPagePaths) {
+    lastmods.set(path, productPagesUpdatedAt);
+  }
 
   const allDates = [...lastmods.values()];
   const latest = allDates.reduce(
     (max, date) => (date > max ? date : max),
-    productPagesDate,
+    productPagesUpdatedAt,
   );
   lastmods.set('/', latest);
 

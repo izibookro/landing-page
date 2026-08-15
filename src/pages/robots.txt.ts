@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 /**
  * AI visibility policy:
- * - Allow search/citation bots (ChatGPT, Gemini/AI Overviews, Claude, Perplexity, Apple).
+ * - Allow search/citation bots (ChatGPT, Gemini/AI Overviews, Claude, Perplexity, Bing/Copilot, Apple).
  * - Refuse model training via Content-Signal ai-train=no.
  * - Block training-only scrapers (CCBot, Bytespider).
  *
@@ -35,6 +35,9 @@ User-agent: anthropic-ai
 Allow: /
 
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 User-agent: Applebot-Extended

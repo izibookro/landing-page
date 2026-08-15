@@ -1,9 +1,11 @@
-import { faqItems } from '../data/faqItems';
+import { faneHowTo, faneHowToSteps } from '../data/faneAi';
+import { faqHomeItems, faqItems, type FaqItem } from '../data/faqItems';
 import { plans } from '../data/plans';
 import {
   organizationSameAs,
   site,
   normalizeCanonicalPath,
+  type FaqSchemaScope,
   type SeoArticle,
   type SeoBreadcrumb,
 } from '../data/site';
@@ -105,11 +107,11 @@ function buildMobileApplicationSchemas() {
   }));
 }
 
-function buildFaqPageSchema() {
+function buildFaqPageSchema(items: FaqItem[], pageUrl: string) {
   return {
     '@type': 'FAQPage',
-    '@id': `${site.url}/faq`,
-    mainEntity: faqItems.map((item) => ({
+    '@id': pageUrl,
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {
@@ -117,6 +119,84 @@ function buildFaqPageSchema() {
         text: item.answer.trim(),
       },
     })),
+  };
+}
+
+function buildHowToSchema() {
+  return {
+    '@type': 'HowTo',
+    '@id': `${absoluteUrl('/fane-ai')}#howto`,
+    name: faneHowTo.name,
+    description: faneHowTo.description,
+    inLanguage: site.inLanguage,
+    step: faneHowToSteps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.body,
+      url: `${absoluteUrl('/fane-ai')}#step-${step.index}`,
+    })),
+  };
+}
+
+function buildPlanOffersItemListSchema() {
+  const pageUrl = absoluteUrl('/preturi');
+
+  return {
+    '@type': 'ItemList',
+    '@id': `${pageUrl}#plans`,
+    name: 'Planuri IziBook pentru saloane',
+    description:
+      'Abonamente lunare IziBook in RON: Single, Medium si Enterprise, dupa numarul de angajati.',
+    numberOfItems: plans.length,
+    itemListElement: plans.map((plan, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Offer',
+        '@id': `${pageUrl}#plan-${plan.id}`,
+        name: `IziBook ${plan.name}`,
+        description: `${plan.description} ${plan.employees}. Include: ${plan.features.join('; ')}.`,
+        price: String(plan.price),
+        priceCurrency: 'RON',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: String(plan.price),
+          priceCurrency: 'RON',
+          billingDuration: 'P1M',
+          unitText: 'MONTH',
+        },
+        availability: 'https://schema.org/InStock',
+        url: pageUrl,
+        seller: { '@id': `${site.url}/#organization` },
+        itemOffered: {
+          '@type': 'SoftwareApplication',
+          name: `IziBook ${plan.name}`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web, iOS, Android',
+          description: plan.description,
+        },
+      },
+    })),
+  };
+}
+
+function buildWebPageSchema(options: {
+  canonical: string;
+  title: string;
+  description: string;
+  dateModified?: string;
+}) {
+  return {
+    '@type': 'WebPage',
+    '@id': options.canonical,
+    url: options.canonical,
+    name: options.title,
+    description: options.description,
+    inLanguage: site.inLanguage,
+    isPartOf: { '@id': `${site.url}/#website` },
+    publisher: { '@id': `${site.url}/#organization` },
+    ...(options.dateModified ? { dateModified: options.dateModified } : {}),
   };
 }
 
@@ -186,6 +266,10 @@ export function buildJsonLdGraph(options: {
   image: string;
   includeAppSchemas: boolean;
   includeFaq: boolean;
+  faqScope: FaqSchemaScope;
+  includeHowTo: boolean;
+  includePlanOffers: boolean;
+  dateModified?: string;
   isHome: boolean;
   article?: SeoArticle;
   breadcrumbs: SeoBreadcrumb[];
@@ -196,12 +280,32 @@ export function buildJsonLdGraph(options: {
     graph.push(buildWebsiteSchema());
   }
 
+  if (options.dateModified) {
+    graph.push(
+      buildWebPageSchema({
+        canonical: options.canonical,
+        title: options.title,
+        description: options.description,
+        dateModified: options.dateModified,
+      }),
+    );
+  }
+
   if (options.includeAppSchemas) {
     graph.push(buildSoftwareApplicationSchema(), ...buildMobileApplicationSchemas());
   }
 
   if (options.includeFaq) {
-    graph.push(buildFaqPageSchema());
+    const items = options.faqScope === 'home' ? faqHomeItems : faqItems;
+    graph.push(buildFaqPageSchema(items, options.canonical));
+  }
+
+  if (options.includeHowTo) {
+    graph.push(buildHowToSchema());
+  }
+
+  if (options.includePlanOffers) {
+    graph.push(buildPlanOffersItemListSchema());
   }
 
   if (options.article) {

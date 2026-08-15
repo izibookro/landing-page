@@ -1,0 +1,28 @@
+---
+import {
+  formatProductUpdatedDate,
+  productPagesUpdatedAt,
+  productPagesUpdatedAtIso,
+} from '../../data/productPages';
+
+interface Props {
+  /** Override date; defaults to shared product pages date. */
+  date?: Date;
+  class?: string;
+}
+
+const date = Astro.props.date ?? productPagesUpdatedAt;
+const className = Astro.props.class;
+const label = formatProductUpdatedDate(date);
+const iso = date === productPagesUpdatedAt ? productPagesUpdatedAtIso() : date.toISOString();
+---
+
+<p
+  class:list={[
+    'text-black-400 text-sm leading-relaxed',
+    className,
+  ]}
+>
+  Ultima actualizare:{' '}
+  <time datetime={iso}>{label}</time>
+</p>

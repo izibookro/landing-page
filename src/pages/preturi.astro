@@ -4,12 +4,14 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/footer/Footer.astro';
 import PlansSection from '../components/plans/PlansSection.astro';
 import DownloadSection from '../components/download/DownloadSection.astro';
+import LastUpdated from '../components/seo/LastUpdated.astro';
 import { Icon } from 'astro-icon/components';
 import {
   billingQuestions,
   planComparisonRows,
   plans,
 } from '../data/plans';
+import { productPagesUpdatedAtIso } from '../data/productPages';
 import { site } from '../data/site';
 import '../components/product/product-page.scss';
 
@@ -29,6 +31,8 @@ function cellText(value: string | boolean): string {
   description={pageDescription}
   canonicalPath="/preturi"
   includeAppSchemas
+  includePlanOffers
+  dateModified={productPagesUpdatedAtIso()}
   breadcrumbs={[
     { name: 'Acasa', path: '/' },
     { name: 'Preturi', path: '/preturi' },
@@ -55,6 +59,7 @@ function cellText(value: string | boolean): string {
             10 zile, gratuit, fara card. Nu platesti per programare sau per
             client.
           </p>
+          <LastUpdated class="mt-4" />
         </div>
 
         <div

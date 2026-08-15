@@ -3,8 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/footer/Footer.astro';
 import DownloadSection from '../components/download/DownloadSection.astro';
+import LastUpdated from '../components/seo/LastUpdated.astro';
 import { Icon } from 'astro-icon/components';
 import { faqCategories } from '../data/faqItems';
+import { productPagesUpdatedAtIso } from '../data/productPages';
 import { site } from '../data/site';
 import '../components/product/product-page.scss';
 
@@ -19,6 +21,7 @@ const pageDescription =
   canonicalPath="/faq"
   includeFaq
   includeAppSchemas
+  dateModified={productPagesUpdatedAtIso()}
   breadcrumbs={[
     { name: 'Acasa', path: '/' },
     { name: 'FAQ', path: '/faq' },
@@ -43,6 +46,7 @@ const pageDescription =
           pe teme. Daca nu gasesti ce cauti, scrie-ne — configurarea initiala e
           inclusa.
         </p>
+        <LastUpdated class="mt-4" />
       </div>
     </section>
 

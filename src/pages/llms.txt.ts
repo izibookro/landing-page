@@ -18,6 +18,7 @@ IziBook se adreseaza managerilor si angajatilor de saloane (coafor, unghii, beau
 - [Preturi](${site.url}/preturi): Planuri Single / Medium / Enterprise (100–1000 RON/luna)
 - [Fane AI](${site.url}/fane-ai): Programari salon pe WhatsApp
 - [Pricing (markdown)](${site.url}/pricing.md): Planuri structurate pentru agenti AI (RON, limite, trial 10 zile)
+- [OKF bundle](${site.url}/okf/index.md): Open Knowledge Format — concepte incrucisate (produs, preturi, Fane AI, FAQ)
 - [FAQ](${site.url}/faq): Intrebari frecvente (programari, Fane AI, echipa, preturi, date)
 - [Descarca aplicatia](${site.url}/#descarca): Linkuri iOS si Android
 - [Contact](${site.url}/contact): Email, telefon si canale de suport
