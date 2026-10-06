@@ -1,15 +1,14 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import {
-  productPagePaths,
-  productPagesUpdatedAt,
-} from '../data/productPages';
+import { productPagePaths, productPagesUpdatedAt } from '../data/productPages';
 
 /**
  * Reads lastmod dates from content markdown frontmatter for sitemap serialize.
  * Keys are pathname forms both with and without a trailing slash.
  */
-export function loadContentLastmods(rootDir = process.cwd()): Map<string, Date> {
+export function loadContentLastmods(
+  rootDir = process.cwd(),
+): Map<string, Date> {
   const lastmods = new Map<string, Date>();
 
   const collections: Array<{
@@ -88,5 +87,7 @@ export function lastmodForSitemapUrl(
   lastmods: Map<string, Date>,
 ): Date | undefined {
   const pathname = new URL(pageUrl, siteOrigin).pathname;
-  return lastmods.get(pathname) ?? lastmods.get(pathname.replace(/\/$/, '') || '/');
+  return (
+    lastmods.get(pathname) ?? lastmods.get(pathname.replace(/\/$/, '') || '/')
+  );
 }

@@ -18,10 +18,10 @@ import './cookie-consent.scss';
       </h2>
       <p class="cookie-consent__text">
         Folosim cookie-uri si tehnologii similare pentru functionarea site-ului,
-        pentru a intelege cum este utilizat (Google Analytics, Microsoft Clarity)
-        si, daca le acceptati, pentru masuratori de marketing. Cookie-urile
-        necesare sunt activate automat. Celelalte categorii se activeaza doar cu
-        acordul dumneavoastra.
+        pentru a intelege cum este utilizat (Google Analytics, Microsoft
+        Clarity) si, daca le acceptati, pentru masuratori de marketing.
+        Cookie-urile necesare sunt activate automat. Celelalte categorii se
+        activeaza doar cu acordul dumneavoastra.
       </p>
       <div class="cookie-consent__links">
         <a
@@ -103,7 +103,11 @@ import './cookie-consent.scss';
           data-cookie-action="close-preferences"
           aria-label="Inchide preferintele cookie"
         >
-          <Icon name="solar:close-circle-linear" class="size-5" aria-hidden="true" />
+          <Icon
+            name="solar:close-circle-linear"
+            class="size-5"
+            aria-hidden="true"
+          />
         </button>
       </div>
 
@@ -117,9 +121,17 @@ import './cookie-consent.scss';
                 preferintelor de consimtamant. Nu pot fi dezactivate.
               </p>
             </div>
-            <label class="cookie-consent__toggle cookie-consent__toggle--locked">
-              <input type="checkbox" checked disabled aria-label="Cookie-uri necesare" />
-              <span class="cookie-consent__toggle-track" aria-hidden="true"></span>
+            <label
+              class="cookie-consent__toggle cookie-consent__toggle--locked"
+            >
+              <input
+                type="checkbox"
+                checked
+                disabled
+                aria-label="Cookie-uri necesare"
+              />
+              <span class="cookie-consent__toggle-track" aria-hidden="true"
+              ></span>
             </label>
           </div>
           <ul class="cookie-consent__category-list">
@@ -131,7 +143,9 @@ import './cookie-consent.scss';
         <article class="cookie-consent__category">
           <div class="cookie-consent__category-head">
             <div>
-              <h3 class="cookie-consent__category-title">Statistica si analiza</h3>
+              <h3 class="cookie-consent__category-title">
+                Statistica si analiza
+              </h3>
               <p class="cookie-consent__category-text">
                 Ne ajuta sa intelegem cum este utilizat site-ul prin statistici
                 agregate. Include Google Analytics si Microsoft Clarity.
@@ -143,7 +157,8 @@ import './cookie-consent.scss';
                 data-cookie-toggle="statistics"
                 aria-label="Activeaza cookie-urile de statistica"
               />
-              <span class="cookie-consent__toggle-track" aria-hidden="true"></span>
+              <span class="cookie-consent__toggle-track" aria-hidden="true"
+              ></span>
             </label>
           </div>
           <ul class="cookie-consent__category-list">
@@ -167,7 +182,8 @@ import './cookie-consent.scss';
                 data-cookie-toggle="marketing"
                 aria-label="Activeaza cookie-urile de marketing"
               />
-              <span class="cookie-consent__toggle-track" aria-hidden="true"></span>
+              <span class="cookie-consent__toggle-track" aria-hidden="true"
+              ></span>
             </label>
           </div>
         </article>

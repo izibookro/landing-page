@@ -253,11 +253,11 @@ const socialLinkClass =
         &copy; {new Date().getFullYear()} IziBook. Toate drepturile rezervate.
       </p>
       <a
-        href="mailto:contact@izibook.ro"
-        title="Trimite email la contact@izibook.ro"
+        href={`mailto:${site.email}`}
+        title={`Trimite email la ${site.email}`}
         class="text-black-400 hover:text-black-500 text-sm no-underline transition-colors duration-200"
       >
-        contact@izibook.ro
+        {site.email}
       </a>
     </div>
   </div>

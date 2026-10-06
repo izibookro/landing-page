@@ -60,7 +60,8 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         id: 'trei-profile',
-        question: 'Pot avea profil de manager, specialist si client pe acelasi cont?',
+        question:
+          'Pot avea profil de manager, specialist si client pe acelasi cont?',
         answer:
           'Da. Un utilizator poate avea profil de client, iar daca lucreaza in salon si profil de specialist sau manager. Schimbi profilul din aplicatie, fara email-uri separate. Datele de login sunt aceleasi pe iOS, Android si, pentru manager, pe web.',
       },

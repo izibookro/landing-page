@@ -24,6 +24,8 @@ export function getLegalPageHref(page: LegalEntry): string {
 
 export async function getPublishedLegalPages(): Promise<LegalEntry[]> {
   return (await getCollection('legal', ({ data }) => !data.draft)).sort(
-    (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title, 'ro'),
+    (a, b) =>
+      a.data.order - b.data.order ||
+      a.data.title.localeCompare(b.data.title, 'ro'),
   );
 }

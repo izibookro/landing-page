@@ -1,7 +1,7 @@
 export const site = {
   name: 'IziBook',
   legalName: 'IZIBOOK SRL',
-  url: 'https://izibook.ro',
+  url: 'https://izi-book.ro',
   /** Open Graph locale (underscore form required by og:locale). */
   locale: 'ro_RO',
   /** BCP-47 language tag for HTML lang + schema.org inLanguage. */
@@ -9,7 +9,7 @@ export const site = {
   /** BCP-47 language-region for schema.org when region matters. */
   inLanguage: 'ro-RO',
   country: 'RO',
-  email: 'contact@izibook.ro',
+  email: 'contact@izi-book.ro',
   /** E.164 for tel: links and Organization.telephone. */
   telephone: '+40753497805',
   telephoneDisplay: '+40 753 497 805',
@@ -60,8 +60,8 @@ export const site = {
     },
     web: {
       name: 'IziBook',
-      url: 'https://app.izibook.ro/',
-      onboarding: 'https://app.izibook.ro/onboarding',
+      url: 'https://app.izi-book.ro/',
+      onboarding: 'https://app.izi-book.ro/onboarding',
     },
   },
   social: {

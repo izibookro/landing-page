@@ -1,13 +1,13 @@
 ---
 title: 'Politica cookie-uri'
-description: 'Modul in care IziBook foloseste fisiere cookie si tehnologii similare pe site-ul izibook.ro si in aplicatiile mobile pentru iOS si Android.'
+description: 'Modul in care IziBook foloseste fisiere cookie si tehnologii similare pe site-ul izi-book.ro si in aplicatiile mobile pentru iOS si Android.'
 subtitle: 'Aplicatia IziBook'
 updatedDate: 2026-07-12
 order: 3
 draft: false
 ---
 
-Prezenta Politica privind fisierele cookie detaliaza modul in care societatea IZIBOOK SRL, cu sediul in Str. Borhanciului, Nr. 64 Provizoriu, Cluj-Napoca, Cluj, Romania (denumita in continuare „IziBook"), foloseste fisiere cookie pe domeniul internet izibook.ro (Site-ul) si se aplica tuturor utilizatorilor acestui site. Politica se aplica si aplicatiile mobile IziBook pentru iOS si Android („Aplicatiile"). In sensul prezentei politici, termenul „cookie-uri" include si tehnologii similare folosite in aplicatii (de exemplu: SDK-uri, identificatori de dispozitiv sau de publicitate, stocare locala si tokenuri de sesiune).
+Prezenta Politica privind fisierele cookie detaliaza modul in care societatea IZIBOOK SRL, cu sediul in Str. Borhanciului, Nr. 64 Provizoriu, Cluj-Napoca, Cluj, Romania (denumita in continuare „IziBook"), foloseste fisiere cookie pe domeniul internet izi-book.ro (Site-ul) si se aplica tuturor utilizatorilor acestui site. Politica se aplica si aplicatiile mobile IziBook pentru iOS si Android („Aplicatiile"). In sensul prezentei politici, termenul „cookie-uri" include si tehnologii similare folosite in aplicatii (de exemplu: SDK-uri, identificatori de dispozitiv sau de publicitate, stocare locala si tokenuri de sesiune).
 
 Pentru prelucrari de date personale care depasesc sfera cookie-urilor, va rugam sa consultati [Politica de confidentialitate](/legal/politica-de-confidentialitate) disponibila pe platforma.
 
@@ -46,26 +46,26 @@ IziBook foloseste cookie-uri si stocare locala conform tabelelor de mai jos. Lis
 
 ### Cookie-uri necesare
 
-| Denumire | Descriere |
-| --- | --- |
-| cookie-consent-v2 (localStorage) | Stocheaza preferintele dvs. privind cookie-urile neesentiale si dovada consimtamantului, astfel incat sa nu vi se afiseze in mod repetat bannerul. |
-| Preferinte locale (localStorage / sessionStorage) | Pot fi folosite pentru functii strict necesare (ex.: sesiune, securitate, incarcarea corecta a paginii). |
+| Denumire                                          | Descriere                                                                                                                                          |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| cookie-consent-v2 (localStorage)                  | Stocheaza preferintele dvs. privind cookie-urile neesentiale si dovada consimtamantului, astfel incat sa nu vi se afiseze in mod repetat bannerul. |
+| Preferinte locale (localStorage / sessionStorage) | Pot fi folosite pentru functii strict necesare (ex.: sesiune, securitate, incarcarea corecta a paginii).                                           |
 
 Temei legal orientativ: art. 6 alin. 1 lit. f) GDPR (interes legitim – functionare si securitate), acolo unde este aplicabil.
 
 ### Cookie-uri de statistica
 
-| Denumire | Descriere | Durata |
-| --- | --- | --- |
-| _ga, _ga_* | Cookie folosit de Google Analytics (ID masurare: G-MCLP8NWRP6) pentru a distinge utilizatorii si a genera statistici agregate despre utilizarea site-ului. | pana la 2 ani |
+| Denumire                 | Descriere                                                                                                                                                    | Durata                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
+| _ga, _ga_*               | Cookie folosit de Google Analytics (ID masurare: G-MCLP8NWRP6) pentru a distinge utilizatorii si a genera statistici agregate despre utilizarea site-ului.   | pana la 2 ani                  |
 | _clck, _clsk, CLID, MUID | Cookie-uri si identificatori folositi de Microsoft Clarity pentru analiza comportamentului pe site (clickuri, scroll, sesiuni) si imbunatatirea experientei. | conform setarilor furnizorului |
 
 Temei legal: art. 6 alin. 1 lit. a) GDPR (consimtamant), dupa ce activati categoria in banner.
 
 ### Cookie-uri de marketing
 
-| Denumire | Descriere | Durata |
-| --- | --- | --- |
+| Denumire                                      | Descriere                                                                                                                                                                       | Durata                         |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | _ga (masuratori publicitare, daca este cazul) | Atunci cand acceptati categoria de marketing, Google Analytics poate fi folosit si in legatura cu masuratori de campanii si audiente, conform setarilor si integrarilor active. | conform setarilor furnizorului |
 
 Temei legal: art. 6 alin. 1 lit. a) GDPR (consimtamant).
@@ -89,6 +89,6 @@ IziBook isi rezerva dreptul de a modifica aceasta politica. Modificarile pot fi 
 
 ## Intrebari / contact
 
-Confidentialitate / suport: [contact@izibook.ro](mailto:contact@izibook.ro)
+Confidentialitate / suport: [contact@izi-book.ro](mailto:contact@izi-book.ro)
 
 Autoritatea de supraveghere: ANSPDCP — [https://www.dataprotection.ro](https://www.dataprotection.ro)

@@ -15,7 +15,7 @@ import {
   loadContentLastmods,
 } from './src/lib/sitemapLastmods.ts';
 
-const siteUrl = 'https://izibook.ro';
+const siteUrl = 'https://izi-book.ro';
 const contentLastmods = loadContentLastmods();
 
 // https://astro.build/config

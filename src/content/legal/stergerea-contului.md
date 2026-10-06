@@ -63,7 +63,7 @@ In cazul in care intampinati probleme in procesul de stergere a contului sau ave
 
 **IZIBOOK SRL**
 
-Email: [contact@izibook.ro](mailto:contact@izibook.ro)
+Email: [contact@izi-book.ro](mailto:contact@izi-book.ro)
 
 Echipa noastra de suport este disponibila pentru a va oferi asistenta.
 
