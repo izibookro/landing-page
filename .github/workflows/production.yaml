@@ -38,7 +38,7 @@ jobs:
       - name: Deploy
         uses: up9cloud/action-rsync@v1.1
         env:
-          HOST: connect.izibook.ro
+          HOST: connect.izi-book.ro
           USER: izibook
           KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           SSH_ARGS: '-q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
